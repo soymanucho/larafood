@@ -14,8 +14,12 @@ class CreateTableStatusSequence extends Migration
     public function up()
     {
         Schema::create('status_sequence', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id_current_status')->unsigned();
+            $table->integer('id_next_status')->unsigned();
             $table->timestamps();
+
+            $table->foreign('id_current_status')->references('id')->on('status');//->onDelete('cascade');
+            $table->foreign('id_next_status')->references('id')->on('status');//->onDelete('cascade');
         });
     }
 

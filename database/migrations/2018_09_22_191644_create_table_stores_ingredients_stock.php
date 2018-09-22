@@ -14,8 +14,13 @@ class CreateTableStoresIngredientsStock extends Migration
     public function up()
     {
         Schema::create('stores_ingredients_stock', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+          $table->integer('id_ingredient')->unsigned();
+          $table->integer('id_store')->unsigned();
+          $table->integer('amount');
+          $table->timestamps();
+
+          $table->foreign('id_ingredient')->references('id')->on('ingredients');//->onDelete('cascade');
+          $table->foreign('id_store')->references('id')->on('stores');//->onDelete('cascade');
         });
     }
 
