@@ -1,0 +1,64 @@
+[1mdiff --git a/app/ProductType.php b/app/ProductType.php[m
+[1mdeleted file mode 100644[m
+[1mindex 964637c..0000000[m
+[1m--- a/app/ProductType.php[m
+[1m+++ /dev/null[m
+[36m@@ -1,10 +0,0 @@[m
+[31m-<?php[m
+[31m-[m
+[31m-namespace App;[m
+[31m-[m
+[31m-use Illuminate\Database\Eloquent\Model;[m
+[31m-[m
+[31m-class ProductType extends Model[m
+[31m-{[m
+[31m-    //[m
+[31m-}[m
+[1mdiff --git a/database/factories/ProductTypeFactory.php b/database/factories/ProductTypeFactory.php[m
+[1mdeleted file mode 100644[m
+[1mindex 65e4221..0000000[m
+[1m--- a/database/factories/ProductTypeFactory.php[m
+[1m+++ /dev/null[m
+[36m@@ -1,9 +0,0 @@[m
+[31m-<?php[m
+[31m-[m
+[31m-use Faker\Generator as Faker;[m
+[31m-[m
+[31m-$factory->define(Model::class, function (Faker $faker) {[m
+[31m-    return [[m
+[31m-        //[m
+[31m-    ];[m
+[31m-});[m
+[1mdiff --git a/database/seeds/DatabaseSeeder.php b/database/seeds/DatabaseSeeder.php[m
+[1mindex cb4a3c3..277ca7d 100644[m
+[1m--- a/database/seeds/DatabaseSeeder.php[m
+[1m+++ b/database/seeds/DatabaseSeeder.php[m
+[36m@@ -12,6 +12,5 @@[m [mclass DatabaseSeeder extends Seeder[m
+     public function run()[m
+     {[m
+          $this->call(IngredientSeeder::class);[m
+[31m-         $this->call(ProductTypeSeeder::class);[m
+     }[m
+ }[m
+[1mdiff --git a/database/seeds/ProductTypeSeeder.php b/database/seeds/ProductTypeSeeder.php[m
+[1mdeleted file mode 100644[m
+[1mindex de0a555..0000000[m
+[1m--- a/database/seeds/ProductTypeSeeder.php[m
+[1m+++ /dev/null[m
+[36m@@ -1,16 +0,0 @@[m
+[31m-<?php[m
+[31m-[m
+[31m-use Illuminate\Database\Seeder;[m
+[31m-[m
+[31m-class ProductTypeSeeder extends Seeder[m
+[31m-{[m
+[31m-    /**[m
+[31m-     * Run the database seeds.[m
+[31m-     *[m
+[31m-     * @return void[m
+[31m-     */[m
+[31m-    public function run()[m
+[31m-    {[m
+[31m-        //[m
+[31m-    }[m
+[31m-}[m
