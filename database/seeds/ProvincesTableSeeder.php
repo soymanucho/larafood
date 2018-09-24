@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Province;
 
 class ProvincesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class ProvincesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Province::class)->times(20)->create();
     }
 }

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Ciudades</div>
+                <div class="panel-heading">Tiendas</div>
 
                 <div class="panel-body">
                     <div class="errores">
@@ -18,18 +18,18 @@
                       </ul>
 
                     </div>
-                      <form  method="POST" name='editCity'>
+                      <form  method="POST" name='editStore'>
                       	{{ method_field('post') }}
-                        <label for="id_province">Provincia</label>
-                        <select class="form-control" name="id_province">
-                          @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}">
-                              {{ $province->name }} ({{$province->country->name}})
+                        <label for="id_city">Ciudades</label>
+                        <select class="form-control" name="id_city">
+                          @foreach ($cities as $city)
+                            <option value="{{ $city->id }}">
+                              {{ $city->name }} ({{$city->province->name}}, {{$city->province->country->name}})
                             </option>
                           @endforeach
                         </select>
-                        @include('cities._fields')
-                          <input type="submit" value="Agregar ciudad" name="submit"/>
+                        @include('stores._fields')
+                          <input type="submit" value="Agregar tienda" name="submit"/>
                       </form>
 
                     </div>

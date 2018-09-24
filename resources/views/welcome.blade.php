@@ -87,6 +87,7 @@
                     <a href="/admin/paises">Países</a>
                     <a href="/admin/provincias">Provincias</a>
                     <a href="/admin/ciudades">Ciudades</a>
+                    <a href="/admin/tiendas">Tiendas</a>
                     <a href="https://trello.com/b/sz6cvOia/larafood">Trello</a>
                     <a href="https://github.com/soymanucho/larafood">GitHub/larafood</a>
                 </div>
