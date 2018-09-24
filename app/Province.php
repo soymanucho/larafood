@@ -10,12 +10,14 @@ class Province extends Model
 {
   protected $table = 'provinces';
 
+  protected $fillable = ['name','id_country'];
+
   public function country()
   {
     return $this->belongsTo(Country::class, 'id_country');
   }
   public function cities()
   {
-    return $this->hasMany(City::class, 'cities', 'id_province');.
+    return $this->hasMany(City::class, 'cities', 'id_province');
   }
 }
