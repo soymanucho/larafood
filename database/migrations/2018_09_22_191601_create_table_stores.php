@@ -16,9 +16,9 @@ class CreateTableStores extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('adress');
+            $table->string('address');
             $table->integer('id_city')->unsigned();
-            $table->boolean('available');
+            $table->boolean('available')->default(0);
             $table->timestamps();
 
             $table->foreign('id_city')->references('id')->on('cities');//->onDelete('cascade');

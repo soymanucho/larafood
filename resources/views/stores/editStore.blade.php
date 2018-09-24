@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Ciudades</div>
+                <div class="panel-heading">Tiendas</div>
 
                 <div class="panel-body">
                     <div class="errores">
@@ -18,20 +18,20 @@
                       </ul>
 
                     </div>
-                      <form  method="POST" name='editCity'>
+                      <form  method="POST" name='editStore'>
                       	{{ method_field('put') }}
-                        <label for="id_province">Provincia</label>
-                        <select class="form-control" name="id_province">
-                          @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}"
-                                @if($province->id == old('id_province', $city->province->id))
+                        <label for="id_city">Ciudades</label>
+                        <select class="form-control" name="id_city">
+                          @foreach ($cities as $city)
+                            <option value="{{ $city->id }}"
+                                @if($city->id == old('id_city', $store->city->id))
                                   selected
                                 @endif
-                                >{{ $province->name }} ({{$province->country->name}})
+                                >{{ $city->name }} ({{$city->province->name}}, {{$city->province->country->name}})
                             </option>
                           @endforeach
                         </select>
-                        @include('cities._fields')
+                        @include('stores._fields')
                           <input type="submit" value="Guardar cambios" name="submit"/>
                       </form>
 

@@ -37,8 +37,8 @@
                           <form class="" action="/admin/paises/{{$country->id}}/eliminar" method="post">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
-                            <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
                             <a class="btn btn-sm btn-warning" href="/admin/paises/{{$country->id}}/editar">Editar</a>
+                            <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
                           </form>
 
                           {{-- <form class="" action="/admin/ingredientes/{{$ingredient->id}}/editar" method="get">
