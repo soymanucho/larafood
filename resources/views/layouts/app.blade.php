@@ -39,12 +39,19 @@
                       </a>
 
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{route('city-show')}}">Ciudades</a>
-                        <a class="dropdown-item" href="{{route('ingredient-show')}}">Ingredientes</a>
+
+                        
+
+
+
+                        <h6 class="dropdown-header">Ubicacion</h6>
                         <a class="dropdown-item" href="{{route('country-show')}}">Paises</a>
                         <a class="dropdown-item" href="{{route('province-show')}}">Provincias</a>
-                        <a class="dropdown-item" href="{{route('productype-show')}}">Tipos de producto</a>
+                        <a class="dropdown-item" href="{{route('city-show')}}">Ciudades</a>
                         <a class="dropdown-item" href="{{route('store-show')}}">Tiendas</a>
+                        <h6 class="dropdown-header">Productos</h6>
+                        <a class="dropdown-item" href="{{route('ingredient-show')}}">Ingredientes</a>
+                        <a class="dropdown-item" href="{{route('productype-show')}}">Tipos de producto</a>
 
                       </div>
                     </div>
