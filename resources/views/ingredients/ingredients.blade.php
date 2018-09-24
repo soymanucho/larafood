@@ -6,13 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Ingredientes
-                  {{-- <form action="/admin/ingredientes/agregar"><input type="submit" value="Nuevo" /></form> --}}
+
                 </div>
-
-
-                <a class="float-right btn btn-primary btn-lg" href="/admin/ingredientes/agregar">Nuevo</a>
-
-
+                  <a class="float-right btn btn-primary btn-lg" href="/admin/ingredientes/agregar">Nuevo</a>
                 <div class="panel-body">
                   <table class="table">
                     <thead>
@@ -41,10 +37,8 @@
                             <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
                           </form>
 
-                          {{-- <form class="" action="/admin/ingredientes/{{$ingredient->id}}/editar" method="get">
-                            {{ csrf_field() }}
-                            <input type="submit" name="" value="Editar">
-                          </form> --}}
+
+
                         </td>
 
 
