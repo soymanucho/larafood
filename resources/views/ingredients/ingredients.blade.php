@@ -36,7 +36,11 @@
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
                             <a class="btn btn-sm btn-warning" href="/admin/ingredientes/{{$ingredient->id}}/editar">Editar</a>
-                            <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
+                            <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar"
+                            @if ($ingredient->products->count()!=0)
+                              disabled
+                            @endif
+                            >
                           </form>
 
 
