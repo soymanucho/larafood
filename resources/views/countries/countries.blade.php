@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Ingredientes
+                <div class="panel-heading">Countries
                   {{-- <form action="/admin/ingredientes/agregar"><input type="submit" value="Nuevo" /></form> --}}
                 </div>
 
 
-                <a class="float-right btn btn-primary btn-lg" href="/admin/ingredientes/agregar">Nuevo</a>
+                <a class="float-right btn btn-primary btn-lg" href="/admin/paises/agregar">Nuevo</a>
 
 
                 <div class="panel-body">
@@ -26,19 +26,19 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach($ingredients as $ingredient)
+                        @foreach($countries as $country)
                       <tr>
 
-                        <td>  {{ $ingredient->name }}</td>
-                        <td>  {{ $ingredient->created_at }}</td>
-                        <td>  {{ $ingredient->updated_at }}</td>
+                        <td>  {{ $country->name }}</td>
+                        <td>  {{ $country->created_at }}</td>
+                        <td>  {{ $country->updated_at }}</td>
 
                         <td>
-                          <form class="" action="/admin/ingredientes/{{$ingredient->id}}/eliminar" method="post">
+                          <form class="" action="/admin/paises/{{$country->id}}/eliminar" method="post">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
                             <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
-                            <a class="btn btn-sm btn-warning" href="/admin/ingredientes/{{$ingredient->id}}/editar">Editar</a>
+                            <a class="btn btn-sm btn-warning" href="/admin/paises/{{$country->id}}/editar">Editar</a>
                           </form>
 
                           {{-- <form class="" action="/admin/ingredientes/{{$ingredient->id}}/editar" method="get">
@@ -54,7 +54,7 @@
                     </tbody>
                   </table>
 
-                  {{$ingredients->links()}}
+                  {{$countries->links()}}
 
                 </div>
            </div>
