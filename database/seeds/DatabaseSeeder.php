@@ -14,5 +14,10 @@ class DatabaseSeeder extends Seeder
          $this->call(IngredientSeeder::class);
          $this->call(ProductTypeSeeder::class);
          $this->call(ProductSeeder::class);
+         $this->call(CountriesTableSeeder::class);
+         $this->call(ProvincesTableSeeder::class);
+         $this->call(CitiesTableSeeder::class);
+         $this->call(StoreTableSeeder::class);
+         $this->call(RolesTableSeeder::class);
     }
 }

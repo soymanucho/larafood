@@ -13,17 +13,74 @@
 
 //INGREDIENTS
 
-Route::get('/admin/ingredientes', 'IngredientController@show');
+Route::get('/admin/ingredientes', 'IngredientController@show')->name('ingredient-show');
 
-Route::delete('/admin/ingredientes/{ingredient}/eliminar', 'IngredientController@delete');
+Route::delete('/admin/ingredientes/{ingredient}/eliminar', 'IngredientController@delete')->name('ingredient-delete');
 
-Route::get('/admin/ingredientes/agregar', 'IngredientController@new');
+Route::get('/admin/ingredientes/agregar', 'IngredientController@new')->name('ingredient-new');
 
-Route::post('/admin/ingredientes/agregar', 'IngredientController@save');
+Route::post('/admin/ingredientes/agregar', 'IngredientController@save')->name('ingredient-save');
 
-Route::get('/admin/ingredientes/{ingredient}/editar', 'IngredientController@edit');
+Route::get('/admin/ingredientes/{ingredient}/editar', 'IngredientController@edit')->name('ingredient-edit');
 
-Route::put('/admin/ingredientes/{ingredient}/editar', 'IngredientController@update');
+Route::put('/admin/ingredientes/{ingredient}/editar', 'IngredientController@update')->name('ingredient-update');
+
+
+//COUNTRIES
+
+Route::get('/admin/paises', 'CountryController@show')->name('country-show');
+
+Route::delete('/admin/paises/{country}/eliminar', 'CountryController@delete')->name('country-delete');
+
+Route::get('/admin/paises/agregar', 'CountryController@new')->name('country-new');
+
+Route::post('/admin/paises/agregar', 'CountryController@save')->name('country-save');
+
+Route::get('/admin/paises/{country}/editar', 'CountryController@edit')->name('country-edit');
+
+Route::put('/admin/paises/{country}/editar', 'CountryController@update')->name('country-update');
+
+//PROVINCES
+
+Route::get('/admin/provincias', 'ProvinceController@show')->name('province-show');
+
+Route::delete('/admin/provincias/{province}/eliminar', 'ProvinceController@delete')->name('province-delete');
+
+Route::get('/admin/provincias/agregar', 'ProvinceController@new')->name('province-new');
+
+Route::post('/admin/provincias/agregar', 'ProvinceController@save')->name('province-save');
+
+Route::get('/admin/provincias/{province}/editar', 'ProvinceController@edit')->name('province-edit');
+
+Route::put('/admin/provincias/{province}/editar', 'ProvinceController@update')->name('province-update');
+
+//CITIES
+
+Route::get('/admin/ciudades', 'CityController@show')->name('city-show');
+
+Route::delete('/admin/ciudades/{city}/eliminar', 'CityController@delete')->name('city-delete');
+
+Route::get('/admin/ciudades/agregar', 'CityController@new')->name('city-new');
+
+Route::post('/admin/ciudades/agregar', 'CityController@save')->name('city-save');
+
+Route::get('/admin/ciudades/{city}/editar', 'CityController@edit')->name('city-edit');
+
+Route::put('/admin/ciudades/{city}/editar', 'CityController@update')->name('city-update');
+
+//STORES
+
+Route::get('/admin/tiendas', 'StoreController@show')->name('store-show');
+
+Route::delete('/admin/tiendas/{store}/eliminar', 'StoreController@delete')->name('store-delete');
+
+Route::get('/admin/tiendas/agregar', 'StoreController@new')->name('store-new');
+
+Route::post('/admin/tiendas/agregar', 'StoreController@save')->name('store-save');
+
+Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store-edit');
+
+Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
 
 
 Route::get('/', function () {

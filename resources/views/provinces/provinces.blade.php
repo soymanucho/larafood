@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Ingredientes
+                <div class="panel-heading">Provincias
                   {{-- <form action="/admin/ingredientes/agregar"><input type="submit" value="Nuevo" /></form> --}}
                 </div>
 
 
-                <a class="float-right btn btn-primary btn-lg" href="/admin/ingredientes/agregar">Nuevo</a>
+                <a class="float-right btn btn-primary btn-lg" href="/admin/provincias/agregar">Nuevo</a>
 
 
                 <div class="panel-body">
@@ -18,7 +18,8 @@
                     <thead>
                       <tr>
 
-                        <th scope="col">Nombre</th>
+                        <th scope="col">País</th>
+                        <th scope="col">Provincia</th>
                         <th scope="col">Creado</th>
                         <th scope="col">Editado</th>
                         <th scope="col">Acciones</th>
@@ -26,18 +27,19 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach($ingredients as $ingredient)
+                        @foreach($provinces as $province)
                       <tr>
 
-                        <td>  {{ $ingredient->name }}</td>
-                        <td>  {{ $ingredient->created_at }}</td>
-                        <td>  {{ $ingredient->updated_at }}</td>
+                        <td>  {{ $province->country->name }}</td>
+                        <td>  {{ $province->name }}</td>
+                        <td>  {{ $province->created_at }}</td>
+                        <td>  {{ $province->updated_at }}</td>
 
                         <td>
-                          <form class="" action="/admin/ingredientes/{{$ingredient->id}}/eliminar" method="post">
+                          <form class="" action="/admin/provincias/{{$province->id}}/eliminar" method="post">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
-                            <a class="btn btn-sm btn-warning" href="/admin/ingredientes/{{$ingredient->id}}/editar">Editar</a>
+                            <a class="btn btn-sm btn-warning" href="/admin/provincias/{{$province->id}}/editar">Editar</a>
                             <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
                           </form>
 
@@ -54,7 +56,7 @@
                     </tbody>
                   </table>
 
-                  {{$ingredients->links()}}
+                  {{$provinces->links()}}
 
                 </div>
            </div>
