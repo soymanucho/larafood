@@ -33,7 +33,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                      <div class="dropdown show">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                      </a>
 
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{route('city-show')}}">Ciudades</a>
+                        <a class="dropdown-item" href="{{route('ingredient-show')}}">Ingredientes</a>
+                        <a class="dropdown-item" href="{{route('country-show')}}">Paises</a>
+                        <a class="dropdown-item" href="{{route('province-show')}}">Provincias</a>
+                        <a class="dropdown-item" href="{{route('productype-show')}}">Tipos de producto</a>
+                        <a class="dropdown-item" href="{{route('store-show')}}">Tiendas</a>
+
+                      </div>
+                    </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

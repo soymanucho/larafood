@@ -17,6 +17,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Creado</th>
                         <th scope="col">Editado</th>
+                        <th scope="col"># Prod. usandolo</th>
                         <th scope="col">Acciones</th>
 
                       </tr>
@@ -28,6 +29,7 @@
                         <td>  {{ $ingredient->name }}</td>
                         <td>  {{ $ingredient->created_at }}</td>
                         <td>  {{ $ingredient->updated_at }}</td>
+                        <td>  {{ $ingredient->products->count() }}</td>
 
                         <td>
                           <form class="" action="/admin/ingredientes/{{$ingredient->id}}/eliminar" method="post">

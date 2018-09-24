@@ -11,6 +11,20 @@
 |
 */
 
+//PPRODUCT TYPES
+
+Route::get('/admin/tiposDeProducto/', 'ProductTypeController@show')->name('productype-show');
+
+Route::delete('/admin/tiposDeProducto/{productType}/eliminar', 'ProductTypeController@delete')->name('productype-delete');
+
+Route::get('/admin/tiposDeProducto/{productType}/editar', 'ProductTypeController@edit')->name('productype-edit');
+
+Route::put('/admin/tiposDeProducto/{productType}/editar', 'ProductTypeController@update')->name('productype-update');
+
+Route::get('/admin/tiposDeProducto/agregar', 'ProductTypeController@new')->name('productype-new');
+
+Route::post('/admin/tiposDeProducto/agregar', 'ProductTypeController@save')->name('productype-save');
+
 //INGREDIENTS
 
 Route::get('/admin/ingredientes', 'IngredientController@show')->name('ingredient-show');
