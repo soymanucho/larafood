@@ -11,6 +11,21 @@
 |
 */
 
+//INGREDIENTS
+
+Route::get('/admin/ingredientes', 'IngredientController@show');
+
+Route::delete('/admin/ingredientes/{ingredient}/eliminar', 'IngredientController@delete');
+
+Route::get('/admin/ingredientes/agregar', 'IngredientController@new');
+
+Route::post('/admin/ingredientes/agregar', 'IngredientController@save');
+
+Route::get('/admin/ingredientes/{ingredient}/editar', 'IngredientController@edit');
+
+Route::put('/admin/ingredientes/{ingredient}/editar', 'IngredientController@update');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
