@@ -18,8 +18,8 @@ class CreateTableStatusSequence extends Migration
             $table->integer('id_next_status')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_current_status')->references('id')->on('status');//->onDelete('cascade');
-            $table->foreign('id_next_status')->references('id')->on('status');//->onDelete('cascade');
+            $table->foreign('id_current_status')->references('id')->on('status')->onDelete('cascade');
+            $table->foreign('id_next_status')->references('id')->on('status')->onDelete('cascade');
         });
     }
 

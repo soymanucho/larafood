@@ -82,6 +82,20 @@ Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store
 
 Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
 
+//CLIENTS
+
+Route::get('/admin/clientes', 'ClientController@show')->name('client-show');
+
+Route::delete('/admin/clientes/{client}/eliminar', 'ClientController@delete')->name('client-delete');
+
+Route::get('/admin/clientes/agregar', 'ClientController@new')->name('client-new');
+
+Route::post('/admin/clientes/agregar', 'ClientController@save')->name('client-save');
+
+Route::get('/admin/clientes/{client}/editar', 'ClientController@edit')->name('client-edit');
+
+Route::put('/admin/clientes/{client}/editar', 'ClientController@update')->name('client-update');
+
 
 Route::get('/', function () {
     return view('welcome');

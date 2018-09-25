@@ -5,9 +5,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Ciudades</div>
+                <div class="panel-heading">Nuevo Cliente</div>
 
                 <div class="panel-body">
                     <div class="errores">
@@ -18,18 +18,18 @@
                       </ul>
 
                     </div>
-                      <form  method="POST" name='editCity'>
+                      <form  method="POST" name='editClient'>
                       	{{ method_field('post') }}
-                        <label for="id_province">Provincia</label>
-                        <select class="form-control" name="id_province">
-                          @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}">
-                              {{ $province->name }} ({{$province->country->name}})
+                        <label for="id_user">Usuarios</label>
+                        <select class="form-control" name="id_user">
+                          @foreach ($users as $user)
+                            <option value="{{ $user->id }}">
+                              {{ $user->name }} ({{$user->email}}, {{$user->rol->name}})
                             </option>
                           @endforeach
                         </select>
-                        @include('cities._fields')
-                          <input type="submit" value="Agregar ciudad" name="submit"/>
+                        @include('clients._fields')
+                          <input type="submit" value="Agregar cliente" name="submit"/>
                       </form>
 
                     </div>

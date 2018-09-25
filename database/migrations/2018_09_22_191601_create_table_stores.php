@@ -21,7 +21,7 @@ class CreateTableStores extends Migration
             $table->boolean('available')->default(0);
             $table->timestamps();
 
-            $table->foreign('id_city')->references('id')->on('cities');//->onDelete('cascade');
+            $table->foreign('id_city')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 

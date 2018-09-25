@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Tiendas
+                <div class="panel-heading">Clientes
                   {{-- <form action="/admin/ingredientes/agregar"><input type="submit" value="Nuevo" /></form> --}}
                 </div>
 
 
-                <a class="float-right btn btn-primary btn-lg" href="/admin/tiendas/agregar">Nuevo</a>
+                <a class="float-right btn btn-primary btn-lg" href="/admin/clientes/agregar">Nuevo</a>
 
 
                 <div class="panel-body">
@@ -18,10 +18,10 @@
                     <thead>
                       <tr>
 
-                        <th scope="col">Online</th>
-                        <th scope="col">Ciudad (Provincia, País)</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Teléfono</th>
                         <th scope="col">Dirección</th>
-                        <th scope="col">Tienda</th>
+                        <th scope="col">Tiene usuario creado?</th>
                         <th scope="col">Creado</th>
                         <th scope="col">Editado</th>
                         <th scope="col">Acciones</th>
@@ -29,26 +29,26 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach($stores as $store)
+                        @foreach($clients as $client)
                           <tr>
 
-                            <td>  @if ($store->available)
-                                    <button type="button" name="btn btn-outline-success">Abierto</button>
+                            <td>{{ $client->name}} </td>
+                            <td>  {{ $client->phone }} </td>
+                            <td>  {{ $client->address }}</td>
+                            <td>  @if ($client->user)
+                                    {{$client->user->email}} ({{$client->user->rol->name}})
                                   @else
-                                    <button type="button" class="btn btn-outline-danger">Cerrado</button>
+                                      No
                                   @endif
                             </td>
-                            <td>  {{ $store->city->name }} ({{ $store->city->province->name }}, {{ $store->city->province->country->name }})</td>
-                            <td>  {{ $store->address }}</td>
-                            <td>  {{ $store->name }}</td>
-                            <td>  {{ $store->created_at }}</td>
-                            <td>  {{ $store->updated_at }}</td>
+                            <td>  {{ $client->created_at }}</td>
+                            <td>  {{ $client->updated_at }}</td>
 
                             <td>
-                              <form class="" action="/admin/tiendas/{{$store->id}}/eliminar" method="post">
+                              <form class="" action="/admin/clientes/{{$client->id}}/eliminar" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <a class="btn btn-sm btn-warning" href="/admin/tiendas/{{$store->id}}/editar">Editar</a>
+                                <a class="btn btn-sm btn-warning" href="/admin/clientes/{{$client->id}}/editar">Editar</a>
                                 <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
 
                               </form>
@@ -66,7 +66,7 @@
                     </tbody>
                   </table>
 
-                  {{$stores->links()}}
+                  {{$clients->links()}}
 
                 </div>
            </div>

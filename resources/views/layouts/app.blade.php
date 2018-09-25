@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-danger" href="{{ url('/') }}">
                     {{ config('app.name', 'LaraFood') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -33,11 +33,30 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                      <li @if (isset($ingredients))
+                          class="nav-item active"
+                      @endif ><a class="nav-link" href="/admin/ingredientes">Ingredientes</a></li>
+                      <li @if (isset($countries))
+                          class="nav-item active"
+                      @endif ><a class="nav-link" href="/admin/paises">Países</a></li>
+                      <li @if (isset($provinces))
+                          class="nav-item active"
+                      @endif ><a class="nav-link" href="/admin/provincias">Provincias</a></li>
+                      <li @if (isset($cities))
+                          class="nav-item active"
+                      @endif ><a class="nav-link" href="/admin/ciudades">Ciudades</a></li>
+                      <li @if (isset($stores))
+                          class="nav-item active"
+                      @endif ><a class="nav-link" href="/admin/tiendas">Tiendas</a></li>
+                      <li @if (isset($clients))
+                          class="nav-item active"
+                      @endif ><a class="nav-link" href="/admin/clientes">Clientes</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                      <li><a class="nav-link" target="_blank" href="https://trello.com/b/sz6cvOia/larafood">Trello</a></li>
+                      <li><a class="nav-link" target="_blank" href="https://github.com/soymanucho/larafood">GitHub/larafood</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

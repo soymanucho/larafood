@@ -19,7 +19,7 @@ class CreateTableProvinces extends Migration
             $table->integer('id_country')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_country')->references('id')->on('countries');//->onDelete('cascade');
+            $table->foreign('id_country')->references('id')->on('countries')->onDelete('cascade');
         });
     }
 
