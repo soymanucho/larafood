@@ -7,7 +7,7 @@ use App\ProductType;
 use App\Ingredient;
 class Product extends Model
 {
-    public function productTypes()
+    public function productType()
   {
     return $this->belongsTo(ProductType::class,'id_product_type');
   }
@@ -17,8 +17,13 @@ class Product extends Model
     return $this->belongsToMany(Ingredient::class, 'ingredients_products', 'id_product', 'id_ingredient');
   }
 
-  public function products()
+  public function childs()
   {
     return $this->belongsToMany(Product::class, 'products_products', 'id_product_father', 'id_product_child');
+  }
+
+  public function fathers()
+  {
+    return $this->belongsToMany(Product::class, 'products_products', 'id_product_child', 'id_product_father');
   }
 }

@@ -40,7 +40,7 @@
 
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                        
+
 
 
 
@@ -52,6 +52,7 @@
                         <h6 class="dropdown-header">Productos</h6>
                         <a class="dropdown-item" href="{{route('ingredient-show')}}">Ingredientes</a>
                         <a class="dropdown-item" href="{{route('productype-show')}}">Tipos de producto</a>
+                        <a class="dropdown-item" href="{{route('product-show')}}">Productos</a>
 
                       </div>
                     </div>
