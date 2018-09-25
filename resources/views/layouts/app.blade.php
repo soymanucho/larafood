@@ -33,24 +33,33 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                      <li @if (isset($ingredients))
-                          class="nav-item active"
-                      @endif ><a class="nav-link" href="/admin/ingredientes">Ingredientes</a></li>
-                      <li @if (isset($countries))
-                          class="nav-item active"
-                      @endif ><a class="nav-link" href="/admin/paises">Países</a></li>
-                      <li @if (isset($provinces))
-                          class="nav-item active"
-                      @endif ><a class="nav-link" href="/admin/provincias">Provincias</a></li>
-                      <li @if (isset($cities))
-                          class="nav-item active"
-                      @endif ><a class="nav-link" href="/admin/ciudades">Ciudades</a></li>
-                      <li @if (isset($stores))
-                          class="nav-item active"
-                      @endif ><a class="nav-link" href="/admin/tiendas">Tiendas</a></li>
-                      <li @if (isset($clients))
-                          class="nav-item active"
-                      @endif ><a class="nav-link" href="/admin/clientes">Clientes</a></li>
+                      <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Admin
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                            <li @if (isset($ingredients))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/ingredientes">Ingredientes</a></li>
+                            <li @if (isset($countries))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/paises">Países</a></li>
+                            <li @if (isset($provinces))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/provincias">Provincias</a></li>
+                            <li @if (isset($cities))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/ciudades">Ciudades</a></li>
+                            <li @if (isset($stores))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/tiendas">Tiendas</a></li>
+                            <li @if (isset($clients))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/clientes">Clientes</a></li>
+                        </div>
+                      </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
