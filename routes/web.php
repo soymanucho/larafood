@@ -20,7 +20,7 @@ Route::put('/admin/productos/{product}/editar', 'ProductController@update');
 
 Route::delete('/admin/productos/{product}/eliminar', 'ProductController@delete')->name('product-delete');
 
-Route::get('/admin/productos/agregar', 'ProductController@new');
+Route::get('/admin/productos/agregar', 'ProductController@new')->name('product-new');
 
 Route::post('/admin/productos/agregar', 'ProductController@save');
 

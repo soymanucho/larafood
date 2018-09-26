@@ -43,9 +43,9 @@
                             {{ method_field('delete') }}
                             <a class="btn btn-sm btn-warning" href="/admin/productos/{{$product->id}}/editar">Editar</a>
                             <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar"
-                            {{-- @if ($ingredient->products->count()!=0)
+                             @if ($product->childs->count()!=0||$product->fathers->count()!=0||$product->ingredients->count()!=0)
                               disabled
-                            @endif --}}
+                            @endif
                             >
                           </form>
 
