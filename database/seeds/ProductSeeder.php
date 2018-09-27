@@ -47,7 +47,7 @@ class ProductSeeder extends Seeder
 
       //Atach up to 4 ingredients to all 'Pizza' products.
       Product::where('id_product_type',$promoType->id)->get()->each(function ($product) use ($noPromoProducts) {
-        $product->products()->attach(
+        $product->childs()->attach(
         $noPromoProducts->random(rand(2, 4))->pluck('id')->toArray(), ['amount' => rand(1, 3)]
         );
         });
