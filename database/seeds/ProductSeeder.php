@@ -17,38 +17,18 @@ class ProductSeeder extends Seeder
         //Create 50 random products of all types
         factory(Product::class, 15)->create();
 
-        // $this->attachIngredientsToPizzaProducts();
-        // $this->attachProductsToPromoProducts();
+         $this->attachIngredients();
+
 
     }
 
-    public function attachIngredientsToPizzaProducts(){
+    public function attachIngredients(){
       //Get all ingredients
       $ingredients = Ingredient::all();
 
-      //get the pizza product type
-      $pizzaType = SellableType::where('name','Pizza')->get()->first();
-
-      //Atach up to 4 ingredients to all 'Pizza' products.
-      Product::where('id_sellable_type',$pizzaType->id)->get()->each(function ($product) use ($ingredients) {
+      Product::all()->each(function ($product) use ($ingredients) {
         $product->ingredients()->attach(
-        $ingredients->random(rand(1, 4))->pluck('id')->toArray()
-        );
-        });
-    }
-
-    protected function attachProductsToPromoProducts(){
-
-      //get the promo product type
-      $promoType = SellableType::where('name','Promo')->get()->first();
-
-      //get no Promo roducts
-      $noPromoProducts = Product::where('id_product_type','!=',$promoType->id)->get();
-
-      //Atach up to 4 ingredients to all 'Pizza' products.
-      Product::where('id_product_type',$promoType->id)->get()->each(function ($product) use ($noPromoProducts) {
-        $product->childs()->attach(
-        $noPromoProducts->random(rand(2, 4))->pluck('id')->toArray(), ['amount' => rand(1, 3)]
+        $ingredients->random(rand(1, 5))->pluck('id')->toArray()
         );
         });
     }

@@ -8,8 +8,6 @@ class Product extends Model
 {
   public function ingredients()
   {
-
-
     return $this->belongsToMany(Ingredient::class, 'ingredients_products', 'id_product', 'id_ingredient');
   }
 
