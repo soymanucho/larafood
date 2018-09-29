@@ -28,8 +28,8 @@ class AddIdStoreToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('id_store');
-            
+          $table->dropForeign(['id_store']);
+          $table->dropColumn('id_store');
         });
     }
 }

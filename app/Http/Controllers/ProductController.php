@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function show()
     {
-      $products = Product::orderby('id_product_type','name')->orderby('name')->paginate(10);
+      $products = Product::orderby('name')->paginate(10);
       return view('products.products',compact('products'));
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Product;
 use App\Ingredient;
-use App\ProductType;
+use App\SellableType;
 class ProductSeeder extends Seeder
 {
     /**
@@ -15,10 +15,10 @@ class ProductSeeder extends Seeder
     {
 
         //Create 50 random products of all types
-        factory(Product::class, 50)->create();
+        factory(Product::class, 15)->create();
 
-        $this->attachIngredientsToPizzaProducts();
-        $this->attachProductsToPromoProducts();
+        // $this->attachIngredientsToPizzaProducts();
+        // $this->attachProductsToPromoProducts();
 
     }
 
@@ -27,10 +27,10 @@ class ProductSeeder extends Seeder
       $ingredients = Ingredient::all();
 
       //get the pizza product type
-      $pizzaType = ProductType::where('name','Pizza')->get()->first();
+      $pizzaType = SellableType::where('name','Pizza')->get()->first();
 
       //Atach up to 4 ingredients to all 'Pizza' products.
-      Product::where('id_product_type',$pizzaType->id)->get()->each(function ($product) use ($ingredients) {
+      Product::where('id_sellable_type',$pizzaType->id)->get()->each(function ($product) use ($ingredients) {
         $product->ingredients()->attach(
         $ingredients->random(rand(1, 4))->pluck('id')->toArray()
         );
@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
     protected function attachProductsToPromoProducts(){
 
       //get the promo product type
-      $promoType = ProductType::where('name','Promo')->get()->first();
+      $promoType = SellableType::where('name','Promo')->get()->first();
 
       //get no Promo roducts
       $noPromoProducts = Product::where('id_product_type','!=',$promoType->id)->get();

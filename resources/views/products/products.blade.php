@@ -16,10 +16,10 @@
 
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Tipo</th>
+                        {{-- <th scope="col">Tipo</th> --}}
                         <th scope="col"># Ingr</th>
-                        <th scope="col"># P. Childs</th>
-                        <th scope="col"># P. Fathers</th>
+                        {{-- <th scope="col"># P. Childs</th>
+                        <th scope="col"># P. Fathers</th> --}}
                         <th scope="col">Acciones</th>
 
                       </tr>
@@ -30,10 +30,10 @@
 
                         <td>  {{ $product->name }}</td>
                         <td>  {{ $product->price }}</td>
-                        <td>  {{ $product->producttype->name }}</td>
+                        {{-- <td>  {{ $product->producttype->name }}</td> --}}
                         <td>  {{ $product->ingredients->count() }}</td>
-                        <td>  {{ $product->childs->count() }}</td>
-                        <td>  {{ $product->fathers->count() }}</td>
+                        {{-- <td>  {{ $product->childs->count() }}</td>
+                        <td>  {{ $product->fathers->count() }}</td> --}}
                         {{-- <td>  {{ $product->updated_at }}</td> --}}
 
 
@@ -43,9 +43,9 @@
                             {{ method_field('delete') }}
                             <a class="btn btn-sm btn-warning" href="/admin/productos/{{$product->id}}/editar">Editar</a>
                             <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar"
-                             @if ($product->childs->count()!=0||$product->fathers->count()!=0||$product->ingredients->count()!=0)
+                             {{-- @if ($product->childs->count()!=0||$product->fathers->count()!=0||$product->ingredients->count()!=0)
                               disabled
-                            @endif
+                            @endif --}}
                             >
                           </form>
 

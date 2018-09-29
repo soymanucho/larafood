@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductTypeSeeder extends Seeder
+class SellableTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,6 +21,6 @@ class ProductTypeSeeder extends Seeder
         );
 
         //  PropertyType::insert($data); // Eloquent approach
-        DB::table('product_types')->insert($data); // Query Builder approach
+        DB::table('sellable_types')->insert($data); // Query Builder approach
     }
 }
