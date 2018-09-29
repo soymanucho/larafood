@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Rol;
+use App\Client;
 
 class User extends Authenticatable
 {
@@ -27,4 +29,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rol()
+    {
+      return $this->belongsTo(Rol::class, 'id_rol');
+    }
+    public function client()
+    {
+      return $this->hasOne(Client::class, 'id_user');
+    }
+
 }

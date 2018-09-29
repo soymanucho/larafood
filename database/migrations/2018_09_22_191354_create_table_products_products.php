@@ -20,8 +20,8 @@ class CreateTableProductsProducts extends Migration
             $table->timestamps();
 
 
-            $table->foreign('id_product_father')->references('id')->on('products');//->onDelete('cascade');
-            $table->foreign('id_product_child')->references('id')->on('products');//->onDelete('cascade');
+            $table->foreign('id_product_father')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('id_product_child')->references('id')->on('products')->onDelete('cascade');
 
         });
     }

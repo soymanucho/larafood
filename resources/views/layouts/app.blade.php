@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-danger" href="{{ url('/') }}">
                     {{ config('app.name', 'LaraFood') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -34,32 +34,38 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                       <div class="dropdown show">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                      </a>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Admin
+                        </a>
 
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-
-
-
-
-                        <h6 class="dropdown-header">Ubicacion</h6>
-                        <a class="dropdown-item" href="{{route('country-show')}}">Paises</a>
-                        <a class="dropdown-item" href="{{route('province-show')}}">Provincias</a>
-                        <a class="dropdown-item" href="{{route('city-show')}}">Ciudades</a>
-                        <a class="dropdown-item" href="{{route('store-show')}}">Tiendas</a>
-                        <h6 class="dropdown-header">Productos</h6>
-                        <a class="dropdown-item" href="{{route('ingredient-show')}}">Ingredientes</a>
-                        <a class="dropdown-item" href="{{route('productype-show')}}">Tipos de producto</a>
-                        <a class="dropdown-item" href="{{route('product-show')}}">Productos</a>
-
+                            <li @if (isset($ingredients))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/ingredientes">Ingredientes</a></li>
+                            <li @if (isset($countries))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/paises">Países</a></li>
+                            <li @if (isset($provinces))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/provincias">Provincias</a></li>
+                            <li @if (isset($cities))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/ciudades">Ciudades</a></li>
+                            <li @if (isset($stores))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/tiendas">Tiendas</a></li>
+                            <li @if (isset($clients))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/clientes">Clientes</a></li>
+                        </div>
                       </div>
-                    </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                      <li><a class="nav-link" target="_blank" href="https://trello.com/b/sz6cvOia/larafood">Trello</a></li>
+                      <li><a class="nav-link" target="_blank" href="https://github.com/soymanucho/larafood">GitHub/larafood</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

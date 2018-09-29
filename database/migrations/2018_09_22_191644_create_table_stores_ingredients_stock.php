@@ -19,8 +19,8 @@ class CreateTableStoresIngredientsStock extends Migration
           $table->integer('amount');
           $table->timestamps();
 
-          $table->foreign('id_ingredient')->references('id')->on('ingredients');//->onDelete('cascade');
-          $table->foreign('id_store')->references('id')->on('stores');//->onDelete('cascade');
+          $table->foreign('id_ingredient')->references('id')->on('ingredients')->onDelete('cascade');
+          $table->foreign('id_store')->references('id')->on('stores')->onDelete('cascade');
         });
     }
 
