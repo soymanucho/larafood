@@ -58,6 +58,10 @@
                             <li @if (isset($clients))
                                 class="nav-item active"
                             @endif ><a class="nav-link" href="/admin/clientes">Clientes</a></li>
+                            <li><a class="dropdown-item" href="{{route('ingredient-show')}}">Ingredientes</a></li>
+                            <li><a class="dropdown-item" href="{{route('productype-show')}}">Tipos de producto</a></li>
+                            <li><a class="dropdown-item" href="{{route('product-show')}}">Productos</a></li>
+
                         </div>
                       </div>
                     </ul>
