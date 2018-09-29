@@ -19,10 +19,10 @@
 
                     </div>
 
-                      <form  method="POST" name='newProductType'>
-                        	{{ method_field('post') }}
-                        @include('productTypes._fields')
-                          <input type="submit" value="Agregar tipo de P." name="submit"/>
+                      <form  method="POST" name='editSellableType'>
+                        	{{ method_field('put') }}
+                        @include('sellableTypes._fields')
+                          <input type="submit" value="Guardar cambios" name="submit"/>
                       </form>
 
                     </div>

@@ -27,21 +27,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach($productTypes as $productType)
+                        @foreach($sellableTypes as $sellableType)
                       <tr>
 
-                        <td>  {{ $productType->name }}</td>
-                        <td>  {{ $productType->created_at }}</td>
-                        <td>  {{ $productType->updated_at }}</td>
-                        <td>  {{ $productType->product->count() }}</td>
+                        <td>  {{ $sellableType->name }}</td>
+                        <td>  {{ $sellableType->created_at }}</td>
+                        <td>  {{ $sellableType->updated_at }}</td>
+                        <td>  {{ $sellableType->products->count() }}</td>
 
                         <td>
-                          <form class="" action="/admin/tiposDeProducto/{{$productType->id}}/eliminar" method="post">
+                          <form class="" action="/admin/tiposDeProducto/{{$sellableType->id}}/eliminar" method="post">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
-                            <a class="btn btn-sm btn-warning" href="/admin/tiposDeProducto/{{$productType->id}}/editar">Editar</a>
+                            <a class="btn btn-sm btn-warning" href="/admin/tiposDeProducto/{{$sellableType->id}}/editar">Editar</a>
                             <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar"
-                            @if ($productType->product->count()!=0)
+                            @if ($sellableType->products->count()!=0)
                               disabled
                             @endif
                             >
@@ -60,7 +60,7 @@
                     </tbody>
                   </table>
 
-                  {{$productTypes->links()}}
+                  {{$sellableTypes->links()}}
 
                 </div>
            </div>

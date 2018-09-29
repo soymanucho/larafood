@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ProductType;
-class ProductTypeController extends Controller
+use App\SellableType;
+class SellableTypeController extends Controller
 {
     public function show()
     {
-      $productTypes = ProductType::paginate(10);
-      return view('productTypes.productTypes',compact('productTypes'));
+      $sellableTypes = SellableType::paginate(10);
+      return view('sellableTypes.sellableTypes',compact('sellableTypes'));
     }
 
     public function delete(ProductType $productType)
