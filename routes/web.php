@@ -28,11 +28,11 @@ Route::post('/admin/productos/agregar', 'ProductController@save');
 
 Route::get('/admin/tiposDeProducto/', 'SellableTypeController@show')->name('productype-show');
 
-Route::delete('/admin/tiposDeProducto/{productType}/eliminar', 'SellableTypeController@delete')->name('productype-delete');
+Route::delete('/admin/tiposDeProducto/{sellableType}/eliminar', 'SellableTypeController@delete')->name('productype-delete');
 
-Route::get('/admin/tiposDeProducto/{productType}/editar', 'SellableTypeController@edit')->name('productype-edit');
+Route::get('/admin/tiposDeProducto/{sellableType}/editar', 'SellableTypeController@edit')->name('productype-edit');
 
-Route::put('/admin/tiposDeProducto/{productType}/editar', 'SellableTypeController@update')->name('productype-update');
+Route::put('/admin/tiposDeProducto/{sellableType}/editar', 'SellableTypeController@update')->name('productype-update');
 
 Route::get('/admin/tiposDeProducto/agregar', 'SellableTypeController@new')->name('productype-new');
 

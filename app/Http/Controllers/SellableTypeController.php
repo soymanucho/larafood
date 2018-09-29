@@ -12,15 +12,15 @@ class SellableTypeController extends Controller
       return view('sellableTypes.sellableTypes',compact('sellableTypes'));
     }
 
-    public function delete(ProductType $productType)
+    public function delete(SellableType $sellableType)
     {
-      $productType->delete();
+      $sellableType->delete();
       return redirect('admin/tiposDeProducto  ');
     }
     public function new()
     {
-      $productType = new ProductType();
-      return view('productTypes.newProductType',compact('productType'));
+      $sellableType = new SellableType();
+      return view('sellableTypes.newSellableType',compact('sellableType'));
     }
 
     public function save(Request $request)
@@ -39,18 +39,18 @@ class SellableTypeController extends Controller
             'name' => 'nombre',
         ]
     );
-    $productType = new ProductType;
-    $productType->fill($request->all());
-    $productType->save();
+    $sellableType = new SellableType;
+    $sellableType->fill($request->all());
+    $sellableType->save();
 
     return redirect('/admin/tiposDeProducto/');
     }
 
-    public function edit(ProductType $productType)
+    public function edit(SellableType $sellableType)
     {
-      return view('productTypes.editProductType',compact('productType'));
+      return view('sellableTypes.editSellableType',compact('sellableType'));
     }
-    public function update(ProductType $productType,Request $request)
+    public function update(SellableType $sellableType,Request $request)
     {
       $this->validate(
         $request,
@@ -67,8 +67,8 @@ class SellableTypeController extends Controller
         ]
     );
 
-    $productType->fill($request->all());
-    $productType->save();
+    $sellableType->fill($request->all());
+    $sellableType->save();
 
     return redirect('/admin/tiposDeProducto/');
     }
