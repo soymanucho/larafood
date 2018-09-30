@@ -14,7 +14,7 @@ class CreateTableSellables extends Migration
     public function up()
     {
         Schema::create('sellables', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('id_sellable_type')->unsigned();
             $table->string('name');
             $table->text('description');

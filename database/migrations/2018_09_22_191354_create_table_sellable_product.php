@@ -20,8 +20,8 @@ class CreateTableSellableProduct extends Migration
             $table->timestamps();
 
 
-            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('id_sellable')->references('id')->on('sellables')->onDelete('cascade');
+            $table->foreign('id_product')->references('id')->on('products');//->onDelete('cascade');
+              $table->foreign('id_sellable')->references('id')->on('sellables');//->onDelete('cascade');
 
         });
     }

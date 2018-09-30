@@ -22,7 +22,7 @@ Route::delete('/admin/productos/{product}/eliminar', 'ProductController@delete')
 
 Route::get('/admin/productos/agregar', 'ProductController@new')->name('product-new');
 
-Route::post('/admin/productos/agregar', 'ProductController@save');
+Route::post('/admin/productos/agregar', 'ProductController@save')->name('product-save');
 
 //PRODUCT TYPES
 

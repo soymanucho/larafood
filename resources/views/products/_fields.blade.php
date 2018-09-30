@@ -14,30 +14,13 @@
   <input type="text" name="price" id="price" value="{{ old('price',$product->price)}}"/>
 </div>
 
-<label for="id_product_type">Tipo de Producto</label>
-<select class="form-control" name="id_product_type">
-  @foreach ($productTypes as $productType)
-    <option value="{{ $productType->id }}">
-      {{ $productType->name }}
-    </option>
-  @endforeach
-
-</select>
-
-  <label for="ingredients">Ingredients</label>
-  <select multiple class="form-control" name="ingredients" >
+<div class="">
+  <label for="ingredients[]">Ingredients</label>
+  <select multiple class="form-control" id="ingredients[]" name="ingredients[]" >
     @foreach ($ingredients as $ingredient)
       <option value="{{ $ingredient->id }}">
         {{ $ingredient->name }}
       </option>
     @endforeach
   </select>
-
-  <label for="products">Productos</label>
-  <select multiple class="form-control" name="products" >
-    @foreach ($products as $product)
-      <option value="{{ $product->id }}">
-        {{ $product->name }}
-      </option>
-    @endforeach
-  </select>
+</div>

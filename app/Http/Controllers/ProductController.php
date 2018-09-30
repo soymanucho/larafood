@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use App\ProductType;
 use App\Ingredient;
 
 class ProductController extends Controller
@@ -24,9 +23,39 @@ class ProductController extends Controller
     public function new()
     {
       $product = new Product();
-      $productTypes = productType::all();
       $ingredients = Ingredient::all();
       $products = Product::all();
-      return view('products.newProduct',compact('product','productTypes','ingredients','products'));
+      return view('products.newProduct',compact('product','ingredients'));
+    }
+
+    public function save(Request $request)
+    {
+    //  dd($request);
+      $this->validate(
+        $request,
+        [
+          'name' => 'required|max:60',
+          'description'=> 'required|max:60',
+          'price'=> 'required|numeric',
+          'ingredients'=> 'required|array',
+          'ingredients.*'=> 'required|integer|distinct|exists:ingredients,id',
+
+        ],
+        [
+
+        ],
+        [
+            'name' => 'nombre',
+            'description' => 'descripción',
+            'price' => 'precio',
+            'ingredients' => 'ingredientes',
+        ]
+    );
+    $product = new Product;
+    $product->fill($request->all());
+    $product->save();
+    $product->ingredients()->attach($request->input('ingredients'));
+
+    return redirect(route('product-show'));
     }
 }
