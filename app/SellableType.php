@@ -9,7 +9,7 @@ class SellableType extends Model
 {
   protected $table = 'sellable_types';
   protected $fillable = ['name'];
-  public function sellable()
+  public function products()
   {
     return $this->hasMany(Sellable::class,'id_sellable_type','id');
   }

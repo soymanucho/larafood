@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Tipo de producto</div>
 
@@ -19,10 +19,10 @@
 
                     </div>
 
-                      <form  method="POST" name='newProductType'>
-                        	{{ method_field('post') }}
-                        @include('productTypes._fields')
-                          <input type="submit" value="Agregar tipo de P." name="submit"/>
+                      <form  method="POST" name='editSellableType'>
+                        	{{ method_field('put') }}
+                        @include('sellableTypes._fields')
+                          <input type="submit" value="Guardar cambios" name="submit"/>
                       </form>
 
                     </div>

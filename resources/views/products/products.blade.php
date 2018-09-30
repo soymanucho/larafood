@@ -8,12 +8,11 @@
                 <div class="panel-heading">Productos
 
                 </div>
-                  <a class="float-right btn btn-primary btn-lg" href="/admin/ingredientes/agregar">Nuevo</a>
+                  <a class="float-right btn btn-primary btn-lg" href="/admin/productos/agregar">Nuevo</a>
                 <div class="panel-body">
                   <table class="table">
                     <thead>
                       <tr>
-
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         {{-- <th scope="col">Tipo</th> --}}
@@ -21,7 +20,6 @@
                         {{-- <th scope="col"># P. Childs</th>
                         <th scope="col"># P. Fathers</th> --}}
                         <th scope="col">Acciones</th>
-
                       </tr>
                     </thead>
                     <tbody>
