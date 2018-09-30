@@ -8,7 +8,7 @@
                 <div class="panel-heading">Productos
 
                 </div>
-                  <a class="float-right btn btn-primary btn-lg" href="/admin/productos/agregar">Nuevo</a>
+                  <a class="float-right btn btn-primary btn-lg" href="{{route('sellable-new')}}">Nuevo</a>
                 <div class="panel-body">
                   <table class="table">
                     <thead>
