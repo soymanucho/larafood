@@ -18,7 +18,11 @@
   <label for="ingredients[]">Ingredients</label>
   <select multiple class="form-control" id="ingredients[]" name="ingredients[]" >
     @foreach ($ingredients as $ingredient)
-      <option value="{{ $ingredient->id }}">
+      <option
+      @if(in_array($ingredient->id, $product->ingredients->pluck('id')->toArray()))
+        selected
+      @endif
+       value="{{ $ingredient->id }} ">
         {{ $ingredient->name }}
       </option>
     @endforeach
