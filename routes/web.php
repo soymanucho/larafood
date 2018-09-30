@@ -11,12 +11,27 @@
 |
 */
 
+// SELLABLES
+
+Route::get('/admin/vendibles/', 'SellableController@show')->name('sellable-show');
+
+Route::get('/admin/vendibles/{sellable}/editar', 'SellableController@edit')->name('sellable-edit');
+
+Route::put('/admin/vendibles/{sellable}/editar', 'SellableController@update')->name('sellable-update');
+
+Route::delete('/admin/vendibles/{sellable}/eliminar', 'SellableController@delete')->name('sellable-delete');
+
+Route::get('/admin/vendibles/agregar', 'SellableController@new')->name('sellable-new');
+
+Route::post('/admin/vendibles/agregar', 'SellableController@save')->name('sellable-save');
+
 // PRODUCTS
+
 Route::get('/admin/productos/', 'ProductController@show')->name('product-show');
 
-Route::get('/admin/productos/{product}/editar', 'ProductController@edit');
+Route::get('/admin/productos/{product}/editar', 'ProductController@edit')->name('product-edit');
 
-Route::put('/admin/productos/{product}/editar', 'ProductController@update');
+Route::put('/admin/productos/{product}/editar', 'ProductController@update')->name('product-update');
 
 Route::delete('/admin/productos/{product}/eliminar', 'ProductController@delete')->name('product-delete');
 

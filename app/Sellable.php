@@ -20,7 +20,7 @@ class Sellable extends Model
 
   public function products()
   {
-    return $this->belongsToMany(Product::class, 'sellable_products', 'id_sellable', 'id_product');
+    return $this->belongsToMany(Product::class, 'sellable_product', 'id_sellable', 'id_product');
   }
 
   public function orders()
