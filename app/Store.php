@@ -24,7 +24,7 @@ class Store extends Model
   }
 
   public function sellables(){
-    return $this->belongsToMany(Sellable::class, 'menu', 'id_store', 'id_sellable');
+    return $this->belongsToMany(Sellable::class, 'menu', 'id_store', 'id_sellable')->withPivot('price');;
   }
 
 }

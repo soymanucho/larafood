@@ -124,6 +124,8 @@ Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store
 
 Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
 
+Route::get('/admin/tiendas/{store}/menu', 'MenuController@show')->name('menu-show');
+
 //CLIENTS
 
 Route::get('/admin/clientes', 'ClientController@show')->name('client-show');
