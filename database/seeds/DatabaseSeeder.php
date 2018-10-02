@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
          $this->call(StoreTableSeeder::class);
          $this->call(RolesTableSeeder::class);
          $this->call(SellableSeeder::class);
+         $this->call(MenuSeeder::class);
     }
 }
