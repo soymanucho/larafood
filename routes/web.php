@@ -39,7 +39,7 @@ Route::get('/admin/productos/agregar', 'ProductController@new')->name('product-n
 
 Route::post('/admin/productos/agregar', 'ProductController@save')->name('product-save');
 
-//PRODUCT TYPES
+//PRODUCT TYPES ROUTES
 
 Route::get('/admin/tiposDeProducto/', 'SellableTypeController@show')->name('sellabletype-show');
 
@@ -53,7 +53,7 @@ Route::get('/admin/tiposDeProducto/agregar', 'SellableTypeController@new')->name
 
 Route::post('/admin/tiposDeProducto/agregar', 'SellableTypeController@save')->name('sellabletype-save');
 
-//INGREDIENTS
+//INGREDIENTS ROUTES
 
 Route::get('/admin/ingredientes', 'IngredientController@show')->name('ingredient-show');
 
@@ -68,7 +68,7 @@ Route::get('/admin/ingredientes/{ingredient}/editar', 'IngredientController@edit
 Route::put('/admin/ingredientes/{ingredient}/editar', 'IngredientController@update')->name('ingredient-update');
 
 
-//COUNTRIES
+//COUNTRIES ROUTES
 
 Route::get('/admin/paises', 'CountryController@show')->name('country-show');
 
@@ -82,7 +82,7 @@ Route::get('/admin/paises/{country}/editar', 'CountryController@edit')->name('co
 
 Route::put('/admin/paises/{country}/editar', 'CountryController@update')->name('country-update');
 
-//PROVINCES
+//PROVINCES ROUTES
 
 Route::get('/admin/provincias', 'ProvinceController@show')->name('province-show');
 
@@ -96,7 +96,7 @@ Route::get('/admin/provincias/{province}/editar', 'ProvinceController@edit')->na
 
 Route::put('/admin/provincias/{province}/editar', 'ProvinceController@update')->name('province-update');
 
-//CITIES
+//CITIES ROUTES
 
 Route::get('/admin/ciudades', 'CityController@show')->name('city-show');
 
@@ -110,7 +110,7 @@ Route::get('/admin/ciudades/{city}/editar', 'CityController@edit')->name('city-e
 
 Route::put('/admin/ciudades/{city}/editar', 'CityController@update')->name('city-update');
 
-//STORES
+//STORES ROUTES
 
 Route::get('/admin/tiendas', 'StoreController@show')->name('store-show');
 
@@ -123,6 +123,8 @@ Route::post('/admin/tiendas/agregar', 'StoreController@save')->name('store-save'
 Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store-edit');
 
 Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
+
+Route::get('/admin/tiendas/{store}/menu', 'MenuController@show')->name('menu-show');
 
 //CLIENTS
 
@@ -137,6 +139,20 @@ Route::post('/admin/clientes/agregar', 'ClientController@save')->name('client-sa
 Route::get('/admin/clientes/{client}/editar', 'ClientController@edit')->name('client-edit');
 
 Route::put('/admin/clientes/{client}/editar', 'ClientController@update')->name('client-update');
+
+//ORDERS ROUTES
+
+Route::get('/admin/pedidos', 'OrderController@show')->name('order-show');
+
+Route::delete('/admin/pedidos/{order}/eliminar', 'OrderController@delete')->name('order-delete');
+
+Route::get('/admin/pedidos/agregar', 'OrderController@new')->name('order-new');
+
+Route::post('/admin/pedidos/agregar', 'OrderController@save')->name('order-save');
+
+Route::get('/admin/pedidos/{order}/editar', 'OrderController@edit')->name('order-edit');
+
+Route::put('/admin/pedidos/{order}/editar', 'OrderController@update')->name('order-update');
 
 
 Route::get('/', function () {

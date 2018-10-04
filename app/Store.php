@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\City;
 use App\Order;
+use App\Sellable;
 
 class Store extends Model
 {
@@ -20,6 +21,10 @@ class Store extends Model
   public function orders()
   {
     return $this->hasMany(Order::class, 'id_store');
+  }
+
+  public function sellables(){
+    return $this->belongsToMany(Sellable::class, 'menu', 'id_store', 'id_sellable')->withPivot('price');;
   }
 
 }
