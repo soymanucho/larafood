@@ -4,8 +4,8 @@
 ## Autores:
 
 
-- [Alvarez, Juan Manuel](https://www.linkedin.com/in/alvarezjuanmanuel94)
-- [Badaró, Sebastián](https://www.linkedin.com/in/sbadaro)
+- [Alvarez, Juan Manuel](https://www.linkedin.com/in/alvarezjuanmanuel94).
+- [Badaró, Sebastián](https://www.linkedin.com/in/sbadaro).
 
 
 ## About Laravel
