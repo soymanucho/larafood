@@ -3,10 +3,10 @@
 
 ## Autores:
 
-<p align="center">
-<a href="https://www.linkedin.com/in/alvarezjuanmanuel94">Alvarez, Juan Manuel</a>
-<a href="https://www.linkedin.com/in/sbadaro/">Badaró, Sebastián</a>
-</p>
+
+- [Alvarez, Juan Manuel](https://www.linkedin.com/in/alvarezjuanmanuel94)
+- [Badaró, Sebastián] (https://www.linkedin.com/in/sbadaro/)
+
 
 ## About Laravel
 
