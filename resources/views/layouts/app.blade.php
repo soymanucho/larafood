@@ -58,8 +58,15 @@
                             <li @if (isset($clients))
                                 class="nav-item active"
                             @endif ><a class="nav-link" href="/admin/clientes">Clientes</a></li>
-                            <li><a class="nav-link" href="{{route('productype-show')}}">Tipos de producto</a></li>
-                            <li><a class="nav-link" href="{{route('product-show')}}">Productos</a></li>
+                            <li @if (isset($sellableTypes))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="{{route('sellabletype-show')}}">Tipo de Vendible</a></li>
+                            <li @if (isset($products))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="{{route('product-show')}}">Productos</a></li>
+                            <li @if (isset($sellables))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="{{route('sellable-show')}}">Vendibles</a></li>
 
                         </div>
                       </div>

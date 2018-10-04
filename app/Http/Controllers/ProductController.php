@@ -89,7 +89,7 @@ class ProductController extends Controller
     );
     $product->fill($request->all());
     $product->save();
-    $product->ingredients()->attach($request->input('ingredients'));
+    $product->ingredients()->sync($request->input('ingredients'));
 
     return redirect(route('product-show'));
     }

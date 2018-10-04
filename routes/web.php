@@ -11,12 +11,27 @@
 |
 */
 
-// PRODUCTS ROUTES
+// SELLABLES
+
+Route::get('/admin/vendibles/', 'SellableController@show')->name('sellable-show');
+
+Route::get('/admin/vendibles/{sellable}/editar', 'SellableController@edit')->name('sellable-edit');
+
+Route::put('/admin/vendibles/{sellable}/editar', 'SellableController@update')->name('sellable-update');
+
+Route::delete('/admin/vendibles/{sellable}/eliminar', 'SellableController@delete')->name('sellable-delete');
+
+Route::get('/admin/vendibles/agregar', 'SellableController@new')->name('sellable-new');
+
+Route::post('/admin/vendibles/agregar', 'SellableController@save')->name('sellable-save');
+
+// PRODUCTS
+
 Route::get('/admin/productos/', 'ProductController@show')->name('product-show');
 
-Route::get('/admin/productos/{product}/editar', 'ProductController@edit');
+Route::get('/admin/productos/{product}/editar', 'ProductController@edit')->name('product-edit');
 
-Route::put('/admin/productos/{product}/editar', 'ProductController@update');
+Route::put('/admin/productos/{product}/editar', 'ProductController@update')->name('product-update');
 
 Route::delete('/admin/productos/{product}/eliminar', 'ProductController@delete')->name('product-delete');
 
@@ -26,17 +41,17 @@ Route::post('/admin/productos/agregar', 'ProductController@save')->name('product
 
 //PRODUCT TYPES ROUTES
 
-Route::get('/admin/tiposDeProducto/', 'SellableTypeController@show')->name('productype-show');
+Route::get('/admin/tiposDeProducto/', 'SellableTypeController@show')->name('sellabletype-show');
 
-Route::delete('/admin/tiposDeProducto/{sellableType}/eliminar', 'SellableTypeController@delete')->name('productype-delete');
+Route::delete('/admin/tiposDeProducto/{sellableType}/eliminar', 'SellableTypeController@delete')->name('sellabletype-delete');
 
-Route::get('/admin/tiposDeProducto/{sellableType}/editar', 'SellableTypeController@edit')->name('productype-edit');
+Route::get('/admin/tiposDeProducto/{sellableType}/editar', 'SellableTypeController@edit')->name('sellabletype-edit');
 
-Route::put('/admin/tiposDeProducto/{sellableType}/editar', 'SellableTypeController@update')->name('productype-update');
+Route::put('/admin/tiposDeProducto/{sellableType}/editar', 'SellableTypeController@update')->name('sellabletype-update');
 
-Route::get('/admin/tiposDeProducto/agregar', 'SellableTypeController@new')->name('productype-new');
+Route::get('/admin/tiposDeProducto/agregar', 'SellableTypeController@new')->name('sellabletype-new');
 
-Route::post('/admin/tiposDeProducto/agregar', 'SellableTypeController@save')->name('productype-save');
+Route::post('/admin/tiposDeProducto/agregar', 'SellableTypeController@save')->name('sellabletype-save');
 
 //INGREDIENTS ROUTES
 
@@ -109,7 +124,9 @@ Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store
 
 Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
 
-//CLIENTS ROUTES
+Route::get('/admin/tiendas/{store}/menu', 'MenuController@show')->name('menu-show');
+
+//CLIENTS
 
 Route::get('/admin/clientes', 'ClientController@show')->name('client-show');
 
