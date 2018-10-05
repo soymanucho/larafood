@@ -20,7 +20,8 @@
                     </div>
                       <form  method="POST" name='editClient'>
                       	{{ method_field('post') }}
-                        <label for="id_user">Usuarios</label>
+                        @include('clients._fields')
+                        <label for="id_user">Usuarios (opcional):</label>
                         <select class="form-control" name="id_user">
                           @foreach ($users as $user)
                             <option value="{{ $user->id }}">
@@ -28,7 +29,7 @@
                             </option>
                           @endforeach
                         </select>
-                        @include('clients._fields')
+                        <br>
                           <input type="submit" value="Agregar cliente" name="submit"/>
                       </form>
 
