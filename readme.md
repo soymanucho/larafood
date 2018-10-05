@@ -1,7 +1,7 @@
-<p align="center">Larafood</p>
+<p align="center">## Autores</p>
 
 
-## Autores:
+## Autores
 
 
 - [Alvarez, Juan Manuel](https://www.linkedin.com/in/alvarezjuanmanuel94).
