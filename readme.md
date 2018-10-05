@@ -1,4 +1,4 @@
-<p align="center">## Autores</p>
+<h1 align="center">LARAFOOD</h1>
 
 
 ## Autores
