@@ -49,6 +49,7 @@
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
                                 <a class="btn btn-sm btn-warning" href="/admin/tiendas/{{$store->id}}/editar">Editar</a>
+                                <a class="btn btn-sm btn-info" href="/admin/tiendas/{{$store->id}}/menu">Menu</a>
                                 <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
 
                               </form>
