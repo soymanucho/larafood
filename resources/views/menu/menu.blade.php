@@ -8,13 +8,14 @@
                 <div class="panel-heading">Menu de tienda {{$store->name}}
 
                 </div>
-                  <a class="float-right btn btn-primary btn-lg" href="/admin/productos/agregar">Nuevo</a>
+                  <a class="float-right btn btn-primary btn-lg" href="/admin/tiendas/{{$store->id}}/menu/agregar">Nuevo</a>
                 <div class="panel-body">
                   <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
+                        <th scope="col">Tipo</th>
                         <th scope="col">Acciones</th>
                       </tr>
                     </thead>
@@ -23,11 +24,12 @@
                       <tr>
 
                         <td>  {{ $sellable->name }}</td>
+                        <td>  {{ $sellable->type->name }}</td>
                         <td>  {{ $sellable->pivot->price }}</td>
 
 
                         <td>
-                          <form class="" action="/admin/productos/{{$sellable->id}}/eliminar" method="post">
+                          <form class="" action="/admin/tiendas/{{$store->id}}/menu/{{$sellable->id}}/eliminar" method="post">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
                             <a class="btn btn-sm btn-warning" href="/admin/productos/{{$sellable->id}}/editar">Editar</a>

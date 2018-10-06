@@ -27,6 +27,7 @@ class SellableController extends Controller
       $products = Product::orderby('name')->get();
       return view('sellables.newSellable',compact('sellable','products','sellableTypes'));
     }
+
     public function save(Request $request)
     {
       //  dd($request);

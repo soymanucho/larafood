@@ -110,6 +110,18 @@ Route::get('/admin/ciudades/{city}/editar', 'CityController@edit')->name('city-e
 
 Route::put('/admin/ciudades/{city}/editar', 'CityController@update')->name('city-update');
 
+
+
+//MENU
+
+Route::get('/admin/tiendas/{store}/menu', 'MenuController@show')->name('menu-show');
+
+Route::delete('/admin/tiendas/{store}/menu/{sellable}/eliminar', 'MenuController@delete')->name('menu-item-delete');
+
+Route::get('/admin/tiendas/{store}/menu/agregar', 'MenuController@new')->name('menu-item-new');
+
+Route::put('/admin/tiendas/{store}/menu/agregar', 'MenuController@save')->name('menu-item-save');
+
 //STORES ROUTES
 
 Route::get('/admin/tiendas', 'StoreController@show')->name('store-show');
@@ -124,7 +136,9 @@ Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store
 
 Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
 
-Route::get('/admin/tiendas/{store}/menu', 'MenuController@show')->name('menu-show');
+
+
+
 
 //CLIENTS
 
