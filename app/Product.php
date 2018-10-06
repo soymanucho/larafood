@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Ingredient;
 class Product extends Model
 {
-  protected $fillable = ['name','description','price'];
+  protected $fillable = ['name','description'];
   public function ingredients()
   {
     return $this->belongsToMany(Ingredient::class, 'ingredients_products', 'id_product', 'id_ingredient');

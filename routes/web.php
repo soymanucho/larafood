@@ -136,6 +136,10 @@ Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store
 
 Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
 
+Route::get('/admin/tiendas/{store}/pedido/agregar', 'OrderController@new')->name('order-new');
+
+Route::post('/admin/tiendas/{store}/pedido/agregar', 'OrderController@save')->name('order-save');
+
 
 
 

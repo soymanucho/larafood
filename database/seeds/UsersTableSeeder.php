@@ -38,10 +38,6 @@ class UsersTableSeeder extends Seeder
         'email' => 'juanita@gmail.com',
         'password' => bcrypt('juanita'),
       ]);
-     DB::table('users')->insert([
-        'name' => 'No asociar a ningún usuario',
-        'email' => '-',
-        'password' => bcrypt('-'),
-      ]);
+
     }
 }

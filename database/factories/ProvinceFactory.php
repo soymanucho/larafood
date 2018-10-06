@@ -6,7 +6,7 @@ use App\Province;
 $factory->define(App\Province::class, function (Faker $faker) {
     return [
         'name'=>$faker->state(),
-        'id_country'=>rand(1,20)
+        'id_country'=>'1'
 
     ];
 });

@@ -36,7 +36,6 @@ class ProductController extends Controller
         [
           'name' => 'required|max:60',
           'description'=> 'required|max:60',
-          'price'=> 'required|numeric',
           'ingredients'=> 'required|array',
           'ingredients.*'=> 'required|integer|distinct|exists:ingredients,id',
 
@@ -47,7 +46,6 @@ class ProductController extends Controller
         [
             'name' => 'nombre',
             'description' => 'descripción',
-            'price' => 'precio',
             'ingredients' => 'ingredientes',
         ]
     );
@@ -72,7 +70,6 @@ class ProductController extends Controller
         [
           'name' => 'required|max:60',
           'description'=> 'required|max:60',
-          'price'=> 'required|numeric',
           'ingredients'=> 'required|array',
           'ingredients.*'=> 'required|integer|distinct|exists:ingredients,id',
 
@@ -83,7 +80,6 @@ class ProductController extends Controller
         [
             'name' => 'nombre',
             'description' => 'descripción',
-            'price' => 'precio',
             'ingredients' => 'ingredientes',
         ]
     );

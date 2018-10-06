@@ -33,6 +33,9 @@
                                 >{{ $user->name }} ({{$user->email}}, {{$user->rol->name}})
                             </option>
                           @endforeach
+                          <option value={{null}}>
+                            No asociar a ningún usuario.
+                          </option>
                         </select>
                         <br>
                         <input type="submit" value="Guardar cambios" name="submit"/>

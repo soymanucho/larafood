@@ -2,13 +2,31 @@
 
 
 <div>
-  <label for="name">Nombre:</label>
-  <input type="text" name="name" id="name" value="{{ old('name',$order->name)}}"/>
+  <label for="id_store">Tienda</label>
+  <select class="form-control" name="id_store">
+      <option value="{{ $store->id }}">
+        {{ $store->name }}
+      </option>
+  </select>
+  <label for="id_client">Cliente</label>
+  <select class="form-control" name="id_client">
+    @foreach ($clients as $client)
+      <option value="{{ $client->id }}">
+        {{ $client->name }}
+      </option>
+    @endforeach
+  </select>
+  <label for="sellables[]">Productos</label>
+  <select multiple class="form-control" name="sellables[]">
+    @foreach ($sellables as $sellable)
+      <option value="{{ $sellable->id }}">
+        {{ $sellable->name }}
+      </option>
+    @endforeach
+  </select>
+  {{-- @if ($order)
+  <label for="total_price">Precio:</label>
+  <input type="text" name="total_price" id="total_price" value="{{ old('total_price',$order->total_price)}}"/>
   <br>
-  <label for="phone">Teléfono:</label>
-  <input type="text" name="phone" id="phone" value="{{ old('phone',$client->phone)}}"/>
-  <br>
-  <label for="address">Dirección:</label>
-  <input type="text" name="address" id="address" value="{{ old('address',$client->address)}}"/>
-  <br>
+@endif --}}
 </div>

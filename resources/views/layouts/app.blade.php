@@ -55,6 +55,9 @@
                             <li @if (isset($stores))
                                 class="nav-item active"
                             @endif ><a class="nav-link" href="/admin/tiendas">Tiendas</a></li>
+                            <li @if (isset($orders))
+                                class="nav-item active"
+                            @endif ><a class="nav-link" href="/admin/pedidos">Pedidos</a></li>
                             <li @if (isset($clients))
                                 class="nav-item active"
                             @endif ><a class="nav-link" href="/admin/clientes">Clientes</a></li>

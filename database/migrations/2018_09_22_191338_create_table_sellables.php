@@ -18,7 +18,6 @@ class CreateTableSellables extends Migration
             $table->integer('id_sellable_type')->unsigned();
             $table->string('name');
             $table->text('description');
-            $table->float('price',8,2);
             $table->timestamps();
 
             $table->foreign('id_sellable_type')->references('id')->on('sellable_types')->onDelete('cascade');

@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\Client;
+use App\Sellable;
+use App\Store;
 
 class OrderController extends Controller
 {
   public function show()
   {
-    $orders = Order::orderby('name')->with('client')->paginate(10);
+    $orders = Order::orderby('id')->with('client')->paginate(10);
     return view('orders.orders',compact('orders'));
   }
 
@@ -19,10 +22,14 @@ class OrderController extends Controller
     return redirect('admin/pedidos');
   }
 
-  public function new()
+  public function new(Store $store)
   {
+
+    $clients = Client::All();
     $order = new Order();
-    return view('orders.newOrder',compact('order'));
+
+    $sellables = $store->sellables;
+    return view('orders.newOrder',compact('order','clients','sellables','store'));
   }
 
   public function save(Request $request)
@@ -31,9 +38,11 @@ class OrderController extends Controller
       $request,
       [
           'id_client' => 'required|exists:clients,id',
-          'total_price' => 'required|numeric|max:20',
-          'id_status'=> 'required|exists:status,id',
-          'id_store'=>'nullable|exists:stores,id',
+          // 'total_price' => 'required|numeric|max:20',
+          // 'id_status'=> 'required|exists:status,id',
+          'id_store'=>'required|exists:stores,id',
+          'sellables'=>'required|array',
+          'sellables.*'=> 'required|integer|distinct|exists:sellables,id',
 
       ],
       [
@@ -41,14 +50,23 @@ class OrderController extends Controller
       ],
       [
           'id_client' => 'cliente',
-          'total_price' => 'precio total',
-          'id_status' => 'estado',
+          // 'total_price' => 'precio total',
+          // 'id_status' => 'estado',
+          'sellables' => 'productos',
           'id_store' => 'tienda',
       ]
   );
   $order = new Order;
   $order->fill($request->all());
+  $order->id_status = 1;
+  $order->total_price = 0;
   $order->save();
+
+  $order->sellables()->attach($request->input('sellables'),['amount'=>1,'price'=>1]);
+  $order->calculateTotalPrice();
+  $order->save();
+
+
 
   return redirect('/admin/pedidos/');
   }

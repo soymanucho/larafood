@@ -12,6 +12,6 @@ class ProvincesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Province::class)->times(20)->create();
+        factory(Province::class)->times(2)->create();
     }
 }

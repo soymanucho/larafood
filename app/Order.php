@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Client;
 use App\Status;
 use App\Store;
-use App\OrderDetail;
+use App\Sellable;
 
 class Order extends Model
 {
@@ -26,8 +26,16 @@ class Order extends Model
   {
     return $this->belongsTo(Store::class, 'id_store');
   }
-  public function detail()
+  public function sellables()
   {
-    return $this->hasMany(OrderDetail::class, 'id_order');
+    return $this->belongsToMany(Sellable::class, 'order_details', 'id_order', 'id_sellable');
   }
+
+  public function calculateTotalPrice()
+  {
+    $sellables = $this->sellables()->pluck('id_sellable')->toArray();
+    $total = $this->store->sellables()->whereIn('id',$sellables)->sum('menu.price');
+    $this->total_price=$total;
+  }
+
 }

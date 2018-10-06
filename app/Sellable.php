@@ -11,7 +11,7 @@ use App\Order;
 class Sellable extends Model
 {
   protected $table = 'sellables';
-  protected $fillable = ['name','description','price','id_sellable_type'];
+  protected $fillable = ['name','description','id_sellable_type'];
 
   public function type()
   {

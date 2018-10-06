@@ -18,7 +18,6 @@ class CreateTableProducts extends Migration
             $table->boolean('available')->default(1);
             $table->string('name');
             $table->text('description');
-            $table->float('price',8,2);
             $table->timestamps();
 
         });
