@@ -12,13 +12,13 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
       DB::table('status')->insert([
-         'name' => 'procesándose',
+         'name' => 'recibido',
        ]);
       DB::table('status')->insert([
          'name' => 'en preparación',
        ]);
       DB::table('status')->insert([
-         'name' => 'listo',
+         'name' => 'preparado',
        ]);
       DB::table('status')->insert([
          'name' => 'en camino',
