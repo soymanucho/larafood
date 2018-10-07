@@ -122,6 +122,10 @@ Route::get('/admin/tiendas/{store}/menu/agregar', 'MenuController@new')->name('m
 
 Route::put('/admin/tiendas/{store}/menu/agregar', 'MenuController@save')->name('menu-item-save');
 
+Route::get('/admin/tiendas/{store}/menu/{sellable}/editar', 'MenuController@edit')->name('menu-item-edit');
+
+Route::post('/admin/tiendas/{store}/menu/{sellable}/editar', 'MenuController@update')->name('menu-item-update');
+
 //STORES ROUTES
 
 Route::get('/admin/tiendas', 'StoreController@show')->name('store-show');

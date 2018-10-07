@@ -17,8 +17,8 @@
 
 <div>
   <label for="price">Price</label>
-  @if(@isset($sellable->pivot->price))
-    <input type="text" name="price" id="price" value="{{ old('price',$sellable->pivot->price)}}"/>
+  @if(@isset($store->sellables->where('id',$sellable->id)->first()->pivot->price))
+    <input type="text" name="price" id="price" value="{{ old('price',$store->sellables->where('id',$sellable->id)->first()->pivot->price)}}"/>
   @else
       <input type="text" name="price" id="price" value="{{ old('price',0)}}"/>
   @endif
