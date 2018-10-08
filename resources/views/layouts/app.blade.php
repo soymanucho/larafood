@@ -10,18 +10,18 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.4.57/css/materialdesignicons.min.css">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+
+
+    <title>{{ config('app.name', 'LaraFood') }}</title>
     <!-- Custom CSS -->
     <link href="/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
 </head>
 
 <body>
@@ -49,7 +49,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="../">
+                    <a class="navbar-brand" href="#">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -93,18 +93,27 @@
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
+                      @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
+                             <span class="d-none d-md-block">Crear Nuevo <i class="fa fa-angle-down"></i></span>
                              <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item"
+                                @if (@isset(Auth::user()->store))
+                                  href="/admin/tiendas/{{Auth::user()->store->id}}/pedido/agregar"
+                                @else
+                                  href="/admin/tiendas/"
+                                @endif
+
+                                >Pedido</a>
+                                <a class="dropdown-item" href={{route('client-new')}}>Cliente</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href={{route('sellable-new')}}>Producto</a>
                             </div>
                         </li>
+                      @endauth
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
@@ -196,20 +205,28 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
-                            </div>
-                        </li>
+                        @guest
+                        @else
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                              <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                  <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                  <a class="dropdown-item" target="_blank" href="https://github.com/soymanucho/larafood"><i class="mdi mdi-git"></i> Github </a>
+                                  <a class="dropdown-item" target="_blank" href="https://trello.com/b/sz6cvOia/larafood"><i class="mdi mdi-trello"></i> Trello</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-power-off m-r-5 m-l-5"></i> {{ __('Deslogueate') }}</a>
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                  <div class="dropdown-divider"></div>
+                                  <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
+                              </div>
+                          </li>
+                        @endguest
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -229,24 +246,43 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                      @auth
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href={{route('dashboard-show')}} aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Ubicacion</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-map"></i><span class="hide-menu">Ubicacion</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href={{route('country-show')}} class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Pais </span></a></li>
-                                <li class="sidebar-item"><a href={{route('province-show')}} class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Provincia </span></a></li>
-                                <li class="sidebar-item"><a href={{route('city-show')}} class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Ciudad </span></a></li>
-                                <li class="sidebar-item"><a href={{route('store-show')}} class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Tienda </span></a></li>
+                                <li class="sidebar-item"><a href={{route('country-show')}} class="sidebar-link"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Pais </span></a></li>
+                                <li class="sidebar-item"><a href={{route('province-show')}} class="sidebar-link"><i class="mdi mdi-map-marker-multiple"></i><span class="hide-menu">Provincia </span></a></li>
+                                <li class="sidebar-item"><a href={{route('city-show')}} class="sidebar-link"><i class="mdi mdi-city"></i><span class="hide-menu">Ciudad </span></a></li>
+                                <li class="sidebar-item"><a href={{route('store-show')}} class="sidebar-link"><i class="mdi mdi-store"></i><span class="hide-menu">Tienda </span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Productos</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pizza"></i><span class="hide-menu">Productos</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href={{route('sellable-show')}} class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Promos</span></a></li>
-                                <li class="sidebar-item"><a href={{route('product-show')}} class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Comidas </span></a></li>
-                                <li class="sidebar-item"><a href={{route('ingredient-show')}} class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Ingredientes </span></a></li>
-                                <li class="sidebar-item"><a href={{route('sellabletype-show')}} class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Tipos de Producto </span></a></li>
+                                <li class="sidebar-item"><a href={{route('sellable-show')}} class="sidebar-link"><i class="mdi mdi-food"></i><span class="hide-menu">Promos</span></a></li>
+                                <li class="sidebar-item"><a href={{route('product-show')}} class="sidebar-link"><i class="mdi mdi-pizza"></i><span class="hide-menu">Comidas </span></a></li>
+                                <li class="sidebar-item"><a href={{route('ingredient-show')}} class="sidebar-link"><i class="mdi mdi-food-apple"></i><span class="hide-menu">Ingredientes </span></a></li>
+                                <li class="sidebar-item"><a href={{route('sellabletype-show')}} class="sidebar-link"><i class="mdi mdi-food-variant"></i><span class="hide-menu">Tipos de Producto </span></a></li>
                             </ul>
                         </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Estadísticas</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href={{route('ingredient-show')}} class="sidebar-link"><i class="mdi mdi-chart-pie"></i><span class="hide-menu">Generales</span></a></li>
+                                <li class="sidebar-item"><a href={{route('client-show')}} class="sidebar-link"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Clientes</span></a></li>
+                                <li class="sidebar-item"><a href={{route('order-show')}} class="sidebar-link"><i class="mdi mdi-currency-usd"></i><span class="hide-menu">Pedidos</span></a></li>
+                                <li class="sidebar-item"><a href={{route('sellable-show')}} class="sidebar-link"><i class="mdi mdi-food"></i><span class="hide-menu">Productos</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Clientes</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href={{route('ingredient-show')}} class="sidebar-link"><i class="mdi mdi-currency-usd"></i><span class="hide-menu">Pedidos</span></a></li>
+                                <li class="sidebar-item"><a href={{route('client-show')}} class="sidebar-link"><i class="mdi mdi-account"></i><span class="hide-menu">Usuarios</span></a></li>
+                            </ul>
+                        </li>
+                      @else
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('login') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Login</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('register') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Registrate</span></a>
+                      @endauth
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -267,14 +303,14 @@
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         {{-- <h4 class="page-title">Dashboard</h4> --}}
-                        {{-- <div class="ml-auto text-right">
+                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Library</li>
                                 </ol>
                             </nav>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -294,7 +330,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+                All Rights Reserved by LaraFood. Designed and Developed by <a href="https://github.com/soymanucho/larafood">Manu&Seba</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -323,7 +359,10 @@
     <!--Custom JavaScript -->
     <script src="/js/custom.min.js"></script>
     <!--This page JavaScript -->
-    <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
+     <script src="/js/dashboard1.js"></script>
+     <script src="/js/perfect-scrollbar.min.js"></script>
+     <script src="/js/jquery.ui.touch-punch-improved.js"></script>
+     <script src="/js/jquery-ui.min.js"></script>
     <!-- Charts js Files -->
     <script src="/js/excanvas.js"></script>
     <script src="/js/jquery.flot.js"></script>
@@ -331,7 +370,7 @@
     <script src="/js/jquery.flot.time.js"></script>
     <script src="/js/jquery.flot.stack.js"></script>
     <script src="/js/jquery.flot.crosshair.js"></script>
-    <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="/js/jquery.flot.tooltip.min.js"></script>
     <script src="/js/chart-page-init.js"></script>
 
 </body>

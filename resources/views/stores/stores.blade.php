@@ -3,14 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-md-offset-1">
+        <div class="col-md-15 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Tiendas
-                  {{-- <form action="/admin/ingredientes/agregar"><input type="submit" value="Nuevo" /></form> --}}
-                </div>
+                <h4 class="page-title">Tiendas</h4>
 
 
-                <a class="float-right btn btn-primary btn-lg" href="/admin/tiendas/agregar">Nuevo</a>
+                <a class="float-right btn btn-primary btn-lg" href="/admin/tiendas/agregar">Nueva tienda</a>
 
 
                 <div class="panel-body">
@@ -19,11 +17,8 @@
                       <tr>
 
                         <th scope="col">Online</th>
-                        <th scope="col">Ciudad (Provincia, País)</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Tienda</th>
-                        <th scope="col">Creado</th>
-                        <th scope="col">Editado</th>
                         <th scope="col">Acciones</th>
 
                       </tr>
@@ -38,19 +33,17 @@
                                     <button type="button" class="btn btn-outline-danger">Cerrado</button>
                                   @endif
                             </td>
-                            <td>  {{ $store->city->name }} ({{ $store->city->province->name }}, {{ $store->city->province->country->name }})</td>
-                            <td>  {{ $store->address }}</td>
+                            <td>  {{ $store->address }} ({{ $store->city->name }})</td>
                             <td>  {{ $store->name }}</td>
-                            <td>  {{ $store->created_at }}</td>
-                            <td>  {{ $store->updated_at }}</td>
+
 
                             <td>
                               <form class="" action="/admin/tiendas/{{$store->id}}/eliminar" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <a class="btn btn-sm btn-warning" href="/admin/tiendas/{{$store->id}}/editar">Editar</a>
+                                <a class="btn btn-sm btn-success" href="/admin/tiendas/{{$store->id}}/pedido/agregar">Nuevo Pedido</a>
                                 <a class="btn btn-sm btn-info" href="/admin/tiendas/{{$store->id}}/menu">Menu</a>
-                                <a class="btn btn-sm btn-info" href="/admin/tiendas/{{$store->id}}/pedido/agregar">Nuevo Pedido</a>
+                                <a class="btn btn-sm btn-warning" href="/admin/tiendas/{{$store->id}}/editar">Editar</a>
                                 <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
 
                               </form>

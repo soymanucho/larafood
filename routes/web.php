@@ -172,6 +172,10 @@ Route::get('/admin/pedidos/{order}/editar', 'OrderController@edit')->name('order
 
 Route::put('/admin/pedidos/{order}/editar', 'OrderController@update')->name('order-update');
 
+Route::get('/admin/dashboard/', 'DashboardController@show')->name('dashboard-show');
+
+Route::get('/admin', 'DashboardController@show')->name('dashboard-show');
+
 
 Route::get('/', function () {
     return view('welcome');
