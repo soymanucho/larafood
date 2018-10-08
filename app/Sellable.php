@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
+use App\Store;
 use App\SellableType;
 use App\Order;
 
@@ -27,5 +28,7 @@ class Sellable extends Model
   {
     return $this->belongsToMany(Order::class, 'order_details', 'id_sellable', 'id_order');
   }
-
+  public function stores(){
+    return $this->belongsToMany(Store::class, 'menu', 'id_sellable', 'id_store')->withPivot('price');
+  }
 }

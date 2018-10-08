@@ -372,7 +372,13 @@
     <script src="/js/jquery.flot.crosshair.js"></script>
     <script src="/js/jquery.flot.tooltip.min.js"></script>
     <script src="/js/chart-page-init.js"></script>
-
+      <script src="/js/DataTables/datatables.min.js"></script>
+      <script>
+          /****************************************
+           *       Basic Table                   *
+           ****************************************/
+          $('#zero_config').DataTable();
+      </script>
 </body>
 
 </html>
