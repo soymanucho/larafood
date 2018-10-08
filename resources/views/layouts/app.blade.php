@@ -211,10 +211,12 @@
                               <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                               <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                   <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                  <a class="dropdown-item" target="_blank" href="https://github.com/soymanucho/larafood"><i class="mdi mdi-git"></i> Github </a>
-                                  <a class="dropdown-item" target="_blank" href="https://trello.com/b/sz6cvOia/larafood"><i class="mdi mdi-trello"></i> Trello</a>
                                   <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                  <a class="dropdown-item" target="_blank" href="https://github.com/soymanucho/larafood"><i class="ti-github m-r-5 m-l-5"></i> Github </a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item " target="_blank" href="https://trello.com/b/sz6cvOia/larafood"><i class="ti-trello m-r-5 m-l-5"></i> Trello</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Ajustes de cuenta</a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

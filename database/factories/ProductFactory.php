@@ -8,7 +8,7 @@ $factory->define(Product::class, function (Faker $faker) {
 
     return [
       'name' => $faker->foodName(),
-      'description' => $faker->sentence($nbWords = 8, $variableNbWords = false),
-      
+      'description' => $faker->foodName(),
+
     ];
 });
