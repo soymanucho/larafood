@@ -23,14 +23,14 @@
                         @include('clients._fields')
                         <label for="id_user">Usuarios (opcional):</label>
                         <select class="form-control" name="id_user">
+                          <option value={{null}}>
+                            No asociar a ningún usuario.
+                          </option>
                           @foreach ($users as $user)
                             <option value="{{ $user->id }}">
                               {{ $user->name }} ({{$user->email}}, {{$user->rol->name}})
                             </option>
                           @endforeach
-                          <option value={{null}}>
-                            No asociar a ningún usuario.
-                          </option>
                         </select>
                         <br>
                           <input type="submit" value="Agregar cliente" name="submit"/>

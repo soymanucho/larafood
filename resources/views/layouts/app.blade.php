@@ -253,10 +253,10 @@
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-map"></i><span class="hide-menu">Ubicacion</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href={{route('country-show')}} class="sidebar-link"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Pais </span></a></li>
-                                <li class="sidebar-item"><a href={{route('province-show')}} class="sidebar-link"><i class="mdi mdi-map-marker-multiple"></i><span class="hide-menu">Provincia </span></a></li>
-                                <li class="sidebar-item"><a href={{route('city-show')}} class="sidebar-link"><i class="mdi mdi-city"></i><span class="hide-menu">Ciudad </span></a></li>
-                                <li class="sidebar-item"><a href={{route('store-show')}} class="sidebar-link"><i class="mdi mdi-store"></i><span class="hide-menu">Tienda </span></a></li>
+                                <li class="sidebar-item"><a href={{route('country-show')}} class="sidebar-link"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Paises </span></a></li>
+                                <li class="sidebar-item"><a href={{route('province-show')}} class="sidebar-link"><i class="mdi mdi-map-marker-multiple"></i><span class="hide-menu">Provincias </span></a></li>
+                                <li class="sidebar-item"><a href={{route('city-show')}} class="sidebar-link"><i class="mdi mdi-city"></i><span class="hide-menu">Ciudades </span></a></li>
+                                <li class="sidebar-item"><a href={{route('store-show')}} class="sidebar-link"><i class="mdi mdi-store"></i><span class="hide-menu">Tiendas </span></a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pizza"></i><span class="hide-menu">Productos</span></a>
