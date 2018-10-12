@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Database\Eloquent\Relations\Pivot;
+
 use App\Client;
 use App\Status;
 use App\Store;
@@ -29,6 +32,21 @@ class Order extends Model
   public function sellables()
   {
     return $this->belongsToMany(Sellable::class, 'order_details', 'id_order', 'id_sellable');
+  }
+
+  protected static function boot()
+  {
+    parent::boot();
+
+    static::saving(function($order)
+    {
+      $order->calculateTotalPrice();
+    });
+
+    // Pivot::creating(function($pivot) {
+    //   $pivot->amount = $this->calculateTotalPrice();
+    // });
+
   }
 
   public function calculateTotalPrice()

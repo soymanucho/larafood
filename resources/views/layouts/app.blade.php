@@ -66,8 +66,8 @@
                   <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
-                    {{Auth::user()->name }} - Rol
-                    <small>Member since   {{Auth::user()->created_at }}</small>
+                    {{Auth::user()->name }} - {{Auth::user()->rol->name }}
+                    <small>Member since   {{Auth::user()->fecha_f() }}</small>
                   </p>
                 </li>
                 <!-- Menu Body -->

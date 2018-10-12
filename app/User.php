@@ -42,5 +42,9 @@ class User extends Authenticatable
     {
       return $this->belongsTo(Store::class, 'id_store');
     }
+    public function fecha_f()
+    {
+      return date('d/m/y',strtotime($this->created_at));
+    }
 
 }

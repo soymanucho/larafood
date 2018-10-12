@@ -7,6 +7,7 @@ use App\Order;
 use App\Client;
 use App\Sellable;
 use App\Store;
+use App\User;
 
 class OrderController extends Controller
 {
@@ -59,12 +60,12 @@ class OrderController extends Controller
   $order = new Order;
   $order->fill($request->all());
   $order->id_status = 1;
-  $order->total_price = 0;
   $order->save();
 
   $order->sellables()->attach($request->input('sellables'),['amount'=>1,'price'=>1]);
-  $order->calculateTotalPrice();
   $order->save();
+
+
 
 
 
@@ -73,8 +74,8 @@ class OrderController extends Controller
 
   public function edit(Order $order)
   {
-
-    return view('orders.editOrder',compact('order'));
+    $users = User::all();
+    return view('orders.editOrder',compact('order','users'));
   }
 
    public function update(Order $order, Request $request)
