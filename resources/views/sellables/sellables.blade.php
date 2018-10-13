@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Productos
+@section('title')
+  Comidas
+@endsection
 
-                </div>
+@section('breadcrumb-items')
+  <li><a href="{!! route('product-show') !!}"><i class="fa "></i> Paises</a></li>
+
+@endsection
+
+@section('content')
+
                   <a class="float-right btn btn-primary btn-lg" href="{{route('sellable-new')}}">Nuevo</a>
                 <div class="panel-body">
                   <table class="table">
@@ -59,12 +62,5 @@
                   {{$sellables->links()}}
 
                 </div>
-           </div>
-         </div>
-    </div>
-</div>
-
-
-
-
+        
 @endsection

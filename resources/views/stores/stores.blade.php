@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+Tiendas
+@endsection
+
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-15 col-md-offset-1">
-            <div class="panel panel-default">
-                <h4 class="page-title">Tiendas</h4>
 
 
                 <a class="float-right btn btn-primary btn-lg" href="/admin/tiendas/agregar">Nueva tienda</a>
@@ -64,12 +64,5 @@
                   {{$stores->links()}}
 
                 </div>
-           </div>
-         </div>
-    </div>
-</div>
-
-
-
 
 @endsection

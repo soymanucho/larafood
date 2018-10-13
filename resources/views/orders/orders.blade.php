@@ -1,14 +1,17 @@
 @extends('layouts.app')
 
+@section('title')
+  Nueva Ciudad
+@endsection
+
+@section('breadcrumb-items')
+  <li><a href="{!! route('country-show') !!}"><i class="fa "></i> Paises</a></li>
+  <li><a href="{!! route('province-show') !!}"><i class="fa "></i> Provincias</a></li>
+  <li><a href="{!! route('city-show') !!}"><i class="fa "></i> Ciudades</a></li>
+  <li class="active">Nueva Ciudad</li>
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Pedidos
-                </div>
-
-
                 <a class="float-right btn btn-primary btn-lg" href="/admin/pedidos/agregar">Nuevo</a>
 
 
