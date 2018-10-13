@@ -1,34 +1,23 @@
 @extends('layouts.app')
 
+@section('title')
+  Paises
+@endsection
 
+@section('breadcrumb-items')
+  <li><a href="{!! route('countries-show') !!}"><i class="fa "></i> Paises</a></li>
+  <li class="active"> Nuevo País</li>
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Paises</div>
+  <div class="panel-body">
+      @include('errors.errors')
 
-                <div class="panel-body">
-                    <div class="errores">
-                      <ul>
-                        @foreach($errors->all() as $error)
-                        <li class="error">{{ $error }}</li>
-                        @endforeach
-                      </ul>
+      <form  method="POST" name='newCountry'>
+          {{ method_field('post') }}
+        @include('countries._fields')
+          <input type="submit" value="Agregar país" name="submit"/>
+      </form>
 
-                    </div>
-
-                      <form  method="POST" name='editCountry'>
-                        	{{ method_field('post') }}
-                        @include('countries._fields')
-                          <input type="submit" value="Agregar país" name="submit"/>
-                      </form>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+  </div>
 @endsection

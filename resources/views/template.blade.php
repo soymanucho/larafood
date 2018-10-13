@@ -1,31 +1,17 @@
 @extends('layouts.app')
 
 @section('title')
-  Nueva Ciudad
+  Editar Ingrediente
 @endsection
 
 @section('breadcrumb-items')
-  <li><a href="{!! route('country-show') !!}"><i class="fa "></i> Paises</a></li>
-  <li><a href="{!! route('province-show') !!}"><i class="fa "></i> Provincias</a></li>
-  <li><a href="{!! route('city-show') !!}"><i class="fa "></i> Ciudades</a></li>
-  <li class="active">Nueva Ciudad</li>
+  <li><a href="{!! route('sellable-show') !!}"><i class="fa "></i> Productos</a></li>
+  <li class="active"> Editar Ingrediente</li>
 @endsection
 
 @section('content')
-    <div class="panel-body">
+  <div class="panel-body">
       @include('errors.errors')
-      <form  method="POST" name='editCity'>
-        {{ method_field('post') }}
-        <label for="id_province">Provincia</label>
-        <select class="form-control" name="id_province">
-          @foreach ($provinces as $province)
-            <option value="{{ $province->id }}">
-              {{ $province->name }} ({{$province->country->name}})
-            </option>
-          @endforeach
-        </select>
-        @include('cities._fields')
-          <input type="submit" value="Agregar ciudad" name="submit"/>
-      </form>
-    </div>
+
+  </div>
 @endsection
