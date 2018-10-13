@@ -1,23 +1,18 @@
 @extends('layouts.app')
 
+@section('title')
+Editar Tipo de Producto
+@endsection
 
+@section('breadcrumb-items')
+  <li><a href="{!! route('sellabletype-show') !!}"><i class="fa "></i> Tipo de productos</a></li>
+
+  <li class="active">Editar</li>
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Tipo de producto</div>
-
-                <div class="panel-body">
-                    <div class="errores">
-                      <ul>
-                        @foreach($errors->all() as $error)
-                        <li class="error">{{ $error }}</li>
-                        @endforeach
-                      </ul>
-
-                    </div>
+    <div class="panel-body">
+      @include('errors.errors')
 
                       <form  method="POST" name='editSellableType'>
                         	{{ method_field('put') }}

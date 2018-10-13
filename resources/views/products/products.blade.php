@@ -1,20 +1,24 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Productos
+@section('title')
+  Comidas
+@endsection
 
-                </div>
+@section('breadcrumb-items')
+
+  <li><a href="{!! route('product-show') !!}"><i class="fa "></i> Comidas</a></li>
+
+@endsection
+
+@section('content')
+    <div class="panel-body">
                   <a class="float-right btn btn-primary btn-lg" href="/admin/productos/agregar">Nuevo</a>
                 <div class="panel-body">
                   <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
+                        {{-- <th scope="col">Precio</th> --}}
                         {{-- <th scope="col">Tipo</th> --}}
                         <th scope="col"># Ingr</th>
                         {{-- <th scope="col"># P. Childs</th>
@@ -27,7 +31,7 @@
                       <tr>
 
                         <td>  {{ $product->name }}</td>
-                        <td>  {{ $product->price }}</td>
+                        {{-- <td>  {{ $product->price }}</td> --}}
                         {{-- <td>  {{ $product->producttype->name }}</td> --}}
                         <td>  {{ $product->ingredients->count() }}</td>
                         {{-- <td>  {{ $product->childs->count() }}</td>
