@@ -1,18 +1,25 @@
 @extends('layouts.app')
+@extends('errors.errors')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Ciudades
-                  {{-- <form action="/admin/ingredientes/agregar"><input type="submit" value="Nuevo" /></form> --}}
-                </div>
+  <section class="content-header">
+    <h1>
+      Ciudades
+      <small>Version 1.0</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{!! route('country-show') !!}"><i class="fa "></i> Paises</a></li>
+      <li><a href="{!! route('province-show') !!}"><i class="fa "></i> Provincias</a></li>
+      <li class="active">Ciudades</li>
+    </ol>
+  </section>
 
+  <!-- Main content -->
+  <section class="content">
 
                 <a class="float-right btn btn-primary btn-lg" href="/admin/ciudades/agregar">Nuevo</a>
 
-
+                @include('errors.errors')
                 <div class="panel-body">
                   <table class="table">
                     <thead>
@@ -45,10 +52,6 @@
                             <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
                           </form>
 
-                          {{-- <form class="" action="/admin/ingredientes/{{$ingredient->id}}/editar" method="get">
-                            {{ csrf_field() }}
-                            <input type="submit" name="" value="Editar">
-                          </form> --}}
                         </td>
 
 
@@ -61,10 +64,7 @@
                   {{$cities->links()}}
 
                 </div>
-           </div>
-         </div>
-    </div>
-</div>
+  </section>
 
 
 
