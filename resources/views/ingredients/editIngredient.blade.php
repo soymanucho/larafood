@@ -13,11 +13,11 @@
   <div class="panel-body">
       @include('errors.errors')
 
-        <form  method="POST" name='editIngredient'>
-            {{ method_field('put') }}
-          @include('ingredients._fields')
-            <input type="submit" value="Guardar cambios" name="submit"/>
-        </form>
+      <form  method="POST" name='editIngredient'>
+          {{ method_field('put') }}
+        @include('ingredients._fields')
+          <input type="submit" value="Guardar cambios" name="submit"/>
+      </form>
 
   </div>
 @endsection
