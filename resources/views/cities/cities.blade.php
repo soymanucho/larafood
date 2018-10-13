@@ -12,48 +12,54 @@
 
 
 @section('content')
-  <a class="float-right btn btn-primary btn-lg" href="/admin/ciudades/agregar">Nuevo</a>
-  <div class="panel-body">
-    <table class="table">
-      <thead>
+  <a class="float-right btn btn-primary btn-lg" href="/admin/ciudades/agregar">Nueva</a>
+  <br><br>
+  <div class="box">
+    <div class="box-header">
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table id="example2" class="table table-bordered table-hover">
+        <thead>
         <tr>
-
-          <th scope="col">País</th>
-          <th scope="col">Provincia</th>
-          <th scope="col">Ciudad</th>
-          <th scope="col">Creado</th>
-          <th scope="col">Editado</th>
-          <th scope="col">Acciones</th>
-
+          <th>País</th>
+          <th>Provincia</th>
+          <th>Ciudad</th>
+          <th>Acciones</th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
           @foreach($cities as $city)
-        <tr>
+            <tr>
 
-          <td>  {{ $city->province->country->name }}</td>
-          <td>  {{ $city->province->name }}</td>
-          <td>  {{ $city->name }}</td>
-          <td>  {{ $city->created_at }}</td>
-          <td>  {{ $city->updated_at }}</td>
+              <td>  {{ $city->province->country->name }}</td>
+              <td>  {{ $city->province->name }}</td>
+              <td>  {{ $city->name }}</td>
 
-          <td>
-            <form class="" action="/admin/ciudades/{{$city->id}}/eliminar" method="post">
-              {{ csrf_field() }}
-              {{ method_field('delete') }}
-              <a class="btn btn-sm btn-warning" href="/admin/ciudades/{{$city->id}}/editar">Editar</a>
-              <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
-            </form>
-
-          </td>
-
-        </tr>
+              <td>
+                <form class="" action="/admin/ciudades/{{$city->id}}/eliminar" method="post">
+                  {{ csrf_field() }}
+                  {{ method_field('delete') }}
+                  <a class="btn btn-sm btn-warning" href="/admin/ciudades/{{$city->id}}/editar">Editar</a>
+                  <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">
+                </form>
+              </td>
+            </tr>
           @endforeach
-      </tbody>
-    </table>
-
-    {{$cities->links()}}
-
+        </tbody>
+        <tfoot>
+        <tr>
+          <th>País</th>
+          <th>Provincia</th>
+          <th>Ciudad</th>
+          <th>Acciones</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
   </div>
+        <!-- /.box -->
 
 @endsection
