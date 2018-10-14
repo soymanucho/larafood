@@ -8,7 +8,7 @@ class IngredientController extends Controller
 {
     public function show()
     {
-      $ingredients = Ingredient::orderby('name')->paginate(10);
+      $ingredients = Ingredient::orderby('name')->get();
       return view('ingredients.ingredients',compact('ingredients'));
     }
 

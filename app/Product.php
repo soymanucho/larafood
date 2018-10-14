@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use App\Ingredient;
 class Product extends Model
 {
-  protected $fillable = ['name','description'];
+  protected $fillable = ['name','description','id_product_type'];
   public function ingredients()
   {
     return $this->belongsToMany(Ingredient::class, 'ingredients_products', 'id_product', 'id_ingredient');
   }
 
-  // public function childs()
-  // {
-  //   return $this->belongsToMany(Product::class, 'products_products', 'id_product_father', 'id_product_child');
-  // }
-  //
-  // public function fathers()
-  // {
-  //   return $this->belongsToMany(Product::class, 'products_products', 'id_product_child', 'id_product_father');
-  // }
+  public function sellables()
+  {
+    return $this->belongsToMany(Sellable::class, 'sellable_product', 'id_product', 'id_sellable');
+  }
+
+  public function type()
+  {
+    return $this->belongsTo(SellableType::class,'id_product_type');
+  }
 }

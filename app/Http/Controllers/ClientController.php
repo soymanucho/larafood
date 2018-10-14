@@ -10,7 +10,7 @@ class ClientController extends Controller
 {
   public function show()
   {
-    $clients = Client::orderby('name')->with('user')->paginate(10);
+    $clients = Client::orderby('name')->with('user')->get();
     return view('clients.clients',compact('clients'));
   }
 

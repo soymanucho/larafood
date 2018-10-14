@@ -24,9 +24,5 @@
       </option>
     @endforeach
   </select>
-  {{-- @if ($order)
-  <label for="total_price">Precio:</label>
-  <input type="text" name="total_price" id="total_price" value="{{ old('total_price',$order->total_price)}}"/>
-  <br>
-@endif --}}
+
 </div>

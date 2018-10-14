@@ -142,10 +142,6 @@ Route::get('/admin/tiendas/{store}/editar', 'StoreController@edit')->name('store
 
 Route::put('/admin/tiendas/{store}/editar', 'StoreController@update')->name('store-update');
 
-Route::get('/admin/tiendas/{store}/pedido/agregar', 'OrderController@new')->name('order-new');
-
-Route::post('/admin/tiendas/{store}/pedido/agregar', 'OrderController@save')->name('order-save');
-
 
 
 
@@ -166,17 +162,26 @@ Route::put('/admin/clientes/{client}/editar', 'ClientController@update')->name('
 
 //ORDERS ROUTES
 
-Route::get('/admin/pedidos', 'OrderController@show')->name('order-show');
+Route::get('/admin/tiendas/{store}/pedidos', 'OrderController@show')->name('order-show');
 
-Route::delete('/admin/pedidos/{order}/eliminar', 'OrderController@delete')->name('order-delete');
+Route::get('/admin/pedidos', 'OrderController@myshow')->name('myorder-show');
 
-Route::get('/admin/pedidos/agregar', 'OrderController@new')->name('order-new');
+Route::get('/admin/tiendas/{store}/pedido/agregar', 'OrderController@new')->name('order-new');
 
-Route::post('/admin/pedidos/agregar', 'OrderController@save')->name('order-save');
+Route::post('/admin/tiendas/{store}/pedido/agregar', 'OrderController@save')->name('order-save');
 
-Route::get('/admin/pedidos/{order}/editar', 'OrderController@edit')->name('order-edit');
+Route::delete('/admin/tiendas/{store}/pedidos/{order}/eliminar', 'OrderController@delete')->name('order-delete');
 
-Route::put('/admin/pedidos/{order}/editar', 'OrderController@update')->name('order-update');
+Route::get('/admin/tiendas/{store}/pedidos/agregar', 'OrderController@new')->name('order-new');
+
+
+Route::get('/admin/tiendas/{store}/pedidos/{order}/editar', 'OrderController@edit')->name('order-edit');
+
+Route::put('/admin/tiendas/{store}/pedidos/{order}/editar', 'OrderController@update')->name('order-update');
+
+
+//DASHBOARD
+
 
 Route::get('/admin/dashboard/', 'DashboardController@show')->name('dashboard-show');
 

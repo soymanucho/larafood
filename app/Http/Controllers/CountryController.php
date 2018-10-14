@@ -8,7 +8,7 @@ class CountryController extends Controller
 {
   public function show()
   {
-    $countries = Country::orderby('name')->paginate(10);
+    $countries = Country::orderby('name')->get();
     return view('countries.countries',compact('countries'));
   }
 

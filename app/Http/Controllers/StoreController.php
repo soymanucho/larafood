@@ -10,7 +10,7 @@ class StoreController extends Controller
 {
   public function show()
   {
-    $stores = Store::orderby('name')->with('city')->paginate(10);
+    $stores = Store::orderby('name')->with('city')->get();
     return view('stores.stores',compact('stores'));
   }
 

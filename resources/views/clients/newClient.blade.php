@@ -6,7 +6,7 @@
 
 @section('breadcrumb-items')
   <li><a href="{!! route('store-show') !!}"><i class="fa "></i> Tiendas</a></li>
-  <li><a href="{!! route('clients-show') !!}"><i class="fa "></i> Clientes</a></li>
+  <li><a href="{!! route('client-show') !!}"><i class="fa "></i> Clientes</a></li>
   <li class="active">Nuevo Cliente</li>
 @endsection
 

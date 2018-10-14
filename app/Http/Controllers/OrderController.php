@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Order;
@@ -11,10 +12,18 @@ use App\User;
 
 class OrderController extends Controller
 {
-  public function show()
+
+  public function myshow()
   {
-    $orders = Order::orderby('id')->with('client')->paginate(10);
-    return view('orders.orders',compact('orders'));
+    $store = Auth::user()->store;
+    $orders = $store->orders()->orderby('id')->with('client')->get();
+    return view('orders.orders',compact('orders','store'));
+  }
+
+  public function show(Store $store)
+  {
+    $orders = $store->orders()->orderby('id')->with('client')->get();
+    return view('orders.orders',compact('orders','store'));
   }
 
   public function delete(Order $order)
@@ -69,7 +78,7 @@ class OrderController extends Controller
 
 
 
-  return redirect('/admin/pedidos/');
+  return redirect()->route('myorder-show');
   }
 
   public function edit(Order $order)
@@ -102,6 +111,6 @@ class OrderController extends Controller
   $order->fill($request->all());
   $order->save();
 
-  return redirect('/admin/pedidos/');
+  return redirect()->route('myorder-show');
   }
 }

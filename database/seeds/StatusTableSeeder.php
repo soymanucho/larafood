@@ -13,18 +13,33 @@ class StatusTableSeeder extends Seeder
     {
       DB::table('status')->insert([
          'name' => 'recibido',
+         'color' => '#CA422F',
+         'is_final' => false,
        ]);
       DB::table('status')->insert([
          'name' => 'en preparación',
+         'color' => '#E39800',
+         'is_final' => false,
        ]);
       DB::table('status')->insert([
          'name' => 'preparado',
+         'color' => '#346AB9',
+         'is_final' => false,
        ]);
       DB::table('status')->insert([
          'name' => 'en camino',
+         'color' => '#56BCF2',
+         'is_final' => false,
        ]);
       DB::table('status')->insert([
          'name' => 'entregado',
+         'color' => '#3AA346',
+         'is_final' => true,
+       ]);
+      DB::table('status')->insert([
+         'name' => 'cancelado',
+         'color' => '#0D0D0D',
+         'is_final' => true,
        ]);
     }
 }

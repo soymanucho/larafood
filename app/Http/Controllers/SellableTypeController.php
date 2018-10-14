@@ -8,7 +8,7 @@ class SellableTypeController extends Controller
 {
     public function show()
     {
-      $sellableTypes = SellableType::paginate(10);
+      $sellableTypes = SellableType::orderby('name')->get();;
       return view('sellableTypes.sellableTypes',compact('sellableTypes'));
     }
 

@@ -5,8 +5,11 @@
 @endsection
 
 @section('breadcrumb-items')
-  <li><a href="{!! route('order-show') !!}"><i class="fa "></i> Pedidos</a></li>
-  <li class="active">Editar</li>
+  <li><a href="{!! route('dashboard-show') !!}"><i class="fa "></i> Inicio</a></li>
+  <li><a href="{!! route('store-show') !!}"><i class="fa "></i> Tiendas</a></li>
+  <li><a href="{!! route('myorder-show') !!}"><i class="fa "></i> Pedidos</a></li>
+
+  <li class="active">Editar pedido</li>
 @endsection
 
 @section('content')

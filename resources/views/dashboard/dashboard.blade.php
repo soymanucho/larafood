@@ -25,90 +25,33 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">
-          <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Recibidos</span>
-              <span class="info-box-number">15</span>
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 50%"></div>
+          @foreach ($statuses as $status)
+            <div class="info-box" style="background-color: {{$status->color}}">
+              <span class="info-box-icon"><i class="ion ion-ios-more"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" style='color:white'>{{$status->name}}</span>
+                @php
+                  if ($status->is_final) {
+                    $parcial = $store->orders->where('id_status',$status->id)->where('created_at', '>', Carbon\Carbon::today()->toDateString())->count();
+                  }else {
+                    $parcial = $store->orders->where('id_status',$status->id)->count();
+                  }
+                @endphp
+                <span class="info-box-number" style='color:white'>{{$parcial}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: {{$parcial*100/$totalNumberOrders}}%"></div>
+                </div>
+                <span class="progress-description" style='color:white'>
+                      {{$parcial*100/$totalNumberOrders}}%
+                    </span>
               </div>
-              <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-yellow">
-            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">En preparación</span>
-              <span class="info-box-number">10</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 20%"></div>
-              </div>
-              <span class="progress-description">
-                    20% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-aqua">
-            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Preparados</span>
-              <span class="info-box-number">114,381</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-              <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-blue">
-            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">En camino (delivery)</span>
-              <span class="info-box-number">163,921</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 40%"></div>
-              </div>
-              <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Entregados</span>
-              <span class="info-box-number">163,921</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 40%"></div>
-              </div>
-              <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.box-body -->
-          </div>
+          @endforeach
         </div>
       </div>
       <!-- /.info-box-content -->

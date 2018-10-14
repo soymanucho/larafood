@@ -10,7 +10,7 @@ class CityController extends Controller
 {
   public function show()
   {
-    $cities = City::orderby('name')->with('province')->paginate(10);
+    $cities = City::orderby('name')->with('province')->get();
     return view('cities.cities',compact('cities'));
   }
 

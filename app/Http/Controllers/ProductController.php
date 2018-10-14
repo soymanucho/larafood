@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\SellableType;
 use App\Ingredient;
 
 class ProductController extends Controller
 {
     public function show()
     {
-      $products = Product::orderby('name')->paginate(10);
+      $products = Product::orderby('name')->get();
       return view('products.products',compact('products'));
     }
 
@@ -23,9 +24,11 @@ class ProductController extends Controller
     public function new()
     {
       $product = new Product();
-      $ingredients = Ingredient::all();
+      $sellableTypes = SellableType::orderby('name')->get();
+      $ingredients = Ingredient::orderby('name')->get();
       $products = Product::all();
-      return view('products.newProduct',compact('product','ingredients'));
+
+      return view('products.newProduct',compact('product','ingredients','sellableTypes'));
     }
 
     public function save(Request $request)
@@ -36,8 +39,9 @@ class ProductController extends Controller
         [
           'name' => 'required|max:60',
           'description'=> 'required|max:60',
-          'ingredients'=> 'required|array',
-          'ingredients.*'=> 'required|integer|distinct|exists:ingredients,id',
+          'id_product_type'=> 'required|numeric',
+          'ingredients'=> 'array',
+          'ingredients.*'=> 'integer|distinct|exists:ingredients,id',
 
         ],
         [
@@ -46,6 +50,7 @@ class ProductController extends Controller
         [
             'name' => 'nombre',
             'description' => 'descripción',
+            'id_product_type'=> 'categoría',
             'ingredients' => 'ingredientes',
         ]
     );
@@ -60,7 +65,8 @@ class ProductController extends Controller
     public function edit(Request $request, Product $product)
     {
         $ingredients = Ingredient::all();
-        return view('products.editProduct',compact('product','ingredients'));
+        $sellableTypes = SellableType::orderby('name')->get();
+        return view('products.editProduct',compact('product','ingredients','sellableTypes'));
     }
 
     public function update(Request $request, Product $product)
@@ -70,8 +76,9 @@ class ProductController extends Controller
         [
           'name' => 'required|max:60',
           'description'=> 'required|max:60',
-          'ingredients'=> 'required|array',
-          'ingredients.*'=> 'required|integer|distinct|exists:ingredients,id',
+          'id_product_type'=> 'required|numeric',
+          'ingredients'=> 'array',
+          'ingredients.*'=> 'integer|distinct|exists:ingredients,id',
 
         ],
         [
@@ -80,6 +87,7 @@ class ProductController extends Controller
         [
             'name' => 'nombre',
             'description' => 'descripción',
+            'id_product_type'=> 'categoría',
             'ingredients' => 'ingredientes',
         ]
     );

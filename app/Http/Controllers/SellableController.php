@@ -10,7 +10,7 @@ class SellableController extends Controller
 {
     public function show()
     {
-      $sellables = Sellable::orderby('name')->paginate(10);
+      $sellables = Sellable::orderby('name')->get();
       return view('sellables.sellables',compact('sellables'));
     }
 
@@ -36,7 +36,6 @@ class SellableController extends Controller
           [
             'name' => 'required|max:60',
             'description'=> 'required|max:60',
-            'price'=> 'required|numeric',
             'id_sellable_type'=> 'required|numeric',
             'products'=> 'required|array',
             'products.*'=> 'required|integer|distinct|exists:products,id',
@@ -48,7 +47,6 @@ class SellableController extends Controller
           [
               'name' => 'nombre',
               'description' => 'descripción',
-              'price' => 'precio',
               'peoducts' => 'productos',
               'id_sellable_type' => 'tipo',
           ]
@@ -76,7 +74,6 @@ class SellableController extends Controller
         [
           'name' => 'required|max:60',
           'description'=> 'required|max:60',
-          'price'=> 'required|numeric',
           'id_sellable_type'=> 'required|numeric',
           'products'=> 'required|array',
           'products.*'=> 'required|integer|distinct|exists:products,id',
@@ -88,8 +85,7 @@ class SellableController extends Controller
         [
             'name' => 'nombre',
             'description' => 'descripción',
-            'price' => 'precio',
-            'peoducts' => 'productos',
+            'products' => 'productos',
             'id_sellable_type' => 'tipo',
         ]
     );

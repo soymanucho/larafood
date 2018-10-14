@@ -20,8 +20,11 @@
   <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/bower_components/select2/dist/css/select2.min.css">
 
+  <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -33,7 +36,7 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -358,10 +361,10 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href={{route('sellable-show')}}><i class="fa fa-angle-right"></i> Promos</a></li>
-              <li><a href={{route('product-show')}}><i class="fa fa-angle-right"></i> Comidas</a></li>
+              <li><a href={{route('sellabletype-show')}}><i class="fa fa-angle-right"></i> Categorías</a></li>
+              <li><a href={{route('sellable-show')}}><i class="fa fa-angle-right"></i> Promociones</a></li>
+              <li><a href={{route('product-show')}}><i class="fa fa-angle-right"></i> Ítems</a></li>
               <li><a href={{route('ingredient-show')}}><i class="fa fa-angle-right"></i> Ingredientes</a></li>
-              <li><a href={{route('sellabletype-show')}}><i class="fa fa-angle-right"></i> Tipos de productos</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -373,10 +376,10 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href={{route('store-show')}}><i class="fa fa-shopping-cart"></i> Tiendas</a></li>
-              <li><a href={{route('city-show')}}><i class="fa fa-map-marker"></i> Ciudades</a></li>
-              <li><a href={{route('province-show')}}><i class="fa fa-map-pin"></i> Provincias</a></li>
               <li><a href={{route('country-show')}}><i class="fa fa-map-o"></i> Paises</a></li>
+              <li><a href={{route('province-show')}}><i class="fa fa-map-pin"></i> Provincias</a></li>
+              <li><a href={{route('city-show')}}><i class="fa fa-map-marker"></i> Ciudades</a></li>
+              <li><a href={{route('store-show')}}><i class="fa fa-shopping-cart"></i> Tiendas</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -387,62 +390,84 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href={{route('ingredient-show')}}><i class="fa fa-pie-chart"></i> Generales</a></li>
-              <li><a href={{route('client-show')}}><i class="fa fa-users"></i> Clientes</a></li>
-              <li><a href={{route('order-show')}}><i class="fa fa-line-chart"></i> Pedidos</a></li>
-              <li><a href={{route('sellable-show')}}><i class="fa fa-apple"></i> Productos</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-users"></i> <span>Clientes</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href={{route('order-show')}}><i class="fa fa-usd"></i> Pedidos</a></li>
-              <li><a href={{route('client-show')}}><i class="fa fa-user"></i> Clientes</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-share"></i> <span>Multilevel</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
               <li class="treeview">
-                <a href="#"><i class="fa fa-circle-o"></i> Level One
+                <a href="#"><i class="fa fa-pie-chart"></i> Generales
                   <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                   </span>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                  <li class="treeview">
-                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                      <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                      </span>
-                    </a>
-                    <ul class="treeview-menu">
-                      <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-pie-chart"></i> Totales</a></li>
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-pie-chart"></i> Por tienda</a></li>
+
                 </ul>
               </li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+              <li class="treeview">
+                <a href="#"><i class="fa fa-users"></i> Clientes
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-users"></i> Totales</a></li>
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-users"></i> Por tienda</a></li>
+
+                </ul>
+              </li>
+              <li class="treeview">
+                <a href="#"><i class="fa fa-line-chart"></i> Menú
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-line-chart"></i> Totales</a></li>
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-line-chart"></i> Por tienda</a></li>
+
+                </ul>
+              </li>
+              <li class="treeview">
+                <a href="#"><i class="fa fa-usd"></i> Pedidos
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-usd"></i> Totales</a></li>
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-usd"></i> Por tienda</a></li>
+
+                </ul>
+              </li>
+              <li class="treeview">
+                <a href="#"><i class="fa fa-apple"></i> Ítems
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-apple"></i> Totales</a></li>
+                  <li><a href="{{route('ingredient-show')}}"><i class="fa fa-apple"></i> Por tienda</a></li>
+
+                </ul>
+              </li>
             </ul>
           </li>
-          <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-          <li class="header">LABELS</li>
-          <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+          <li><a href="{{route('client-show')}}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-usd"></i>
+              <span>Pedidos</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+
+              @foreach (App\Store::All() as $store)
+                <li><a href={{route('order-show',['store'=>$store->id])}}><i class="fa fa-angle-right"></i> De {{$store->name}}</a></li>
+              @endforeach
+            </ul>
+          </li>
         </ul>
       @endguest
     </section>
@@ -514,9 +539,11 @@
 <script src="/bower_components/jquery//dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/bower_components/bootstrap//dist/js/bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -539,12 +566,21 @@
     $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
-      'lengthChange': false,
+      'lengthChange': true,
       'searching'   : true,
       'ordering'    : true,
       'info'        : true,
-      'autoWidth'   : false
+      'autoWidth'   : true
     })
+    $(document).ready(function() {
+    $('.select2').select2({
+      tags:true,
+      multiple:true,
+      tokenSeparators: [',']
+    })
+
+      })
+
   })
 </script>
 </body>

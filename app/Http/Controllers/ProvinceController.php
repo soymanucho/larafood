@@ -10,7 +10,7 @@ class ProvinceController extends Controller
 {
   public function show()
   {
-    $provinces = Province::orderby('name')->with('country')->paginate(10);
+    $provinces = Province::orderby('name')->with('country')->get();
     return view('provinces.provinces',compact('provinces'));
   }
 

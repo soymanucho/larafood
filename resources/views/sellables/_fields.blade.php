@@ -9,10 +9,10 @@
   <label for="description">Description</label>
   <input type="text" name="description" id="description" value="{{ old('description',$sellable->description)}}"/>
 </div>
-<div>
+{{-- <div>
   <label for="price">Price</label>
   <input type="text" name="price" id="price" value="{{ old('price',$sellable->price)}}"/>
-</div>
+</div> --}}
 
 <div class="">
   <label for="id_sellable_type">Tipos de Producto</label>
