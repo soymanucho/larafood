@@ -195,3 +195,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@home')->name('home');
+
+
+//FRONTEND USER
+
+
+Route::get('/', 'indexController@show')->name('index-show');
+
+Route::get('/nosotros', 'indexController@show')->name('aboutus-show');
+
+Route::get('/menu', 'indexController@menu')->name('menu-show');
+
+Route::get('/galeria', 'indexController@show')->name('gallery-show');
+
+Route::get('/contacto', 'indexController@show')->name('contact-show');
