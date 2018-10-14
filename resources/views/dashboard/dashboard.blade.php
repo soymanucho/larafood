@@ -28,25 +28,28 @@
 
 
           @foreach ($statuses as $status)
+            @php
+              if ($status->is_final) {
+                $parcial = $store->orders->where('id_status',$status->id)->where('created_at', '>', Carbon\Carbon::today()->toDateString())->count();
+                $valorTotal = $store->orders->where('id_status',$status->id)->where('created_at', '>', Carbon\Carbon::today()->toDateString())->sum('total_price');
+              }else {
+                $parcial = $store->orders->where('id_status',$status->id)->count();
+                $valorTotal = $store->orders->where('id_status',$status->id)->sum('total_price');
+              }
+            @endphp
             <div class="info-box" style="background-color: {{$status->color}}">
               <span class="info-box-icon"><i class="ion ion-ios-more"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text" style='color:white'>{{$status->name}}</span>
-                @php
-                  if ($status->is_final) {
-                    $parcial = $store->orders->where('id_status',$status->id)->where('created_at', '>', Carbon\Carbon::today()->toDateString())->count();
-                  }else {
-                    $parcial = $store->orders->where('id_status',$status->id)->count();
-                  }
-                @endphp
-                <span class="info-box-number" style='color:white'>{{$parcial}}</span>
+                <span class="info-box-text" style='color:white'>{{$status->name}} </span>
+
+                <span class="info-box-number" style='color:white'>{{$parcial}}  (${{number_format($valorTotal,2,',','.')}})</span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: {{$parcial*100/$totalNumberOrders}}%"></div>
                 </div>
                 <span class="progress-description" style='color:white'>
-                      {{$parcial*100/$totalNumberOrders}}%
+                      {{number_format($parcial*100/$totalNumberOrders,2,',','.')}}%
                     </span>
               </div>
               <!-- /.info-box-content -->
