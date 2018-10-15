@@ -57,6 +57,16 @@
               <p>
                 Usage of the Internet is becoming more common due to rapid advance.
               </p>
+              @foreach ($sellable->products as $key => $product)
+                @if ($sellable->type->name!='Promo')
+
+
+                @foreach ($product->ingredients as $key => $ingredient)
+                  <img src="/assets/images/ingredients/{{$ingredient->image}}" title="{{$ingredient->name}}" style='height: 30px; width:30px'>
+                @endforeach
+                  @endif
+              @endforeach
+
             </div>
                         </div>
                           @endforeach

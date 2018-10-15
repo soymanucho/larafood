@@ -23,7 +23,7 @@ class SellableSeeder extends Seeder
 
       Sellable::all()->each(function ($sellable) use ($products) {
         $sellable->products()->attach(
-        $products->random(rand(1, 5))->pluck('id')->toArray(),['amount' => rand(1, 10)]
+        $products->random(rand(1, 2))->pluck('id')->toArray(),['amount' => rand(1, 10)]
         );
         });
     }

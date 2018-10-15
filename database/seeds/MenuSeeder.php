@@ -16,7 +16,7 @@ class MenuSeeder extends Seeder
     {
         Store::all()->each(function($stores) {
           $stores->sellables()->attach(
-            Sellable::all()->random(rand(5, 10))->pluck('id')->toArray(),['price'=>rand(50,500)],['avaliable'=>true]
+            Sellable::all()->random(rand(20, 30))->pluck('id')->toArray(),['price'=>rand(50,500)],['avaliable'=>true]
           );
         });
     }

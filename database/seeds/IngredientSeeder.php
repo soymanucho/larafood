@@ -13,18 +13,18 @@ class IngredientSeeder extends Seeder
     public function run()
     {
       $data = array(
-            array('name' => 'Roquefort', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Tomates', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Ajo', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Muzarela', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Provolone', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Anchoas', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Morrones', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Cantimpalo', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Champignon', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Palmito', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Aceitunas Verdes', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
-            array('name' => 'Aceitunas Negras', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Roquefort','image'=> 'Roquefort.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Tomates','image'=> 'Tomato.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Ajo','image'=> 'Garlic.png','created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Muzarela','image'=> 'Muzarela.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Provolone','image'=> 'Provolone.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Anchoas','image'=> 'Fish.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Morrones','image'=> 'Pepper.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Cantimpalo','image'=> 'Salame.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Champignon','image'=> 'Mushroom.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Palmito','image'=> 'Palmito.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Aceitunas Verdes','image'=> 'GreenOlive.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Aceitunas Negras','image'=> 'BlackOlive.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
 
 
         );

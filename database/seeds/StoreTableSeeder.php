@@ -12,6 +12,6 @@ class StoreTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Store::class)->times(4)->create();
+        factory(Store::class)->times(2)->create();
     }
 }
