@@ -55,7 +55,7 @@
                 <h4 class="price">${{$sellable->pivot->price}}</h4>
               </div>
               <p>
-                Usage of the Internet is becoming more common due to rapid advance.
+                {{$sellable->description}}
               </p>
               @foreach ($sellable->products as $key => $product)
                 @if ($sellable->type->name!='Promo')
@@ -65,6 +65,7 @@
                   <img src="/assets/images/ingredients/{{$ingredient->image}}" title="{{$ingredient->name}}" style='height: 30px; width:30px'>
                 @endforeach
                   @endif
+                  <br>
               @endforeach
 
             </div>

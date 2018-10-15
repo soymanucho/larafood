@@ -25,6 +25,10 @@ class IngredientSeeder extends Seeder
             array('name' => 'Palmito','image'=> 'Palmito.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
             array('name' => 'Aceitunas Verdes','image'=> 'GreenOlive.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
             array('name' => 'Aceitunas Negras','image'=> 'BlackOlive.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Cebolla','image'=> 'Onion.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Jamón Crudo','image'=> 'JamonCrudo.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+            array('name' => 'Rúcula','image'=> 'Rucula.png', 'created_at' => date('Y-m-d H:m:s'),'updated_at' => date('Y-m-d H:m:s')),
+
 
 
         );
