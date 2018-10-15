@@ -37,22 +37,58 @@
                 $valorTotal = $store->orders->where('id_status',$status->id)->sum('total_price');
               }
             @endphp
-            <div class="info-box" style="background-color: {{$status->color}}">
-              <span class="info-box-icon"><i class="ion ion-ios-more"></i></span>
+              <div class="box box-default collapsed-box" style="background-color: {{$status->color}}">
+                <div class="box-header with-border">
+                  <div class="info-box" style="background-color: {{$status->color}}">
+                    <span class="info-box-icon"><i class="ion ion-ios-more"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text" style='color:white'>{{$status->name}} </span>
+                    <div class="info-box-content">
+                      <span class="info-box-text" style='color:white'>{{$status->name}} </span>
 
-                <span class="info-box-number" style='color:white'>{{$parcial}}  (${{number_format($valorTotal,2,',','.')}})</span>
+                      <span class="info-box-number" style='color:white'>{{$parcial}}  (${{number_format($valorTotal,2,',','.')}})</span>
 
-                <div class="progress">
-                  <div class="progress-bar" style="width: {{$parcial*100/$totalNumberOrders}}%"></div>
+                      <div class="progress">
+                        <div class="progress-bar" style="width: {{$parcial*100/$totalNumberOrders}}%"></div>
+                      </div>
+                      <span class="progress-description" style='color:white'>
+                            {{number_format($parcial*100/$totalNumberOrders,2,',','.')}}%
+                          </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                  <!-- /.box-tools -->
                 </div>
-                <span class="progress-description" style='color:white'>
-                      {{number_format($parcial*100/$totalNumberOrders,2,',','.')}}%
-                    </span>
-              </div>
-              <!-- /.info-box-content -->
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="table-responsive" style="background-color: white">
+                    <table class="table no-margin">
+                        <thead>
+                        <tr>
+                          <th>Orden nº</th>
+                          <th>Cliente</th>
+                          <th>Tienda</th>
+                          <th>Creado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($store->orders->where('id_status', $status->id) as $order)
+                              <tr>
+                                <td><a href="">{{$order->id}}</a></td>
+                                <td><a href="">{{$order->client->name}}</a></td>
+                                <td><a href="">{{$order->store->name}}</a></td>
+                                <td><a href="">{{$order->created_at}}</a></td>
+                              </tr>
+                          @endforeach
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+                  <!-- /.box-body -->
             </div>
           @endforeach
         </div>
