@@ -65,7 +65,7 @@
                   <img src="/assets/images/ingredients/{{$ingredient->image}}" title="{{$ingredient->name}}" style='height: 30px; width:30px'>
                 @endforeach
                   @endif
-                  <br>
+                  <hr>
               @endforeach
 
             </div>

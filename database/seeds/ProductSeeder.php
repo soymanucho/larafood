@@ -28,7 +28,7 @@ class ProductSeeder extends Seeder
 
       Product::all()->each(function ($product) use ($ingredients) {
         $product->ingredients()->attach(
-        $ingredients->random(rand(0, 7))->pluck('id')->toArray()
+        $ingredients->random(rand(1, 5))->pluck('id')->toArray()
         );
         });
     }
