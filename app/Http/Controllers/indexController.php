@@ -3,15 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SellableType;
+use App\Store;
 
 class indexController extends Controller
 {
     public function show()
     {
-      return view('front.index');
+      $sellableTypes = SellableType::all();
+      $sellables = Store::find(1)->sellables;
+
+      return view('front.index',compact('sellableTypes','sellables'));
     }
     public function menu()
     {
+
       return view('front.menu');
     }
 }

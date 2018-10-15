@@ -38,82 +38,30 @@
 
                 <ul class="filter-wrap filters col-lg-12 no-padding">
                     <li class="active" data-filter="*">All Menu</li>
-                    <li data-filter=".breakfast">Breakfast</li>
-                    <li data-filter=".lunch">Lunch</li>
-                    <li data-filter=".dinner">Dinner</li>
-                    <li data-filter=".budget-meal">Budget Meal</li>
-                    <li data-filter=".buffet">Buffet</li>
+                    @foreach ($sellableTypes as $key => $sellableType)
+                    <li data-filter=".{{$sellableType->name}}">{{$sellableType->name}}</li>
+                    @endforeach
                 </ul>
 
                 <div class="filters-content">
                     <div class="row grid">
-                        <div class="col-md-6 all breakfast">
+                      @foreach ($sellables as $key => $sellable)
+
+
+                        <div class="col-md-6 all {{$sellable->type->name}}">
             <div class="single-menu">
               <div class="title-wrap d-flex justify-content-between">
-                <h4>Cappuccion</h4>
-                <h4 class="price">$49</h4>
+                <h4>{{$sellable->name}}</h4>
+                <h4 class="price">${{$sellable->pivot->price}}</h4>
               </div>
               <p>
                 Usage of the Internet is becoming more common due to rapid advance.
               </p>
             </div>
                         </div>
-                        <div class="col-md-6 all dinner">
-            <div class="single-menu">
-              <div class="title-wrap d-flex justify-content-between">
-                <h4>Americano</h4>
-                <h4 class="price">$49</h4>
-              </div>
-              <p>
-                Usage of the Internet is becoming more common due to rapid advance.
-              </p>
-            </div>
+                          @endforeach
+
                         </div>
-                        <div class="col-md-6 all budget-meal">
-            <div class="single-menu">
-              <div class="title-wrap d-flex justify-content-between">
-                <h4>Macchiato</h4>
-                <h4 class="price">$49</h4>
-              </div>
-              <p>
-                Usage of the Internet is becoming more common due to rapid advance.
-              </p>
-            </div>
-                        </div>
-                        <div class="col-md-6 all breakfast">
-            <div class="single-menu">
-              <div class="title-wrap d-flex justify-content-between">
-                <h4>Mocha</h4>
-                <h4 class="price">$49</h4>
-              </div>
-              <p>
-                Usage of the Internet is becoming more common due to rapid advance.
-              </p>
-            </div>
-                        </div>
-                        <div class="col-md-6 all lunch">
-            <div class="single-menu">
-              <div class="title-wrap d-flex justify-content-between">
-                <h4>Piccolo Latte</h4>
-                <h4 class="price">$49</h4>
-              </div>
-              <p>
-                Usage of the Internet is becoming more common due to rapid advance.
-              </p>
-            </div>
-                        </div>
-                        <div class="col-md-6 all buffet">
-            <div class="single-menu">
-              <div class="title-wrap d-flex justify-content-between">
-                <h4>Ristretto</h4>
-                <h4 class="price">$49</h4>
-              </div>
-              <p>
-                Usage of the Internet is becoming more common due to rapid advance.
-              </p>
-            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
