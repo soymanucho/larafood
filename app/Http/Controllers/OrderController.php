@@ -26,7 +26,7 @@ class OrderController extends Controller
     return view('orders.orders',compact('orders','store'));
   }
 
-  public function delete(Order $order)
+  public function delete(Store $store,Order $order)
   {
     $order->delete();
     return redirect('admin/pedidos');
@@ -81,10 +81,11 @@ class OrderController extends Controller
   return redirect()->route('myorder-show');
   }
 
-  public function edit(Order $order)
+  public function edit(Store $store,Order $order)
   {
-    $users = User::all();
-    return view('orders.editOrder',compact('order','users'));
+    $clients = Client::all();
+    $sellables = $store->sellables;
+    return view('orders.editOrder',compact('order','clients','store','sellables'));
   }
 
    public function update(Order $order, Request $request)

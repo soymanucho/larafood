@@ -17,18 +17,8 @@
       @include('errors.errors')
       <form  method="POST" name='editClient'>
       	{{ method_field('put') }}
-        <label for="id_user">Usuario:</label>
-        <select class="form-control" name="id_user">
-          @foreach ($users as $user)
-            <option value="{{ $user->id }}"
-                @if($user->id == old('id_user', $client->user->id))
-                  selected
-                @endif
-                >{{ $user->name }} ({{$user->email}}, {{$user->rol->name}})
-            </option>
-          @endforeach
-        </select>
-        @include('clients._fields')
+
+        @include('orders._fields')
           <input type="submit" value="Guardar cambios" name="submit"/>
       </form>
 

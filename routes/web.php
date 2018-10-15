@@ -172,7 +172,7 @@ Route::post('/admin/tiendas/{store}/pedido/agregar', 'OrderController@save')->na
 
 Route::delete('/admin/tiendas/{store}/pedidos/{order}/eliminar', 'OrderController@delete')->name('order-delete');
 
-Route::get('/admin/tiendas/{store}/pedidos/agregar', 'OrderController@new')->name('order-new');
+// Route::get('/admin/tiendas/{store}/pedidos/agregar', 'OrderController@new')->name('order-new');
 
 
 Route::get('/admin/tiendas/{store}/pedidos/{order}/editar', 'OrderController@edit')->name('order-edit');

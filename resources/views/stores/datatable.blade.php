@@ -23,7 +23,7 @@
         <form class="" action="/admin/tiendas/{{$store->id}}/eliminar" method="post">
           {{ csrf_field() }}
           {{ method_field('delete') }}
-          <a class="btn btn-sm btn-success" href="/admin/tiendas/{{$store->id}}/pedido/agregar">Nuevo Pedido</a>
+          <a class="btn btn-sm btn-success" href="/admin/tiendas/{{$store->id}}/pedidos">Pedidos</a>
           <a class="btn btn-sm btn-info" href="/admin/tiendas/{{$store->id}}/menu">Menu</a>
           <a class="btn btn-sm btn-warning" href="/admin/tiendas/{{$store->id}}/editar">Editar</a>
           <input class="btn btn-sm btn-danger" type="submit" name="" value="Eliminar">

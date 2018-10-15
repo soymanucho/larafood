@@ -1,6 +1,16 @@
 {{ csrf_field() }}
 
-
+{{-- <label for="id_user">Usuario:</label>
+<select class="form-control" name="id_user">
+  @foreach ($users as $user)
+    <option value="{{ $user->id }}"
+        @if($user->id == old('id_user', $client->user->id))
+          selected
+        @endif
+        >{{ $user->name }} ({{$user->email}}, {{$user->rol->name}})
+    </option>
+  @endforeach
+</select> --}}
 <div>
   <label for="id_store">Tienda</label>
   <select class="form-control" name="id_store">

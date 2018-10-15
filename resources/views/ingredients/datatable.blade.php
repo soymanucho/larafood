@@ -2,6 +2,7 @@
 
 @section('header')
   <th>Nombre</th>
+  <th>Imagen</th>
   <th># Usos</th>
   <th>Acciones</th>
 @endsection
@@ -11,6 +12,7 @@
     <tr>
 
       <td>  {{ $ingredient->name }}</td>
+      <td>      <img src="/assets/images/ingredients/{{$ingredient->image}}" title="{{$ingredient->name}}" style='height: 30px; width:30px'></td>
       <td>  {{ $ingredient->products->count() }}</td>
       <td>
         <form class="" action="/admin/ingredientes/{{$ingredient->id}}/eliminar" method="post">
