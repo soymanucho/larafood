@@ -71,17 +71,34 @@
                         <tr>
                           <th>Orden nº</th>
                           <th>Cliente</th>
+                          <th>Precio</th>
                           <th>Tienda</th>
-                          <th>Creado</th>
+                          <th>Creado hace</th>
                         </tr>
                         </thead>
                         <tbody>
+
+
+
+
+
+
+
+
                           @foreach ($store->orders->where('id_status', $status->id) as $order)
+
+                            @php
+                              // $diff =  Carbon\Carbon::createFromTimeString($order->created_at);
+                               $diff =  Carbon\Carbon::now()->diffInMinutes(Carbon\Carbon::createFromTimeString($order->created_at));
+                            @endphp
+
+
                               <tr>
                                 <td><a href="">{{$order->id}}</a></td>
                                 <td><a href="">{{$order->client->name}}</a></td>
+                                <td><a href="">${{$order->total_price}}</a></td>
                                 <td><a href="">{{$order->store->name}}</a></td>
-                                <td><a href="">{{$order->created_at}}</a></td>
+                                <td><a href="">{{$diff}} min</a></td>
                               </tr>
                           @endforeach
                         </tbody>
