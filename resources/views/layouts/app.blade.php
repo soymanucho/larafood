@@ -570,7 +570,8 @@
       'searching'   : true,
       'ordering'    : true,
       'info'        : true,
-      'autoWidth'   : true
+      'autoWidth'   : true,
+      'stateSave': true
     })
     $(document).ready(function() {
     $('.select2').select2({

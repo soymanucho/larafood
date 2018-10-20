@@ -10,6 +10,7 @@ use App\Client;
 use App\Status;
 use App\Store;
 use App\Sellable;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -48,6 +49,13 @@ class Order extends Model
     // });
 
   }
+
+  public function elapsedMinutes()
+  {
+   return  Carbon::now()->diffInMinutes(Carbon::createFromTimeString($this->created_at));
+
+  }
+
 
   public function calculateTotalPrice()
   {

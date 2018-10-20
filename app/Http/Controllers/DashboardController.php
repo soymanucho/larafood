@@ -18,15 +18,6 @@ class DashboardController extends Controller
       $store = Auth::user()->store;
       $statuses = Status::all();
 
-      $notFinalStatuses = Status::where('is_final',false)->get()->pluck('id')->toArray();
-      $numberNotFinalOrders = $store->orders->whereIn('id_status',$notFinalStatuses)->count();
-
-
-      $finalStatuses = Status::where('is_final',true)->get()->pluck('id')->toArray();
-      $numberFinalOrders = $store->orders->whereIn('id_status',$finalStatuses)->where('created_at', '>', Carbon::today()->toDateString())->count();
-      $totalNumberOrders = $numberNotFinalOrders + $numberFinalOrders;
-
-
-      return view('dashboard.dashboard',compact('store','totalNumberOrders','statuses'));
+      return view('dashboard.dashboard',compact('store','statuses'));
     }
 }

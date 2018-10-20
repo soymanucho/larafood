@@ -28,15 +28,6 @@
 
 
           @foreach ($statuses as $status)
-            @php
-              if ($status->is_final) {
-                $parcial = $store->orders->where('id_status',$status->id)->where('created_at', '>', Carbon\Carbon::today()->toDateString())->count();
-                $valorTotal = $store->orders->where('id_status',$status->id)->where('created_at', '>', Carbon\Carbon::today()->toDateString())->sum('total_price');
-              }else {
-                $parcial = $store->orders->where('id_status',$status->id)->count();
-                $valorTotal = $store->orders->where('id_status',$status->id)->sum('total_price');
-              }
-            @endphp
               <div class="box box-default collapsed-box" style="background-color: {{$status->color}}">
                 <div class="box-header with-border">
                   <div class="info-box" style="background-color: {{$status->color}}">
@@ -45,13 +36,13 @@
                     <div class="info-box-content">
                       <span class="info-box-text" style='color:white'>{{$status->name}} </span>
 
-                      <span class="info-box-number" style='color:white'>{{$parcial}}  (${{number_format($valorTotal,2,',','.')}})</span>
+                      <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
 
                       <div class="progress">
-                        <div class="progress-bar" style="width: {{$parcial*100/$totalNumberOrders}}%"></div>
+                        <div class="progress-bar" style="width: {{$store->percentageOfOrdersInStatus($status)}}%"></div>
                       </div>
                       <span class="progress-description" style='color:white'>
-                            {{number_format($parcial*100/$totalNumberOrders,2,',','.')}}%
+                            {{$store->percentageOfOrdersInStatus($status)}}%
                           </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -74,31 +65,18 @@
                           <th>Precio</th>
                           <th>Tienda</th>
                           <th>Creado hace</th>
+                          <th></th>
                         </tr>
                         </thead>
                         <tbody>
-
-
-
-
-
-
-
-
                           @foreach ($store->orders->where('id_status', $status->id) as $order)
-
-                            @php
-                              // $diff =  Carbon\Carbon::createFromTimeString($order->created_at);
-                               $diff =  Carbon\Carbon::now()->diffInMinutes(Carbon\Carbon::createFromTimeString($order->created_at));
-                            @endphp
-
-
                               <tr>
                                 <td><a href="">{{$order->id}}</a></td>
                                 <td><a href="">{{$order->client->name}}</a></td>
                                 <td><a href="">${{$order->total_price}}</a></td>
                                 <td><a href="">{{$order->store->name}}</a></td>
-                                <td><a href="">{{$diff}} min</a></td>
+                                <td><a href="">{{$order->elapsedMinutes()}} min</a></td>
+                                <td>borrar</td>
                               </tr>
                           @endforeach
                         </tbody>
