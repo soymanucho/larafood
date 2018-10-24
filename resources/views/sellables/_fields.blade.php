@@ -31,15 +31,54 @@
 
 <div class="">
   <label for="products[]">Productos</label>
-  <select multiple class="form-control" id="products[]" name="products[]" >
+  <select multiple id="selectorProducts" class="form-control" id="products[]" name="products[]" >
     @foreach ($products as $product)
       <option
       @if(in_array($product->id, $sellable->products->pluck('id')->toArray()))
         selected
       @endif
-       value="{{ $product->id }} ">
+       value="{{ $product->id }}">
         {{ $product->name }}
       </option>
     @endforeach
   </select>
 </div>
+<div id="selectedProductContainer">
+
+</div>
+
+
+<script type="text/javascript">
+  var container =  document.getElementById("selectedProductContainer");
+  var selector =  document.getElementById("selectorProducts");
+
+
+
+  var selectAProduct = function() {
+    var selectedProduct = document.createElement("div");
+    selectedProduct.style.background="grey";
+    var node = document.createTextNode(selector.options[selector.selectedIndex].innerHTML);
+    var counter = document.createElement("INPUT");
+
+    var check = document.createElement("INPUT");
+    check.setAttribute("type", "checkbox");
+    check.setAttribute("name", "products[]");
+    check.setAttribute("checked", "checked");
+    check.setAttribute("value", selector.value);
+
+
+    counter.setAttribute("type", "number");
+    counter.setAttribute("value", "1");
+    counter.setAttribute("name", "counter_"+selector.value);
+
+    selectedProduct.appendChild(check);
+    selectedProduct.appendChild(node);
+    selectedProduct.appendChild(counter);
+    selector.removeChild(selector.options[selector.selectedIndex]);
+    console.log(selector.options[selector.selectedIndex].innerHTML);
+    container.appendChild(selectedProduct);
+  }
+
+
+  selector.addEventListener("change", selectAProduct);
+</script>
