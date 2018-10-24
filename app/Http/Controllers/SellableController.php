@@ -30,7 +30,9 @@ class SellableController extends Controller
 
     public function save(Request $request)
     {
-      //  dd($request);
+
+
+
         $this->validate(
           $request,
           [
@@ -47,14 +49,18 @@ class SellableController extends Controller
           [
               'name' => 'nombre',
               'description' => 'descripción',
-              'peoducts' => 'productos',
+              'products' => 'productos',
               'id_sellable_type' => 'tipo',
           ]
       );
       $sellable = new Sellable;
       $sellable->fill($request->all());
       $sellable->save();
-      $sellable->products()->attach($request->input('products'),['amount'=> 1]);
+      foreach($request->input("products") as $product){
+        $request->input("counter_".$product);
+        $sellable->products()->attach($product,['amount'=>$request->input("counter_".$product)]);
+      }
+    //  $sellable->products()->attach($request->input('products'),['amount'=> 1]);
 
       return redirect(route('sellable-show'));
     }
