@@ -71,7 +71,7 @@
                         <tbody>
                           @foreach ($store->orders->where('id_status', $status->id) as $order)
                               <tr>
-                                <td><a href="">{{$order->id}}</a></td>
+                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->id}}</a></td>
                                 <td><a href="">{{$order->client->name}}</a></td>
                                 <td><a href="">${{$order->total_price}}</a></td>
                                 <td><a href="">{{$order->store->name}}</a></td>
@@ -388,6 +388,21 @@
       </div>
   </div>
 
-
+<script type="text/javascript">
+window.addEventListener('load',function() {
+	$(".fancybox").fancybox({
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none',
+    type: 'ajax'
+	});
+});
+</script>
 
 @endsection
