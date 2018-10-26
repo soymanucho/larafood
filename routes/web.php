@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//MODALS
+
+Route::get('/admin/modal/order/{order}', 'OrderController@modal')->name('modal-order');
+
+
 
 // SELLABLES
 

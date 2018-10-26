@@ -71,7 +71,7 @@
                         <tbody>
                           @foreach ($store->orders->where('id_status', $status->id) as $order)
                               <tr>
-                                <td><a href="">{{$order->id}}</a></td>
+                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->id}}</a></td>
                                 <td><a href="">{{$order->client->name}}</a></td>
                                 <td><a href="">${{$order->total_price}}</a></td>
                                 <td><a href="">{{$order->store->name}}</a></td>
@@ -391,6 +391,7 @@
         var http = new XMLHttpRequest;
         http.onreadystatechange = function() {
 
+<<<<<<< HEAD
           if(this.readyState == 4 && this.status == 200) {
             //status == 200: significa que el servidor no devolvió ningún error,
             //y la solicitud se completó ok
@@ -416,5 +417,23 @@
         http.send();
   </script> --}}
 
+=======
+<script type="text/javascript">
+window.addEventListener('load',function() {
+	$(".fancybox").fancybox({
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none',
+    type: 'ajax'
+	});
+});
+</script>
+>>>>>>> abef652933bb31aa5eb9064a53c00a1c51cfc015
 
 @endsection
