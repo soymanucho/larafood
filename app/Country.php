@@ -13,6 +13,6 @@ class Country extends Model
 
   public function provinces()
   {
-    return $this->hasMany(Province::class, 'provinces', 'id_country');
+    return $this->hasMany(Province::class, 'id_country', 'id');
   }
 }

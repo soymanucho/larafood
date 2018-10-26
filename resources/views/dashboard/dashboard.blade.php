@@ -387,7 +387,34 @@
 
       </div>
   </div>
+  {{-- <script type="text/javascript">
+        var http = new XMLHttpRequest;
+        http.onreadystatechange = function() {
 
+          if(this.readyState == 4 && this.status == 200) {
+            //status == 200: significa que el servidor no devolvió ningún error,
+            //y la solicitud se completó ok
+
+              var result = JSON.parse(this.responseText);
+              //console.log(resultado);
+              document.querySelector('.box-success > div:nth-child(1)').innerHTML = '';
+              result.statuses.forEach(function(status) {
+                var html = '<div class="box-body no-padding"><div class="box box-default collapsed-box" style="background-color: '+status.color+'"><div class="box-header with-border"><div class="info-box" style="background-color: '+status.color+'"><span class="info-box-icon"><i class="ion ion-ios-more"></i></span><div class="info-box-content"><span class="info-box-text" style="color:white">'+status.name+' </span><span class="info-box-number" style="color:white">bla  ($bla)</span><div class="progress"><div class="progress-bar" style="width: 50%"></div></div><span class="progress-description" style="color:white">50%</span></div></div></div></div></div>';
+
+                document.querySelector('.box-success > div:nth-child(1)').innerHTML += html;
+
+            });
+            setInterval(function() {
+              var apitoken = '{!!Auth::user()->api_token!!}';
+              http.open('GET', 'http://127.0.0.1:8000/api/admin/dashboard?api_token='+apitoken);
+              http.send();
+            }, 10000);
+          }
+        }
+        var apitoken = '{{Auth::user()->api_token}}';
+        http.open('GET', 'http://127.0.0.1:8000/api/admin/dashboard?api_token='+apitoken);
+        http.send();
+  </script> --}}
 
 
 @endsection
