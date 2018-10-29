@@ -28,11 +28,9 @@
 
 
           @foreach ($statuses as $status)
-              <div class="box box-default collapsed-box" style="background-color: {{$status->color}}">
-                <div class="box-header with-border">
+              <div class="box box-default collapsed-box no-margin" style="background-color: {{$status->color}}">
+                <div class="box-header with-border no-padding">
                   <div class="info-box" style="background-color: {{$status->color}}">
-                    <span class="info-box-icon"><i class="ion ion-ios-more"></i></span>
-
                     <div class="info-box-content">
                       <span class="info-box-text" style='color:white'>{{$status->name}} </span>
 
@@ -72,10 +70,10 @@
                           @foreach ($store->orders->where('id_status', $status->id) as $order)
                               <tr>
                                 <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->id}}</a></td>
-                                <td><a href="">{{$order->client->name}}</a></td>
-                                <td><a href="">${{$order->total_price}}</a></td>
+                                <td><a class="fancybox" href="{{ route('modal-client', ['client'=>$order->client]) }}">{{$order->client->name}}</a></td>
+                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">${{$order->total_price}}</a></td>
                                 <td><a href="">{{$order->store->name}}</a></td>
-                                <td><a href="">{{$order->elapsedMinutes()}} min</a></td>
+                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->elapsedMinutes()}} min</a></td>
                                 <td>borrar</td>
                               </tr>
                           @endforeach
@@ -421,12 +419,12 @@
 <script type="text/javascript">
 window.addEventListener('load',function() {
 	$(".fancybox").fancybox({
-		maxWidth	: 800,
+		maxWidth	: 1600,
 		maxHeight	: 600,
 		fitToView	: false,
-		width		: '70%',
-		height		: '70%',
-		autoSize	: false,
+		width		: '80%',
+		height		: '80%',
+		autoSize	: true,
 		closeClick	: false,
 		openEffect	: 'none',
 		closeEffect	: 'none',
@@ -434,6 +432,5 @@ window.addEventListener('load',function() {
 	});
 });
 </script>
->>>>>>> abef652933bb31aa5eb9064a53c00a1c51cfc015
 
 @endsection

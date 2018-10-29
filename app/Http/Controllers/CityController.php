@@ -8,6 +8,12 @@ use App\Province;
 
 class CityController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
   public function show()
   {
     $cities = City::orderby('name')->with('province')->get();

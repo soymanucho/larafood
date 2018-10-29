@@ -37,6 +37,7 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="/css/larafood.css">
 </head>
 <body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
@@ -354,7 +355,7 @@
               </span> --}}
             </a>
           </li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-cutlery"></i>
               <span>Productos</span>
@@ -369,7 +370,7 @@
               <li><a href={{route('ingredient-show')}}><i class="fa fa-angle-right"></i> Ingredientes</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-map"></i>
               <span>Ubicaciones</span>
@@ -384,7 +385,7 @@
               <li><a href={{route('store-show')}}><i class="fa fa-shopping-cart"></i> Tiendas</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-bar-chart"></i> <span>Estadísticas</span>
               <span class="pull-right-container">
@@ -455,7 +456,7 @@
             </ul>
           </li>
           <li><a href="{{route('client-show')}}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-usd"></i>
               <span>Pedidos</span>
@@ -463,7 +464,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
-            <ul class="treeview-menu">
+            <ul class="active treeview-menu">
 
               @foreach (App\Store::All() as $store)
                 <li><a href={{route('order-show',['store'=>$store->id])}}><i class="fa fa-angle-right"></i> De {{$store->name}}</a></li>
@@ -576,14 +577,14 @@
       'autoWidth'   : true,
       'stateSave': true
     })
-    $(document).ready(function() {
+
     $('.select2').select2({
       tags:true,
       multiple:true,
       tokenSeparators: [',']
     })
 
-      })
+
 
   })
 </script>

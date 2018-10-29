@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Country;
 class CountryController extends Controller
 {
+  
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
   public function show()
   {
     $countries = Country::orderby('name')->get();

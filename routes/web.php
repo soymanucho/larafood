@@ -13,6 +13,7 @@
 //MODALS
 
 Route::get('/admin/modal/order/{order}', 'OrderController@modal')->name('modal-order');
+Route::get('/admin/modal/client/{client}', 'ClientController@modal')->name('modal-client');
 
 
 

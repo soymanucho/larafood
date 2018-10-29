@@ -13,9 +13,13 @@ use App\User;
 class OrderController extends Controller
 {
 
-  public function  modal(Order $order)
+  public function __construct()
   {
+      $this->middleware('auth');
+  }
 
+  public function modal(Order $order)
+  {
     return view('modals.detail_order',compact('order'));
   }
   public function myshow()

@@ -8,6 +8,17 @@ use App\User;
 
 class ClientController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
+  public function modal(Client $client)
+  {
+    return view('modals.detail_client',compact('client'));
+  }
+
   public function show()
   {
     $clients = Client::orderby('name')->with('user')->get();

@@ -12,11 +12,15 @@ use App\Status;
 
 class DashboardController extends Controller
 {
-    public function show()
-    {
-      $store = Auth::user()->store;
-      $statuses = Status::all();
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  public function show()
+  {
+    $store = Auth::user()->store;
+    $statuses = Status::all();
 
-      return view('dashboard.dashboard',compact('store','statuses'));
-    }
+    return view('dashboard.dashboard',compact('store','statuses'));
+  }
 }

@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div id="order-modal" class="content-wrapper">
    <!-- Content Header (Page header) -->
    <section class="content-header">
      <h1>
@@ -8,9 +8,9 @@
    </section>
 
    <div class="pad margin no-print">
-     <div class="callout callout-info" style="margin-bottom: 0!important;">
-       <h4><i class="fa fa-info"></i> Info:</h4>
-       Aquí encontrarás toda la info del pedido clickeado.
+     <div class="callout" style="margin-bottom: 0!important; background-color: {{$order->status->color}}; color:white">
+       <h4><i class="glyphicon glyphicon-info-sign"></i> Info:</h4>
+       El pedido se encuentra {{$order->status->name}}.
      </div>
    </div>
 
@@ -20,7 +20,7 @@
      <div class="row">
        <div class="col-xs-12">
          <h2 class="page-header">
-           <i class="fa fa-globe"></i> {{$order->store->name}}
+           <i class="fa fa-globe"></i> Tienda {{$order->store->name}}
            <small class="pull-right">Fecha: {{$order->created_at}}</small>
          </h2>
        </div>
@@ -67,8 +67,8 @@
                <tr>
                  <td>{{$sellable->id}}</td>
                  <td>{{$sellable->name}}</td>
-                 <td>{{$sellable->pivot->amount}}</td>
-                 {{-- <td>{{$sellable->store->price}}</td> --}}
+                 {{-- <td>{{$order->pivot->amount}}</td> --}}
+                 <td>{{$sellable->pivot->price}}</td>
                </tr>
              @endforeach
            </tbody>
@@ -82,26 +82,24 @@
        <!-- accepted payments column -->
 
        <!-- /.col -->
-       <div class="col-xs-6">
-         <p class="lead">Fecha {{$order->created_at}}</p>
-
+       <div class="col-xs-6 pull-right">
          <div class="table-responsive">
            <table class="table">
              <tr>
                <th style="width:50%">Subtotal:</th>
-               <td>$250.30</td>
+               <td>${{($order->total_price)*0.69}}</td>
              </tr>
              <tr>
-               <th>Tax (9.3%)</th>
-               <td>$10.34</td>
+               <th>IVA (21%)</th>
+               <td>${{($order->total_price)*0.21}}</td>
              </tr>
              <tr>
-               <th>Shipping:</th>
-               <td>$5.80</td>
+               <th>Delivery:</th>
+               <td>${{($order->total_price)*0.10}}</td>
              </tr>
              <tr>
                <th>Total:</th>
-               <td>$265.24</td>
+               <td>${{($order->total_price)}}</td>
              </tr>
            </table>
          </div>
@@ -114,8 +112,6 @@
      <div class="row no-print">
        <div class="col-xs-12">
          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-         <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
-         </button>
          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
            <i class="fa fa-download"></i> Generate PDF
          </button>
@@ -123,5 +119,5 @@
      </div>
    </section>
    <!-- /.content -->
-   <div class="clearfix"></div>
+
  </div>

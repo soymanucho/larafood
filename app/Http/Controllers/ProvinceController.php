@@ -8,6 +8,12 @@ use App\Country;
 
 class ProvinceController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
   public function show()
   {
     $provinces = Province::orderby('name')->with('country')->get();
