@@ -24,67 +24,71 @@
           </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body no-padding">
 
+            <div class="box-body no-padding">
+              <div class="row">
+                @foreach ($statuses as $status)
+                  <div class="col-md-6">
+                    <div class="box box-default collapsed-box no-margin" style="background-color: {{$status->color}}">
+                      <div class="box-header with-border no-padding">
+                        <div class="info-box" style="background-color: {{$status->color}}">
+                          <div class="info-box-content">
+                            <span class="info-box-text" style='color:white'>{{$status->name}} </span>
 
-          @foreach ($statuses as $status)
-              <div class="box box-default collapsed-box no-margin" style="background-color: {{$status->color}}">
-                <div class="box-header with-border no-padding">
-                  <div class="info-box" style="background-color: {{$status->color}}">
-                    <div class="info-box-content">
-                      <span class="info-box-text" style='color:white'>{{$status->name}} </span>
+                            <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
 
-                      <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
+                            <div class="progress">
+                              <div class="progress-bar" style="width: {{$store->percentageOfOrdersInStatus($status)}}%"></div>
+                            </div>
+                            <span class="progress-description" style='color:white'>
+                                  {{$store->percentageOfOrdersInStatus($status)}}%
+                                </span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
 
-                      <div class="progress">
-                        <div class="progress-bar" style="width: {{$store->percentageOfOrdersInStatus($status)}}%"></div>
+                        <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                          </button>
+                        </div>
+                        <!-- /.box-tools -->
                       </div>
-                      <span class="progress-description" style='color:white'>
-                            {{$store->percentageOfOrdersInStatus($status)}}%
-                          </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-
-                  <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                    </button>
-                  </div>
-                  <!-- /.box-tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  <div class="table-responsive" style="background-color: white">
-                    <table class="table no-margin">
-                        <thead>
-                        <tr>
-                          <th>Orden nº</th>
-                          <th>Cliente</th>
-                          <th>Precio</th>
-                          <th>Tienda</th>
-                          <th>Creado hace</th>
-                          <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($store->orders->where('id_status', $status->id) as $order)
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                        <div class="table-responsive" style="background-color: white">
+                          <table class="table no-margin">
+                              <thead>
                               <tr>
-                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->id}}</a></td>
-                                <td><a class="fancybox" href="{{ route('modal-client', ['client'=>$order->client]) }}">{{$order->client->name}}</a></td>
-                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">${{$order->total_price}}</a></td>
-                                <td><a href="">{{$order->store->name}}</a></td>
-                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->elapsedMinutes()}} min</a></td>
-                                <td>borrar</td>
+                                <th>Orden nº</th>
+                                <th>Cliente</th>
+                                <th>Precio</th>
+                                <th>Tienda</th>
+                                <th>Creado hace</th>
+                                <th></th>
                               </tr>
-                          @endforeach
-                        </tbody>
-                    </table>
+                              </thead>
+                              <tbody>
+                                @foreach ($store->orders->where('id_status', $status->id) as $order)
+                                    <tr>
+                                      <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->id}}</a></td>
+                                      <td><a class="fancybox" href="{{ route('modal-client', ['client'=>$order->client]) }}">{{$order->client->name}}</a></td>
+                                      <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">${{$order->total_price}}</a></td>
+                                      <td><a href="">{{$order->store->name}}</a></td>
+                                      <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->elapsedMinutes()}} min</a></td>
+                                      <td>borrar</td>
+                                    </tr>
+                                @endforeach
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+                        <!-- /.box-body -->
+                    </div>
                   </div>
-                </div>
-                  <!-- /.box-body -->
+                @endforeach
+              </div>
             </div>
-          @endforeach
-        </div>
+
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -160,7 +164,7 @@
       </div>
       <!--/.box -->
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Browser Usage</h3>
@@ -176,7 +180,7 @@
           <div class="row">
             <div class="col-md-8">
               <div class="chart-responsive">
-                <canvas id="pieChart" height="150"></canvas>
+                <canvas id="pie-chart" height="150"></canvas>
               </div>
               <!-- ./chart-responsive -->
             </div>

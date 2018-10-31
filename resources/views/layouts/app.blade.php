@@ -33,6 +33,7 @@
   <![endif]-->
   {{-- fancybox --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" type="text/css" media="screen" />
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -583,6 +584,9 @@
       multiple:true,
       tokenSeparators: [',']
     })
+    
+
+
 
 
 
