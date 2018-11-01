@@ -12,7 +12,7 @@
   @foreach($clients as $client)
     <tr>
 
-      <td>{{ $client->name}} </td>
+      <td><a class="fancybox" href="{{ route('modal-client', compact('client')) }}">{{$client->name}}</a></td>
       <td>  {{ $client->phone }} </td>
       <td>  {{ $client->address }}</td>
       <td>  @if ($client->user)
@@ -34,4 +34,5 @@
 
     </tr>
   @endforeach
+
 @endsection

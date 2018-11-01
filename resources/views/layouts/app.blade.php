@@ -584,13 +584,30 @@
       multiple:true,
       tokenSeparators: [',']
     })
-    
+
 
 
 
 
 
   })
+</script>
+
+<script type="text/javascript">
+  window.addEventListener('load',function() {
+  	$(".fancybox").fancybox({
+  		maxWidth	: 1600,
+  		maxHeight	: 600,
+  		fitToView	: false,
+  		width		: '80%',
+  		height		: '80%',
+  		autoSize	: true,
+  		closeClick	: false,
+  		openEffect	: 'none',
+  		closeEffect	: 'none',
+      type: 'ajax'
+  	});
+  });
 </script>
 </body>
 </html>
