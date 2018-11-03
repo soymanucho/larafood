@@ -118,7 +118,7 @@
                 <img src="dist/img/user-128x128.jpg" alt="User Image">
                 <a class="users-list-name fancybox" href="{{ route('modal-client', compact('client')) }}">{{$client->name}}</a>
                 <span class="users-list-date">@if ($client->user)
-                  {{$client->user->email}}
+                  <a href="mailto:{{$client->user->email}}?Subject=Hola%20de%20nuevo" >{{$client->user->email}}</a>
                 @endif</span>
               </li>
             @endforeach
@@ -256,7 +256,7 @@
                   </div>
                   <div class="product-info">
                     <a href="javascript:void(0)" class="product-title">{{$sellable->name}}
-                      <span class="label label-info pull-right">${{$sellable->price}}</span></a>
+                      <span class="label label-info pull-right">{{$sellable->fechaF()}}</span></a>
                     <span class="product-description">
                           {{$sellable->description}}
                         </span>

@@ -7,6 +7,7 @@ use App\Product;
 use App\Store;
 use App\SellableType;
 use App\Order;
+use Carbon\Carbon;
 
 
 class Sellable extends Model
@@ -30,5 +31,10 @@ class Sellable extends Model
   }
   public function stores(){
     return $this->belongsToMany(Store::class, 'menu', 'id_sellable', 'id_store')->withPivot('price');
+  }
+
+  public function fechaF()
+  {
+    return Carbon::parse($this->created_at)->format('d-m-Y');
   }
 }
