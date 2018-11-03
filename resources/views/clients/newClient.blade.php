@@ -15,10 +15,11 @@
     <div class="box box-success">
       <div class="box-header with-border">
         <h3 class="box-title">Crear cliente</h3>
-      </div
+      </div>
       @include('errors.errors')
       <form  method="POST" name='editClient'>
         {{ method_field('post') }}
+
         @include('clients._fields')
         <div class="form-group">
           <label for="id_user">Usuario (opcional):</label>
@@ -35,7 +36,7 @@
         </div>
         <div class="box-footer">
           <a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
-          <input class="btn btn-primary"type="submit" value="Agregar Cliente" name="submit"/>
+          <input class="btn btn-primary" type="submit" value="Agregar cliente" name="submit"/>
         </div>
       </form>
     </div>

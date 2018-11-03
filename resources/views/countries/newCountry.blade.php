@@ -22,7 +22,7 @@
             @include('countries._fields')
             <div class="box-footer">
               <a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
-              <input class="btn btn-primary"type="submit" value="Agregar país" name="submit"/>
+              <input class="btn btn-primary" type="submit" value="Agregar país" name="submit"/>
             </div>
           </div>
         </form>

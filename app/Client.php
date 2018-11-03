@@ -20,4 +20,5 @@ class Client extends Model
   {
     return $this->hasMany(Order::class, 'id_client');
   }
+
 }
