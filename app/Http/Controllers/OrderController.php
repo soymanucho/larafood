@@ -9,6 +9,7 @@ use App\Client;
 use App\Sellable;
 use App\Store;
 use App\User;
+use App\Status;
 
 class OrderController extends Controller
 {
@@ -16,6 +17,18 @@ class OrderController extends Controller
   public function __construct()
   {
       $this->middleware('auth');
+  }
+
+  public function changeStatus(Request $request)
+  {
+    $order = Order::findOrFail($request->input('order'));
+    $status = Status::findOrFail($request->input('status'));
+    if (in_array($status->id, $order->status->nextStatuses->pluck('id')->toArray())) {
+      $order->id_status = $status->id;
+      $order->save();
+    }
+
+    return redirect('/admin/dashboard/');
   }
 
   public function modal(Order $order)

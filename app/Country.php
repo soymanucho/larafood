@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Province;
+use Carbon\Carbon;
 
 class Country extends Model
 {
@@ -15,4 +16,10 @@ class Country extends Model
   {
     return $this->hasMany(Province::class, 'id_country', 'id');
   }
+
+  public function fechaF()
+  {
+    return Carbon::parse($this->created_at)->format('d-m-Y');
+  }
+
 }

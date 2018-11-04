@@ -7,7 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/bower_components/bootstrap//dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -260,7 +260,7 @@
 
                   <p>
                     {{Auth::user()->name }} - {{Auth::user()->rol->name }}
-                    <small>Miembro desde - {{Auth::user()->fecha_f() }}</small>
+                    <small>Miembro desde - {{Auth::user()->fechaF() }}</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
@@ -540,9 +540,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="/bower_components/jquery//dist/jquery.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/bower_components/bootstrap//dist/js/bootstrap.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- DataTables -->

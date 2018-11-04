@@ -64,7 +64,9 @@
                                 <th>Precio</th>
                                 <th>Tienda</th>
                                 <th>Creado hace</th>
-                                <th></th>
+                                @if ($status->is_final == false)
+                                  <th>Acciones</th>
+                                @endif
                               </tr>
                               </thead>
                               <tbody>
@@ -75,7 +77,16 @@
                                       <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">${{$order->total_price}}</a></td>
                                       <td><a href="">{{$order->store->name}}</a></td>
                                       <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->elapsedMinutes()}} min</a></td>
-                                      <td>borrar</td>
+                                      <td>
+                                        @foreach ($order->status->nextStatuses as $status)
+                                          <form method="post" action={!! route('change-status') !!}>
+                                            {{ csrf_field() }}
+                                            {{ method_field('put') }}
+                                            <input type="text" name="order" value="{{$order->id}}" hidden>
+                                            <input type="text" name="status" value="{{$status->id}}" hidden>
+                                            <input class="btn btn-sm btn-primary" type="submit" style="background-color: {{$status->color}}" value="Pasar a {{$status->name}}" name="submit"/>
+                                          </form>
+                                        @endforeach </td>
                                     </tr>
                                 @endforeach
                               </tbody>

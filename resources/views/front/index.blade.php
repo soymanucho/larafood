@@ -5,6 +5,20 @@
 @endsection
 
 @section('content')
+  <section class="banner-area">
+    <div class="container">
+      <div class="row fullscreen align-items-center justify-content-between">
+        <div class="col-lg-12 banner-content">
+          <h6 class="text-white">La calidad de la materia prima, marca la diferencia</h6>
+          <h1 class="text-white">LaraFood best CRM in town.</h1>
+          <p class="text-white">
+            La mejor herramienta para controlar tus pedidos.
+          </p>
+          <a href="#" class="primary-btn text-uppercase">Ver menú</a>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- Start home-about Area -->
   <section class="home-about-area section-gap">
     <div class="container">
@@ -25,58 +39,7 @@
   <!-- End home-about Area -->
 
   <!-- Start menu-area Area -->
-        <section class="menu-area section-gap" id="menu">
-            <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="menu-content pb-70 col-lg-8">
-          <div class="title text-center">
-            <h1 class="mb-10">What kind of Foods we serve for you</h1>
-            <p>Who are in extremely love with eco friendly system.</p>
-          </div>
-        </div>
-      </div>
 
-                <ul class="filter-wrap filters col-lg-12 no-padding">
-                    <li class="active" data-filter="*">All Menu</li>
-                    @foreach ($sellableTypes as $key => $sellableType)
-                    <li data-filter=".{{$sellableType->name}}">{{$sellableType->name}}</li>
-                    @endforeach
-                </ul>
-
-                <div class="filters-content">
-                    <div class="row grid">
-                      @foreach ($sellables as $key => $sellable)
-
-
-                        <div class="col-md-6 all {{$sellable->type->name}}">
-            <div class="single-menu">
-              <div class="title-wrap d-flex justify-content-between">
-                <h4>{{$sellable->name}}</h4>
-                <h4 class="price">${{$sellable->pivot->price}}</h4>
-              </div>
-              <p>
-                {{$sellable->description}}
-              </p>
-              @foreach ($sellable->products as $key => $product)
-                @if ($sellable->type->name!='Promo')
-
-
-                @foreach ($product->ingredients as $key => $ingredient)
-                  <img src="/assets/images/ingredients/{{$ingredient->image}}" title="{{$ingredient->name}}" style='height: 30px; width:30px'>
-                @endforeach
-                  @endif
-                  <hr>
-              @endforeach
-
-            </div>
-                        </div>
-                          @endforeach
-
-                        </div>
-                </div>
-
-            </div>
-        </section>
         <!-- End menu-area Area -->
 
   <!-- Start reservation Area -->
@@ -116,64 +79,7 @@
   <!-- End reservation Area -->
 
   <!-- Start gallery-area Area -->
-        <section class="gallery-area section-gap" id="gallery">
-            <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="menu-content pb-70 col-lg-8">
-          <div class="title text-center">
-            <h1 class="mb-10">Food and Customer Gallery</h1>
-            <p>Who are in extremely love with eco friendly system.</p>
-          </div>
-        </div>
-      </div>
 
-                <ul class="filter-wrap filters col-lg-12 no-padding">
-                    <li class="active" data-filter="*">All Menu</li>
-                    <li data-filter=".breakfast">Breakfast</li>
-                    <li data-filter=".lunch">Lunch</li>
-                    <li data-filter=".dinner">Dinner</li>
-                    <li data-filter=".budget-meal">Budget Meal</li>
-                    <li data-filter=".buffet">Buffet</li>
-                </ul>
-
-
-                <div class="filters-content">
-                    <div class="row grid">
-                        <div class="col-lg-4 col-md-6 col-sm-6 all breakfast">
-                          <div class="single-gallery">
-                            <img class="img-fluid" src="/front/img/g1.jpg" alt="">
-                          </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 all dinner">
-                          <div class="single-gallery">
-                            <img class="img-fluid" src="/front/img/g2.jpg" alt="">
-                          </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 all budget-meal">
-                          <div class="single-gallery">
-                            <img class="img-fluid" src="/front/img/g3.jpg" alt="">
-                          </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 all breakfast">
-                          <div class="single-gallery">
-                            <img class="img-fluid" src="/front/img/g4.jpg" alt="">
-                          </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 all lunch">
-                          <div class="single-gallery">
-                            <img class="img-fluid" src="/front/img/g5.jpg" alt="">
-                          </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 all buffet">
-                          <div class="single-gallery">
-                            <img class="img-fluid" src="/front/img/g6.jpg" alt="">
-                          </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
         <!-- End gallery-area Area -->
 
   <!-- Start review Area -->

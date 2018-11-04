@@ -1,8 +1,8 @@
 {{ csrf_field() }}
 
-<div class="">
-  <label for="sellable">Vendible</label>
-  <select multiple class="form-control" id="sellable" name="sellable" >
+<div class="form-group">
+  <label for="sellable">Ítems</label>
+  <select multiple="multiple" class="form-control select2" id="sellable" name="sellable" >
     @foreach ($sellables as $aSellable)
       <option
       @if($aSellable->id== old('sellable',$sellable->id))
@@ -15,7 +15,7 @@
   </select>
 </div>
 
-<div>
+<div class="form-group">
   <label for="price">Price</label>
   @if(@isset($store->sellables->where('id',$sellable->id)->first()->pivot->price))
     <input type="text" name="price" id="price" value="{{ old('price',$store->sellables->where('id',$sellable->id)->first()->pivot->price)}}"/>

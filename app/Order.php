@@ -64,4 +64,9 @@ class Order extends Model
     $this->total_price=$total;
   }
 
+  public function fechaF()
+  {
+    return Carbon::parse($this->created_at)->format('d-m-Y');
+  }
+
 }

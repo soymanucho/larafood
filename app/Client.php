@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Order;
+use Carbon\Carbon;
 
 class Client extends Model
 {
@@ -19,6 +20,11 @@ class Client extends Model
   public function orders()
   {
     return $this->hasMany(Order::class, 'id_client');
+  }
+
+  public function fechaF()
+  {
+    return Carbon::parse($this->created_at)->format('d-m-Y');
   }
 
 }

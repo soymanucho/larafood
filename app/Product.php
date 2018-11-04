@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Ingredient;
+use Carbon\Carbon;
+
 class Product extends Model
 {
   protected $fillable = ['name','description','id_product_type'];
@@ -21,4 +23,10 @@ class Product extends Model
   {
     return $this->belongsTo(SellableType::class,'id_product_type');
   }
+
+  public function fechaF()
+  {
+    return Carbon::parse($this->created_at)->format('d-m-Y');
+  }
+
 }

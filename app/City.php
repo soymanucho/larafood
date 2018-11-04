@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Province;
 use App\Store;
+use Carbon\Carbon;
 
 class City extends Model
 {
@@ -19,6 +20,11 @@ class City extends Model
   public function stores()
   {
     return $this->hasMany(Store::class, 'stores', 'id_city');
+  }
+
+  public function fechaF()
+  {
+    return Carbon::parse($this->created_at)->format('d-m-Y');
   }
 
 }

@@ -13,7 +13,13 @@
 //MODALS
 
 Route::get('/admin/modal/order/{order}', 'OrderController@modal')->name('modal-order');
+
 Route::get('/admin/modal/client/{client}', 'ClientController@modal')->name('modal-client');
+
+Route::get('/modal/carrito/', 'ShoppingCartController@modalStore')->name('modal-shopping-cart');
+
+Route::post('/carrito/', 'ShoppingCartController@modalProduct')->name('modal-shopping-cart-product');
+
 
 
 
@@ -177,6 +183,8 @@ Route::get('/admin/tiendas/{store}/pedido/agregar', 'OrderController@new')->name
 Route::post('/admin/tiendas/{store}/pedido/agregar', 'OrderController@save')->name('order-save');
 
 Route::delete('/admin/tiendas/{store}/pedidos/{order}/eliminar', 'OrderController@delete')->name('order-delete');
+
+Route::put('/admin/pedidos/estado/pasar', 'OrderController@changeStatus')->name('change-status');
 
 // Route::get('/admin/tiendas/{store}/pedidos/agregar', 'OrderController@new')->name('order-new');
 

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Rol;
 use App\Client;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -42,9 +43,10 @@ class User extends Authenticatable
     {
       return $this->belongsTo(Store::class, 'id_store');
     }
-    public function fecha_f()
+
+    public function fechaF()
     {
-      return date('d/m/y',strtotime($this->created_at));
+      return Carbon::parse($this->created_at)->format('d-m-Y');
     }
 
 }

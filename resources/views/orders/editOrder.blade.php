@@ -13,16 +13,24 @@
 @endsection
 
 @section('content')
-    <div class="panel-body">
-      @include('errors.errors')
+  <div class="panel-body">
+    @include('errors.errors')
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <h3 class="box-title">Editando pedido {{$order->id}}</h3>
+      </div>
       <form  method="POST" name='editClient'>
-      	{{ method_field('put') }}
-
-        @include('orders._fields')
-          <input type="submit" value="Guardar cambios" name="submit"/>
+        <div class="box-body">
+      	   {{ method_field('put') }}
+          @include('orders._fields')
+          <div class="box-footer">
+            <a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
+            <input class="btn btn-primary"type="submit" value="Guardar cambios" name="submit"/>
+          </div>
+        </div>
       </form>
-
     </div>
+  </div>
 
 
 @endsection
