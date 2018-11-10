@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\City;
+use App\Country;
 use App\Store;
 
 class StoreController extends Controller
 {
-  
+
   public function __construct()
   {
       $this->middleware('auth');
@@ -29,8 +30,9 @@ class StoreController extends Controller
   public function new()
   {
     $store = new Store();
-    $cities = City::orderby('name')->get();
-    return view('stores.newStore',compact('store','cities'));
+
+    $countries = Country::orderby('name')->with('provinces')->with('provinces.cities')->get();
+    return view('stores.newStore',compact('store','countries'));
   }
 
   public function save(Request $request)
@@ -60,8 +62,8 @@ class StoreController extends Controller
 
   public function edit(Store $store)
   {
-    $cities = City::all();
-    return view('stores.editStore',compact('store','cities'));
+    $countries = Country::orderby('name')->with('provinces')->with('provinces.cities')->get();
+    return view('stores.editStore',compact('store','countries'));
   }
 
    public function update(Store $store, Request $request)

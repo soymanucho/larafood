@@ -4,6 +4,7 @@
 Tiendas
 @endsection
 
+
 @section('breadcrumb-items')
   <li><a href="{!! route('country-show') !!}"><i class="fa "></i> Paises</a></li>
   <li><a href="{!! route('province-show') !!}"><i class="fa "></i> Provincias</a></li>
