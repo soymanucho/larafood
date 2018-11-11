@@ -144,6 +144,59 @@
       </div>
       <!--/.box -->
     </div>
+    <div class="col-md-6">
+
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Últimos pedidos</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+              <tr>
+                <th>ID Pedido</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+                <th>Precio</th>
+              </tr>
+              </thead>
+              <tbody>
+                @foreach($lastOrders as $order)
+                    <tr>
+                      <td>  {{$order->id}}</td>
+                      <td>  {{ $order->client->name }}</td>
+                      <td><span class="label" style="background-color:{{$order->status->color}}">{{$order->status->name}}</span></td>
+                      {{-- <td>  {{ $order->store->name }}</td> --}}
+                      <td>  ${{ $order->total_price }}</td>
+                    </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+
+          <a href="{!! route('order-new',compact('store')) !!}" class="btn btn-sm btn-info btn-flat pull-left">Realizar nuevo pedido</a>
+          <a href="{!! route('order-show',compact('store')) !!}" class="btn btn-sm btn-default btn-flat pull-right">Ver todos los pedidos</a>
+        </div>
+        <!-- /.box-footer -->
+      </div>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <!-- Left col -->
     <div class="col-md-3">
       <div class="box box-default">
         <div class="box-header with-border">
@@ -184,58 +237,6 @@
         <!-- /.footer -->
       </div>
     </div>
-  </div>
-  <div class="row">
-    <!-- Left col -->
-      <div class="col-md-8">
-
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">Últimos pedidos</h3>
-
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <div class="table-responsive">
-              <table class="table no-margin">
-                <thead>
-                <tr>
-                  <th>ID Pedido</th>
-                  <th>Cliente</th>
-                  <th>Estado</th>
-                  <th>Precio</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach($lastOrders as $order)
-                      <tr>
-                        <td>  {{$order->id}}</td>
-                        <td>  {{ $order->client->name }}</td>
-                        <td><span class="label" style="background-color:{{$order->status->color}}">{{$order->status->name}}</span></td>
-                        {{-- <td>  {{ $order->store->name }}</td> --}}
-                        <td>  ${{ $order->total_price }}</td>
-                      </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-            <!-- /.table-responsive -->
-          </div>
-          <!-- /.box-body -->
-          <div class="box-footer clearfix">
-
-            <a href="{!! route('order-new',compact('store')) !!}" class="btn btn-sm btn-info btn-flat pull-left">Realizar nuevo pedido</a>
-            <a href="{!! route('order-show',compact('store')) !!}" class="btn btn-sm btn-default btn-flat pull-right">Ver todos los pedidos</a>
-          </div>
-          <!-- /.box-footer -->
-        </div>
-
-      </div>
       <div class="col-md-4">
 
         <div class="box box-primary">
