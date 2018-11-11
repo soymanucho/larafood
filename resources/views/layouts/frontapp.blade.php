@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="es" class="no-js">
 <head>
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon-->
   <link rel="shortcut icon" href="img/fav.png">
+
+<link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Author Meta -->
   <meta name="author" content="colorlib">
   <!-- Meta Description -->
@@ -21,7 +23,6 @@
     CSS
     ============================================= -->
 
-    <link rel="stylesheet" href="/front/css/font-awesome.min.css">
     <link rel="stylesheet" href="/front/css/bootstrap.css">
     <link rel="stylesheet" href="/front/css/magnific-popup.css">
     <link rel="stylesheet" href="/front/css/jquery-ui.css">
@@ -31,14 +32,25 @@
     <link rel="stylesheet" href="/front/css/main.css">
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css" type="text/css" media="screen" />
   </head>
   <body>
     <header id="header">
+      {{-- <div class="header-top">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div id="logo">
+              <span class="logo-mini"><b>L</b>FD</span>
+            </div>
+          </div>
+        </div>
+      </div> --}}
       <div class="container main-menu">
         <div class="row align-items-left justify-content-between d-flex">
             <nav id="nav-menu-container">
               <ul class="nav-menu">
-                <li><a href=""><span class="logo-mini"><b>L</b>FD</span></a></li>
+
                 <li><a href="{!! route('index-show') !!}">Inicio</a></li>
                 <li><a href="{!! route('aboutus-show') !!}">Nosotros</a></li>
                 <li><a href="{!! route('menu-show') !!}">Menú</a></li>
@@ -46,12 +58,17 @@
                 <li><a href="{!! route('contact-show') !!}">Contacto</a></li>
               </ul>
             </nav><!-- #nav-menu-container -->
-            <nav id="nav-menu-container">
+            <nav id="nav-menu-container2">
               <ul class="nav-menu ">
                 @guest
                   <li class="align-self-right"><a href="{!! route('login') !!}">Inicia sesión</a></li>
                   <li><a href="{!! route('register') !!}">Registrate</a></li>
                 @else
+                  @if (Auth::user()->rol->id == 3)
+                    <li><a href="{!! route('dashboard-show') !!}">Panel Admin</a></li>
+                  @else
+                    <li><a href="{!! route('show-my-orders') !!}">Mis pedidos</a></li>
+                  @endif
                   <li><a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">

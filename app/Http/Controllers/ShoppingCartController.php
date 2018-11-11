@@ -2,14 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Store;
 use App\SellableType;
+use App\Sellable;
+use App\Order;
 
 
 class ShoppingCartController extends Controller
 {
+
+  function __construct()
+  {
+    // $this->middleware('auth:api');
+    $this->middleware('auth');
+
+  }
+
+  public function showOrders()
+  {
+    $user = Auth::user();
+    $orders = $user->client->orders;
+
+
+    return view('front.myorders',compact('orders'));
+  }
+
   public function modalStore()
   {
     $stores = Store::all();
@@ -21,8 +41,30 @@ class ShoppingCartController extends Controller
     $store = Store::findOrFail($request->input('store'));
     $sellables = $store->sellables;
     $sellableTypes = SellableType::all();
-
     return view('front.menu',compact('store','sellables','sellableTypes'));
+  }
+  public function save(Request $request)
+  {
+
+
+
+    $order = new Order;
+    $order->id_client=Auth::user()->client->id;
+    $order->id_status = 1;
+    $order->id_store = $request->id_store;
+    $order->save();
+    foreach($request->input("products") as $product){
+      $store = Store::findOrFail($request->input('id_store'));
+
+      $sellable= $store->sellables()->where('id', $product)->first();
+
+      $price = $sellable->pivot->price;
+      $amount = $request->input("count_".$product);
+
+      $order->sellables()->attach($sellable->id,['amount'=>$amount,'price'=>$price]);
+    }
+    $order->save();
+     return redirect()->route('show-my-orders');
   }
 
 }

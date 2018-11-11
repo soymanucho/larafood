@@ -6,8 +6,31 @@ $(function () {
    * -------
    * Here we will create a few charts using ChartJS
    */
+   var PieData = [];
+   var pieDataSellable;
+   function getRandomColor() {
+     var letters = '0123456789ABCDEF';
+     var color = '#';
+     for (var i = 0; i < 6; i++) {
+       color += letters[Math.floor(Math.random() * 16)];
+     }
+     return color;
+   }
+   $.get('api/admin/dashboard/sellables',function (data,status) {
 
+       pieDataSellable =  data
+       pieDataSellable.forEach(function (e,i) {
+         PieData += {
+           value: e.total,
+           color: getRandomColor(),
+           highlight: getRandomColor(),
+           label: e.i
+         }
+         console.log(e,i);
+       })
 
+       console.log(PieData);
+   })
 
   // -------------
   // - PIE CHART -
@@ -15,44 +38,44 @@ $(function () {
   // Get context with jQuery - using jQuery's .get() method.
   var pieChartCanvas = $('#pie-chart').get(0).getContext('2d');
   var pieChart       = new Chart(pieChartCanvas);
-  var PieData        = [
-    {
-      value    : 800,
-      color    : '#f56954',
-      highlight: '#f56954',
-      label    : 'Chrome'
-    },
-    {
-      value    : 50,
-      color    : '#00a65a',
-      highlight: '#00a65a',
-      label    : 'IE'
-    },
-    {
-      value    : 400,
-      color    : '#f39c12',
-      highlight: '#f39c12',
-      label    : 'FireFox'
-    },
-    {
-      value    : 600,
-      color    : '#00c0ef',
-      highlight: '#00c0ef',
-      label    : 'Safari'
-    },
-    {
-      value    : 300,
-      color    : '#3c8dbc',
-      highlight: '#3c8dbc',
-      label    : 'Opera'
-    },
-    {
-      value    : 100,
-      color    : '#d2d6de',
-      highlight: '#d2d6de',
-      label    : 'Navigator'
-    }
-  ];
+  // var PieData        = [
+  //   {
+  //     value    : 800,
+  //     color    : '#f56954',
+  //     highlight: '#f56954',
+  //     label    : 'Pizza mozzarella'
+  //   },
+  //   {
+  //     value    : 50,
+  //     color    : '#00a65a',
+  //     highlight: '#00a65a',
+  //     label    : 'Coca-Cola'
+  //   },
+  //   {
+  //     value    : 400,
+  //     color    : '#f39c12',
+  //     highlight: '#f39c12',
+  //     label    : 'Empanada carne'
+  //   },
+  //   {
+  //     value    : 600,
+  //     color    : '#00c0ef',
+  //     highlight: '#00c0ef',
+  //     label    : 'Cerveza Patagonia'
+  //   },
+  //   {
+  //     value    : 300,
+  //     color    : '#3c8dbc',
+  //     highlight: '#3c8dbc',
+  //     label    : 'Pizza especial'
+  //   },
+  //   {
+  //     value    : 100,
+  //     color    : '#d2d6de',
+  //     highlight: '#d2d6de',
+  //     label    : 'Empanada JyQ'
+  //   }
+  // ];
   var pieOptions     = {
     // Boolean - Whether we should show a stroke on each segment
     segmentShowStroke    : true,
@@ -77,7 +100,7 @@ $(function () {
     // String - A legend template
     legendTemplate       : '<ul class=\'<%=name.toLowerCase()%>-legend\'><% for (var i=0; i<segments.length; i++){%><li><span style=\'background-color:<%=segments[i].fillColor%>\'></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
     // String - A tooltip template
-    tooltipTemplate      : '<%=value %> <%=label%> users'
+    tooltipTemplate      : '<%=value %> <%=label%> pedidos'
   };
   // Create pie or douhnut chart
   // You can switch between pie and douhnut using the method below.

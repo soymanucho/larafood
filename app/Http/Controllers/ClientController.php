@@ -12,6 +12,7 @@ class ClientController extends Controller
   public function __construct()
   {
       $this->middleware('auth');
+      $this->middleware('onlyRol:3');
   }
 
   public function modal(Client $client)

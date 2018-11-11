@@ -61,6 +61,7 @@ class Order extends Model
   {
     $sellables = $this->sellables()->pluck('id_sellable')->toArray();
     $total = $this->store->sellables()->whereIn('id',$sellables)->sum('menu.price');
+    // $total = $total*$this->pivot->amount;
     $this->total_price=$total;
   }
 

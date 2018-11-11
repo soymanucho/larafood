@@ -223,3 +223,9 @@ Route::get('/menu', 'indexController@menu')->name('menu-show');
 Route::get('/galeria', 'indexController@show')->name('gallery-show');
 
 Route::get('/contacto', 'indexController@show')->name('contact-show');
+
+Route::post('/pedido/guardar', 'ShoppingCartController@save')->name('front-order-save');
+
+Route::get('/pedido/guardar', 'ShoppingCartController@save')->name('front-order-save');
+
+Route::get('/pedidos','ShoppingCartController@showOrders')->name('show-my-orders');

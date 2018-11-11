@@ -144,7 +144,7 @@
       </div>
       <!--/.box -->
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
       <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Consumo promos</h3>
@@ -167,12 +167,12 @@
             <!-- /.col -->
             <div class="col-md-4">
               <ul class="chart-legend clearfix">
-                <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                <li><i class="fa fa-circle-o text-red"></i> Pizza mozzarella</li>
+                <li><i class="fa fa-circle-o text-green"></i> Coca-Cola</li>
+                <li><i class="fa fa-circle-o text-yellow"></i> Empanada carne</li>
+                <li><i class="fa fa-circle-o text-aqua"></i> Cerveza Patagonia</li>
+                <li><i class="fa fa-circle-o text-light-blue"></i> Pizza especial</li>
+                <li><i class="fa fa-circle-o text-gray"></i> Empanada JyQ</li>
               </ul>
             </div>
             <!-- /.col -->
@@ -180,16 +180,7 @@
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
-        <div class="box-footer no-padding">
-          <ul class="nav nav-pills nav-stacked">
-            <li><a href="">United States of America
-              <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-            <li><a href="">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-            </li>
-            <li><a href="">China
-              <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
-          </ul>
-        </div>
+
         <!-- /.footer -->
       </div>
     </div>

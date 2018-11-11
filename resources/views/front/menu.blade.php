@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  <div style="background-color: red; background-image: url('front/img/top-banner.jpg'); height:200px; background-size: cover;
+  <div style="background-color: red; background-image: url('front/img/top-banner.jpg'); height:65px; background-size: cover;
   background-repeat: no-repeat;"></div>
 <div class="container-fluid">
 
@@ -49,7 +49,7 @@
                             @endif
                             <hr>
                           @endforeach
-                          <div data-price='{{$sellable->pivot->price}}' id="{{$sellable->name}} ${{$sellable->pivot->price}}" class="pull-right add-product" ><i class="fa fa-2x fa-plus-circle"></i></div>
+                          <div data-price='{{$sellable->pivot->price}}' data-name="{{$sellable->name}}" data-id='{{$sellable->id}}' ${{$sellable->pivot->price}}" class="pull-right add-product" ><i class="fa fa-2x fa-plus-circle"></i></div>
                         </div>
                       </div>
                     @endforeach
@@ -59,19 +59,24 @@
           </div>
       </section>
     </div>
-    <div style="background-color:pink;" class="col-3">
-      <div class="position-fixed mb-4 pb-4">
+    <div style="background-color:pink;" class="col-3" style="height:100vh; width:100vw" >
+      <div class="position-fixed mb-1 pb-1" style="width:100vw;">
         <h1 class="text-white">Tu pedido</h1>
-        <form class="form" action="" method="post">
-          <div class="input-group">
-            <ul class="product-container">
+        <form class="form" action="{!! route('front-order-save') !!}" method="post">
+          <input type="text" hidden name="id_store" value="{{$store->id}}">
+          {{ csrf_field() }}
+          <select class="selector" hidden multiple id="products[]" name="products[]" name="products[]">
+
+          </select>
+          <div class="input-group pre-scrollable" >
+            <ul class="product-container" >
 
             </ul>
           </div>
-          <div class="shopping-cart-footer">
-
+          <div class="shopping-cart-footer row">
+            <h2 id="subtotal" class="ml-2 mt-1"style="color:white">Subtotal:</h2>
           </div>
-          <input class="btn btn-success" type="submit" name="" value="Comprar">
+          <input class="btn btn-success ml-2 mt-1" type="submit" name="" value="Comprar">
         </form>
       </div>
     </div>
@@ -82,30 +87,100 @@
 <script type="text/javascript">
   // var container =  document.getElementById("selectedProductContainer");
   // var selector =  document.getElementById("selectorProducts");
+  var price = 0;
+
+  function productRemove(e) {
+    var subtotal = document.querySelector('#subtotal');
+    price = price - parseInt(e.parentElement.getAttribute('data-price'));
+    e.parentNode.remove()
+    subtotal.innerHTML = "Subtotal: $"+price+""
+  }
+
+  function selectGenerate(e) {
+
+    var products = document.querySelectorAll('.productCart');
+    for(product of products){
+        var idProducto = product.getAttribute('data-id');
+        // console.log(idProducto);
+        var counter= document.querySelector('.count_'+idProducto);
+      if (counter) {
+        counter.setAttribute('value',parseInt(counter.getAttribute('value'))+1) ;
+      }
+      else {
+
+        var inputProduct = document.createElement('option');
+        var inputNumber = document.createElement('input');
+        inputProduct.setAttribute('type','hidden');
+        inputNumber.setAttribute('type','hidden number');
+        inputNumber.setAttribute('name','count_'+idProducto);
+        inputNumber.setAttribute('class','count_'+idProducto);
+        inputNumber.setAttribute('value',1);
+        inputProduct.setAttribute('class','productInputSelected');
+        inputProduct.setAttribute('selected','true');
+        inputProduct.setAttribute('value',idProducto);
+        document.getElementsByClassName('selector')[0].appendChild(inputProduct)
+        document.getElementsByClassName('selector')[0].appendChild(inputNumber)
+      }
+
+
+    }
+
+  }
+
+
+
+
   window.onload = function () {
 
     var productContainer = document.getElementsByClassName('product-container');
-    var subtotal = document.createElement('h2');
-    var price = 0;
-
+    var subtotal = document.querySelector('#subtotal');
     var anchors = document.getElementsByClassName("add-product");
     for(element of anchors){
       element.addEventListener('click',function (e) {
-        var nameProduct = this.id;
+        var nameProduct = this.getAttribute('data-name');
         var liProduct = document.createElement('li');
         var priceProduct = this.getAttribute('data-price')
-        liProduct.setAttribute('class','rounded text-center p-2 mt-1');
-        liProduct.setAttribute('style','background-color:red; color:white;');
-        liProduct.innerHTML= nameProduct+" <a onclick='this.parentNode.remove()'><i class='fa fa-lg fa-times-circle'></i></a>";
+        var productID = this.getAttribute('data-id')
+        liProduct.setAttribute('class','productCart rounded text-center p-2 mt-1');
+        liProduct.setAttribute('style','background-color:white; color:red;');
+
+
+        liProduct.setAttribute('data-id', productID);
+        liProduct.setAttribute('data-price', priceProduct);
+        liProduct.innerHTML= nameProduct+" $"+priceProduct+" <a onclick='productRemove(this)'><i class='fa fa-lg fa-times-circle'></i></a>";
         productContainer[0].appendChild(liProduct);
-        
+
         price += parseInt(priceProduct);
 
-        subtotal.innerHTML = "<h2>Subtotal: $"+price+"</h2>"
+        subtotal.innerHTML = "Subtotal: $"+price+""
         document.getElementsByClassName('shopping-cart-footer')[0].appendChild(subtotal)
         e.preventDefault();
+
+
+
+
+
+
+
+
+
+
+
       })
     }
+
+
+    document.getElementsByClassName('form')[0].addEventListener('submit',selectGenerate);
+
+
+
+
+
+
+
+
+
+
 
   }
 

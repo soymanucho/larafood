@@ -16,6 +16,8 @@ Route::get('admin/dashboard', 'APIController@dashboard');
 
 Route::get('admin/countries', 'APIController@countries');
 
+Route::get('admin/dashboard/sellables', 'APIController@sellablesChart');
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

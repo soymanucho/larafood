@@ -12,6 +12,7 @@ class SellableController extends Controller
   public function __construct()
   {
       $this->middleware('auth');
+      $this->middleware('onlyRol:3');
   }
 
   public function show()
@@ -63,8 +64,8 @@ class SellableController extends Controller
     $sellable->fill($request->all());
     $sellable->save();
     foreach($request->input("products") as $product){
-      $request->input("counter_".$product);
-      $sellable->products()->attach($product,['amount'=>$request->input("counter_".$product)]);
+      $amount = $request->input("counter_".$product);
+      $sellable->products()->attach($product,['amount'=>$amount]);
     }
   //  $sellable->products()->attach($request->input('products'),['amount'=> 1]);
 
