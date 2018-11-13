@@ -57,6 +57,24 @@
         @endif
       </div>
       <div class="form-group has-feedback">
+        <input id="address" type="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required placeholder="Dirección">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @if ($errors->has('address'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('address') }}</strong>
+            </span>
+        @endif
+      </div>
+      <div class="form-group has-feedback">
+        <input id="phone" type="phone" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required placeholder="Teléfono">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @if ($errors->has('phone'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('phone') }}</strong>
+            </span>
+        @endif
+      </div>
+      <div class="form-group has-feedback">
         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         @if ($errors->has('password'))

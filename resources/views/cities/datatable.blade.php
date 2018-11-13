@@ -1,19 +1,18 @@
 @extends('layouts.datatable')
 
 @section('header')
-  <th>Nombre</th>
-  <th># Prod. usandolo</th>
+  <th>Ciudad</th>
+  <th>Provincia</th>
+  <th>País</th>
   <th>Acciones</th>
 @endsection
 
 @section('body')
   @foreach($cities as $city)
     <tr>
-
-      <td>  {{ $city->province->country->name }}</td>
-      <td>  {{ $city->province->name }}</td>
       <td>  {{ $city->name }}</td>
-
+      <td>  {{ $city->province->name }}</td>
+      <td>  {{ $city->province->country->name }}</td>
       <td>
         <form class="" action="/admin/ciudades/{{$city->id}}/eliminar" method="post">
           {{ csrf_field() }}

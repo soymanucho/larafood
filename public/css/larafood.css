@@ -1,0 +1,8 @@
+/* #fancybox-container-1 > div.fancybox-inner > div.fancybox-stage > div > div {
+  max-width: 1600px;
+  min-width: 1200px;
+} */
+#order-modal{
+  max-width:1300px;
+  min-width:750px;
+}

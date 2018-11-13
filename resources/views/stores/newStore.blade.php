@@ -4,6 +4,7 @@
 Tiendas
 @endsection
 
+
 @section('breadcrumb-items')
   <li><a href="{!! route('country-show') !!}"><i class="fa "></i> Paises</a></li>
   <li><a href="{!! route('province-show') !!}"><i class="fa "></i> Provincias</a></li>
@@ -17,14 +18,7 @@ Tiendas
       @include('errors.errors')
         <form  method="POST" name='editStore'>
         	{{ method_field('post') }}
-          <label for="id_city">Ciudades</label>
-          <select class="form-control" name="id_city">
-            @foreach ($cities as $city)
-              <option value="{{ $city->id }}">
-                {{ $city->name }} ({{$city->province->name}}, {{$city->province->country->name}})
-              </option>
-            @endforeach
-          </select>
+
           @include('stores._fields')
             <input type="submit" value="Agregar tienda" name="submit"/>
         </form>

@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-  <a class="float-right btn btn-success btn-lg" href="/admin/tiendas/{{Auth::user()->store->id}}/pedido/agregar">Nueva</a>
+  <a class="float-right btn btn-success btn-lg" href="/admin/tiendas/{{Auth::user()->store->id}}/pedido/agregar">Nuevo Pedido</a>
   <br><br>
   @include('orders.datatable')
 

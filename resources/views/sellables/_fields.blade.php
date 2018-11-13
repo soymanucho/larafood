@@ -75,7 +75,6 @@
     selectedProduct.appendChild(node);
     selectedProduct.appendChild(counter);
     selector.removeChild(selector.options[selector.selectedIndex]);
-    console.log(selector.options[selector.selectedIndex].innerHTML);
     container.appendChild(selectedProduct);
   }
 

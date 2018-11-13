@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="es" class="no-js">
 <head>
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon-->
   <link rel="shortcut icon" href="img/fav.png">
+
+<link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Author Meta -->
   <meta name="author" content="colorlib">
   <!-- Meta Description -->
@@ -20,8 +22,7 @@
     <!--
     CSS
     ============================================= -->
-    <link rel="stylesheet" href="/front/css/linearicons.css">
-    <link rel="stylesheet" href="/front/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/front/css/bootstrap.css">
     <link rel="stylesheet" href="/front/css/magnific-popup.css">
     <link rel="stylesheet" href="/front/css/jquery-ui.css">
@@ -29,22 +30,27 @@
     <link rel="stylesheet" href="/front/css/animate.min.css">
     <link rel="stylesheet" href="/front/css/owl.carousel.css">
     <link rel="stylesheet" href="/front/css/main.css">
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css" type="text/css" media="screen" />
   </head>
   <body>
     <header id="header">
-      <div class="header-top">
+      {{-- <div class="header-top">
         <div class="container">
-            <div class="row justify-content-center">
-                <div id="logo">
-                  <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-                </div>
+          <div class="row justify-content-center">
+            <div id="logo">
+              <span class="logo-mini"><b>L</b>FD</span>
             </div>
+          </div>
         </div>
-      </div>
+      </div> --}}
       <div class="container main-menu">
         <div class="row align-items-left justify-content-between d-flex">
             <nav id="nav-menu-container">
               <ul class="nav-menu">
+
                 <li><a href="{!! route('index-show') !!}">Inicio</a></li>
                 <li><a href="{!! route('aboutus-show') !!}">Nosotros</a></li>
                 <li><a href="{!! route('menu-show') !!}">Menú</a></li>
@@ -52,11 +58,28 @@
                 <li><a href="{!! route('contact-show') !!}">Contacto</a></li>
               </ul>
             </nav><!-- #nav-menu-container -->
-            <nav id="nav-menu-container">
+            <nav id="nav-menu-container2">
               <ul class="nav-menu ">
-                <li class="align-self-right"><a href="{!! route('login') !!}">Inicia sesión</a></li>
-                <li><a href="{!! route('register') !!}">Registrate</a></li>
-                <li class="btn btn-danger align-self-right"><a href="{!! route('index-show') !!}">Haz tu pedido</a></li>
+                @guest
+                  <li class="align-self-right"><a href="{!! route('login') !!}">Inicia sesión</a></li>
+                  <li><a href="{!! route('register') !!}">Registrate</a></li>
+                @else
+                  @if (Auth::user()->rol->id == 3)
+                    <li><a href="{!! route('dashboard-show') !!}">Panel Admin</a></li>
+                  @else
+                    <li><a href="{!! route('show-my-orders') !!}">Mis pedidos</a></li>
+                  @endif
+                  <li><a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Cerrar sesión') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form></li>
+                @endguest
+                <li class="btn btn-danger align-self-right"><a class="fancybox" href="{{ route('modal-shopping-cart') }}">Haz tu pedido</a></li>
               </ul>
             </nav><!-- #nav-menu-container -->
           </div>
@@ -64,20 +87,7 @@
     </header><!-- #header -->
 
     <!-- start banner Area -->
-    <section class="banner-area">
-      <div class="container">
-        <div class="row fullscreen align-items-center justify-content-between">
-          <div class="col-lg-12 banner-content">
-            <h6 class="text-white">La calidad de la materia prima, marca la diferencia</h6>
-            <h1 class="text-white">Fundacional Pizza</h1>
-            <p class="text-white">
-              Nuestras pizzas son únicas por su borde relleno.
-            </p>
-            <a href="#" class="primary-btn text-uppercase">Ver menú</a>
-          </div>
-        </div>
-      </div>
-    </section>
+
     <!-- End banner Area -->
 
 
@@ -159,7 +169,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
       </div>
     </footer>
     <!-- End footer Area -->
-
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/front/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="/front/js/popper.min.js"></script>
     <script src="/front/js/vendor/bootstrap.min.js"></script>
@@ -175,5 +185,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
           <script src="/front/js/isotope.pkgd.min.js"></script>
     <script src="/front/js/mail-script.js"></script>
     <script src="/front/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+    <script type="text/javascript">
+      window.addEventListener('load',function() {
+      	$(".fancybox").fancybox({
+      		maxWidth	: 1600,
+      		maxHeight	: 600,
+      		fitToView	: false,
+      		width		: '80%',
+      		height		: '80%',
+      		autoSize	: true,
+      		closeClick	: false,
+      		openEffect	: 'none',
+      		closeEffect	: 'none',
+          type: 'ajax',
+          touch: false
+      	});
+      });
+    </script>
   </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -11,6 +12,7 @@ use App\Status;
 use App\Store;
 use App\Sellable;
 use Carbon\Carbon;
+
 
 class Order extends Model
 {
@@ -60,8 +62,15 @@ class Order extends Model
   public function calculateTotalPrice()
   {
     $sellables = $this->sellables()->pluck('id_sellable')->toArray();
-    $total = $this->store->sellables()->whereIn('id',$sellables)->sum('menu.price');
+    $total = DB::table('order_details')->where('id_order', $this->id)->sum(DB::raw('amount * price'));
+    //$total = $this->store->sellables()->whereIn('id',$sellables)->sum('menu.price');
+    // $total = $total*$this->pivot->amount;
     $this->total_price=$total;
+  }
+
+  public function fechaF()
+  {
+    return Carbon::parse($this->created_at)->format('d-m-Y');
   }
 
 }

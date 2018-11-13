@@ -1,6 +1,7 @@
 @extends('layouts.datatable')
 
 @section('header')
+  <th>ID Pedido</th>
   <th>Cliente</th>
   <th>Estado</th>
   {{-- <th>Tienda</th> --}}
@@ -11,7 +12,7 @@
 @section('body')
   @foreach($orders as $order)
       <tr>
-
+        <td>{{$order->id}}</td>
         <td>  {{ $order->client->name }}</td>
         <td><span class="label" style="background-color:{{$order->status->color}}">{{$order->status->name}}</span></td>
         {{-- <td>  {{ $order->store->name }}</td> --}}

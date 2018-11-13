@@ -48,20 +48,25 @@ class Store extends Model
     return number_format($totalPrice,2,',','.');
   }
 
-   public function totalNumberOfActiveOrdersAndFinalizedToday()
-   {
-     $notFinalStatuses = Status::where('is_final',false)->get()->pluck('id')->toArray();
-     $numberNotFinalOrders = $this->orders->whereIn('id_status',$notFinalStatuses)->count();
+ public function totalNumberOfActiveOrdersAndFinalizedToday()
+ {
+   $notFinalStatuses = Status::where('is_final',false)->get()->pluck('id')->toArray();
+   $numberNotFinalOrders = $this->orders->whereIn('id_status',$notFinalStatuses)->count();
 
-     $finalStatuses = Status::where('is_final',true)->get()->pluck('id')->toArray();
-     $numberFinalOrders = $this->orders->whereIn('id_status',$finalStatuses)->where('created_at', '>', Carbon::today()->toDateString())->count();
+   $finalStatuses = Status::where('is_final',true)->get()->pluck('id')->toArray();
+   $numberFinalOrders = $this->orders->whereIn('id_status',$finalStatuses)->where('created_at', '>', Carbon::today()->toDateString())->count();
 
-     return $numberNotFinalOrders + $numberFinalOrders;
-   }
+   return $numberNotFinalOrders + $numberFinalOrders;
+ }
 
-   public function percentageOfOrdersInStatus(Status $status)
-   {
-     return (number_format($this->numberOfOrdersInStatus($status)*100/$this->totalNumberOfActiveOrdersAndFinalizedToday(),2,'.',','));
-   }
+ public function percentageOfOrdersInStatus(Status $status)
+ {
+   return (number_format($this->numberOfOrdersInStatus($status)*100/$this->totalNumberOfActiveOrdersAndFinalizedToday(),2,'.',','));
+ }
+
+ public function fechaF()
+ {
+   return Carbon::parse($this->created_at)->format('d-m-Y');
+ }
 
 }

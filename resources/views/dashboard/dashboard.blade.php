@@ -24,69 +24,82 @@
           </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body no-padding">
 
+            <div class="box-body no-padding">
+              <div class="row">
+                @foreach ($statuses as $status)
+                  <div class="col-md-6">
+                    <div class="box box-default collapsed-box no-margin" style="background-color: {{$status->color}}">
+                      <div class="box-header with-border no-padding">
+                        <div class="info-box" style="background-color: {{$status->color}}">
+                          <div class="info-box-content">
+                            <span class="info-box-text" style='color:white'>{{$status->name}} </span>
 
-          @foreach ($statuses as $status)
-              <div class="box box-default collapsed-box" style="background-color: {{$status->color}}">
-                <div class="box-header with-border">
-                  <div class="info-box" style="background-color: {{$status->color}}">
-                    <span class="info-box-icon"><i class="ion ion-ios-more"></i></span>
+                            <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
 
-                    <div class="info-box-content">
-                      <span class="info-box-text" style='color:white'>{{$status->name}} </span>
+                            <div class="progress">
+                              <div class="progress-bar" style="width: {{$store->percentageOfOrdersInStatus($status)}}%"></div>
+                            </div>
+                            <span class="progress-description" style='color:white'>
+                                  {{$store->percentageOfOrdersInStatus($status)}}%
+                                </span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
 
-                      <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
-
-                      <div class="progress">
-                        <div class="progress-bar" style="width: {{$store->percentageOfOrdersInStatus($status)}}%"></div>
+                        <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                          </button>
+                        </div>
+                        <!-- /.box-tools -->
                       </div>
-                      <span class="progress-description" style='color:white'>
-                            {{$store->percentageOfOrdersInStatus($status)}}%
-                          </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-
-                  <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                    </button>
-                  </div>
-                  <!-- /.box-tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  <div class="table-responsive" style="background-color: white">
-                    <table class="table no-margin">
-                        <thead>
-                        <tr>
-                          <th>Orden nº</th>
-                          <th>Cliente</th>
-                          <th>Precio</th>
-                          <th>Tienda</th>
-                          <th>Creado hace</th>
-                          <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($store->orders->where('id_status', $status->id) as $order)
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                        <div class="table-responsive" style="background-color: white">
+                          <table class="table no-margin">
+                              <thead>
                               <tr>
-                                <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->id}}</a></td>
-                                <td><a href="">{{$order->client->name}}</a></td>
-                                <td><a href="">${{$order->total_price}}</a></td>
-                                <td><a href="">{{$order->store->name}}</a></td>
-                                <td><a href="">{{$order->elapsedMinutes()}} min</a></td>
-                                <td>borrar</td>
+                                <th>ID Pedido</th>
+                                <th>Cliente</th>
+                                <th>Precio</th>
+                                <th>Tienda</th>
+                                <th>Creado hace</th>
+                                @if ($status->is_final == false)
+                                  <th>Acciones</th>
+                                @endif
                               </tr>
-                          @endforeach
-                        </tbody>
-                    </table>
+                              </thead>
+                              <tbody>
+                                @foreach ($store->orders->where('id_status', $status->id) as $order)
+                                    <tr>
+                                      <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->id}}</a></td>
+                                      <td><a class="fancybox" href="{{ route('modal-client', ['client'=>$order->client]) }}">{{$order->client->name}}</a></td>
+                                      <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">${{$order->total_price}}</a></td>
+                                      <td><a href="">{{$order->store->name}}</a></td>
+                                      <td><a class="fancybox" href="{{ route('modal-order', compact('order')) }}">{{$order->elapsedMinutes()}} min</a></td>
+                                      <td>
+                                        @foreach ($order->status->nextStatuses as $status)
+                                          <form method="post" action={!! route('change-status') !!}>
+                                            {{ csrf_field() }}
+                                            {{ method_field('put') }}
+                                            <input type="text" name="order" value="{{$order->id}}" hidden>
+                                            <input type="text" name="status" value="{{$status->id}}" hidden>
+                                            <input class="btn btn-sm btn-primary" type="submit" style="background-color: {{$status->color}}" value="Pasar a {{$status->name}}" name="submit"/>
+                                          </form>
+                                        @endforeach </td>
+                                    </tr>
+                                @endforeach
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+                        <!-- /.box-body -->
+                    </div>
                   </div>
-                </div>
-                  <!-- /.box-body -->
+                @endforeach
+              </div>
             </div>
-          @endforeach
-        </div>
+
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -101,7 +114,7 @@
           <h3 class="box-title">Clientes recientes</h3>
 
           <div class="box-tools pull-right">
-            <span class="label label-danger">8 Nuevos Clientes</span>
+            <span class="label label-danger">{{$todayClients->count()}} Nuevos Clientes Hoy</span>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -111,61 +124,83 @@
         <!-- /.box-header -->
         <div class="box-body no-padding">
           <ul class="users-list clearfix">
-            <li>
-              <img src="dist/img/user1-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">Alexander Pierce</a>
-              <span class="users-list-date">Today</span>
-            </li>
-            <li>
-              <img src="dist/img/user8-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">Norman</a>
-              <span class="users-list-date">Yesterday</span>
-            </li>
-            <li>
-              <img src="dist/img/user7-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">Jane</a>
-              <span class="users-list-date">12 Jan</span>
-            </li>
-            <li>
-              <img src="dist/img/user6-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">John</a>
-              <span class="users-list-date">12 Jan</span>
-            </li>
-            <li>
-              <img src="dist/img/user2-160x160.jpg" alt="User Image">
-              <a class="users-list-name" href="#">Alexander</a>
-              <span class="users-list-date">13 Jan</span>
-            </li>
-            <li>
-              <img src="dist/img/user5-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">Sarah</a>
-              <span class="users-list-date">14 Jan</span>
-            </li>
-            <li>
-              <img src="dist/img/user4-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">Nora</a>
-              <span class="users-list-date">15 Jan</span>
-            </li>
-            <li>
-              <img src="dist/img/user3-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">Nadia</a>
-              <span class="users-list-date">15 Jan</span>
-            </li>
+            @foreach ($clients as $client)
+              <li>
+                <img src="dist/img/user-128x128.jpg" alt="User Image">
+                <a class="users-list-name fancybox" href="{{ route('modal-client', compact('client')) }}">{{$client->name}}</a>
+                <span class="users-list-date">@if ($client->user)
+                  <a href="mailto:{{$client->user->email}}?Subject=Hola%20de%20nuevo" >{{$client->user->email}}</a>
+                @endif</span>
+              </li>
+            @endforeach
           </ul>
           <!-- /.users-list -->
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-center">
-          <a href="javascript:void(0)" class="uppercase">View All Users</a>
+          <a href={!! route('client-show') !!} class="uppercase">Ver todos los usuarios</a>
         </div>
         <!-- /.box-footer -->
       </div>
       <!--/.box -->
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
+
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Últimos pedidos</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+              <tr>
+                <th>ID Pedido</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+                <th>Precio</th>
+              </tr>
+              </thead>
+              <tbody>
+                @foreach($lastOrders as $order)
+                    <tr>
+                      <td>  {{$order->id}}</td>
+                      <td>  {{ $order->client->name }}</td>
+                      <td><span class="label" style="background-color:{{$order->status->color}}">{{$order->status->name}}</span></td>
+                      {{-- <td>  {{ $order->store->name }}</td> --}}
+                      <td>  ${{ $order->total_price }}</td>
+                    </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+
+          <a href="{!! route('order-new',compact('store')) !!}" class="btn btn-sm btn-info btn-flat pull-left">Realizar nuevo pedido</a>
+          <a href="{!! route('order-show',compact('store')) !!}" class="btn btn-sm btn-default btn-flat pull-right">Ver todos los pedidos</a>
+        </div>
+        <!-- /.box-footer -->
+      </div>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <!-- Left col -->
+    <div class="col-md-3">
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">Browser Usage</h3>
+          <h3 class="box-title">Consumo promos</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -178,19 +213,19 @@
           <div class="row">
             <div class="col-md-8">
               <div class="chart-responsive">
-                <canvas id="pieChart" height="150"></canvas>
+                <canvas id="pie-chart" height="150"></canvas>
               </div>
               <!-- ./chart-responsive -->
             </div>
             <!-- /.col -->
             <div class="col-md-4">
               <ul class="chart-legend clearfix">
-                <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                <li><i class="fa fa-circle-o text-red"></i> Pizza mozzarella</li>
+                <li><i class="fa fa-circle-o text-green"></i> Coca-Cola</li>
+                <li><i class="fa fa-circle-o text-yellow"></i> Empanada carne</li>
+                <li><i class="fa fa-circle-o text-aqua"></i> Cerveza Patagonia</li>
+                <li><i class="fa fa-circle-o text-light-blue"></i> Pizza especial</li>
+                <li><i class="fa fa-circle-o text-gray"></i> Empanada JyQ</li>
               </ul>
             </div>
             <!-- /.col -->
@@ -198,122 +233,15 @@
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
-        <div class="box-footer no-padding">
-          <ul class="nav nav-pills nav-stacked">
-            <li><a href="#">United States of America
-              <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-            <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-            </li>
-            <li><a href="#">China
-              <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
-          </ul>
-        </div>
+
         <!-- /.footer -->
       </div>
     </div>
-  </div>
-  <div class="row">
-    <!-- Left col -->
-      <div class="col-md-8">
-
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">Latest Orders</h3>
-
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <div class="table-responsive">
-              <table class="table no-margin">
-                <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Item</th>
-                  <th>Status</th>
-                  <th>Popularity</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                  <td>Call of Duty IV</td>
-                  <td><span class="label label-success">Shipped</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                  <td>Samsung Smart TV</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                  <td>iPhone 6 Plus</td>
-                  <td><span class="label label-danger">Delivered</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                  <td>Samsung Smart TV</td>
-                  <td><span class="label label-info">Processing</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                  <td>Samsung Smart TV</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                  <td>iPhone 6 Plus</td>
-                  <td><span class="label label-danger">Delivered</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                  <td>Call of Duty IV</td>
-                  <td><span class="label label-success">Shipped</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.table-responsive -->
-          </div>
-          <!-- /.box-body -->
-          <div class="box-footer clearfix">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
-          </div>
-          <!-- /.box-footer -->
-        </div>
-
-      </div>
       <div class="col-md-4">
 
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Recently Added Products</h3>
+            <h3 class="box-title">Productos recientemente agregados</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -324,85 +252,60 @@
           <!-- /.box-header -->
           <div class="box-body">
             <ul class="products-list product-list-in-box">
-              <li class="item">
-                <div class="product-img">
-                  <img src="dist/img/default-50x50.gif" alt="Product Image">
-                </div>
-                <div class="product-info">
-                  <a href="javascript:void(0)" class="product-title">Samsung TV
-                    <span class="label label-warning pull-right">$1800</span></a>
-                  <span class="product-description">
-                        Samsung 32" 1080p 60Hz LED Smart HDTV.
-                      </span>
-                </div>
-              </li>
-              <!-- /.item -->
-              <li class="item">
-                <div class="product-img">
-                  <img src="dist/img/default-50x50.gif" alt="Product Image">
-                </div>
-                <div class="product-info">
-                  <a href="javascript:void(0)" class="product-title">Bicycle
-                    <span class="label label-info pull-right">$700</span></a>
-                  <span class="product-description">
-                        26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                      </span>
-                </div>
-              </li>
-              <!-- /.item -->
-              <li class="item">
-                <div class="product-img">
-                  <img src="dist/img/default-50x50.gif" alt="Product Image">
-                </div>
-                <div class="product-info">
-                  <a href="javascript:void(0)" class="product-title">Xbox One <span
-                      class="label label-danger pull-right">$350</span></a>
-                  <span class="product-description">
-                        Xbox One Console Bundle with Halo Master Chief Collection.
-                      </span>
-                </div>
-              </li>
-              <!-- /.item -->
-              <li class="item">
-                <div class="product-img">
-                  <img src="dist/img/default-50x50.gif" alt="Product Image">
-                </div>
-                <div class="product-info">
-                  <a href="javascript:void(0)" class="product-title">PlayStation 4
-                    <span class="label label-success pull-right">$399</span></a>
-                  <span class="product-description">
-                        PlayStation 4 500GB Console (PS4)
-                      </span>
-                </div>
-              </li>
-              <!-- /.item -->
+              @foreach ($lastSellables as $sellable)
+                <li class="item">
+                  <div class="product-img">
+                    <img src="dist/img/default-50x50.gif" alt="Product Image">
+                  </div>
+                  <div class="product-info">
+                    <a href="javascript:void(0)" class="product-title">{{$sellable->name}}
+                      <span class="label label-info pull-right">{{$sellable->fechaF()}}</span></a>
+                    <span class="product-description">
+                          {{$sellable->description}}
+                        </span>
+                  </div>
+                </li>
+              @endforeach
             </ul>
           </div>
           <!-- /.box-body -->
           <div class="box-footer text-center">
-            <a href="javascript:void(0)" class="uppercase">View All Products</a>
+            <a href={!! route('sellable-show') !!} class="uppercase">Ver todos los productos</a>
           </div>
           <!-- /.box-footer -->
         </div>
 
       </div>
   </div>
+  {{-- <script type="text/javascript">
+        var http = new XMLHttpRequest;
+        http.onreadystatechange = function() {
 
-<script type="text/javascript">
-window.addEventListener('load',function() {
-	$(".fancybox").fancybox({
-		maxWidth	: 800,
-		maxHeight	: 600,
-		fitToView	: false,
-		width		: '70%',
-		height		: '70%',
-		autoSize	: false,
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none',
-    type: 'ajax'
-	});
-});
-</script>
+<<<<<<< HEAD
+          if(this.readyState == 4 && this.status == 200) {
+            //status == 200: significa que el servidor no devolvió ningún error,
+            //y la solicitud se completó ok
+
+              var result = JSON.parse(this.responseText);
+              //console.log(resultado);
+              document.querySelector('.box-success > div:nth-child(1)').innerHTML = '';
+              result.statuses.forEach(function(status) {
+                var html = '<div class="box-body no-padding"><div class="box box-default collapsed-box" style="background-color: '+status.color+'"><div class="box-header with-border"><div class="info-box" style="background-color: '+status.color+'"><span class="info-box-icon"><i class="ion ion-ios-more"></i></span><div class="info-box-content"><span class="info-box-text" style="color:white">'+status.name+' </span><span class="info-box-number" style="color:white">bla  ($bla)</span><div class="progress"><div class="progress-bar" style="width: 50%"></div></div><span class="progress-description" style="color:white">50%</span></div></div></div></div></div>';
+
+                document.querySelector('.box-success > div:nth-child(1)').innerHTML += html;
+
+            });
+            setInterval(function() {
+              var apitoken = '{!!Auth::user()->api_token!!}';
+              http.open('GET', 'http://127.0.0.1:8000/api/admin/dashboard?api_token='+apitoken);
+              http.send();
+            }, 10000);
+          }
+        }
+        var apitoken = '{{Auth::user()->api_token}}';
+        http.open('GET', 'http://127.0.0.1:8000/api/admin/dashboard?api_token='+apitoken);
+        http.send();
+  </script> --}}
+
 
 @endsection

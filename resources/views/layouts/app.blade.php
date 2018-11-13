@@ -7,7 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/bower_components/bootstrap//dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -33,10 +33,12 @@
   <![endif]-->
   {{-- fancybox --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" type="text/css" media="screen" />
 
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="/css/larafood.css">
 </head>
 <body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
@@ -258,7 +260,7 @@
 
                   <p>
                     {{Auth::user()->name }} - {{Auth::user()->rol->name }}
-                    <small>Miembro desde - {{Auth::user()->fecha_f() }}</small>
+                    <small>Miembro desde - {{Auth::user()->fechaF() }}</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
@@ -354,7 +356,7 @@
               </span> --}}
             </a>
           </li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-cutlery"></i>
               <span>Productos</span>
@@ -369,7 +371,7 @@
               <li><a href={{route('ingredient-show')}}><i class="fa fa-angle-right"></i> Ingredientes</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-map"></i>
               <span>Ubicaciones</span>
@@ -384,7 +386,7 @@
               <li><a href={{route('store-show')}}><i class="fa fa-shopping-cart"></i> Tiendas</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-bar-chart"></i> <span>Estadísticas</span>
               <span class="pull-right-container">
@@ -455,7 +457,7 @@
             </ul>
           </li>
           <li><a href="{{route('client-show')}}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
-          <li class="treeview">
+          <li class="active treeview">
             <a href="#">
               <i class="fa fa-usd"></i>
               <span>Pedidos</span>
@@ -463,7 +465,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
-            <ul class="treeview-menu">
+            <ul class="active treeview-menu">
 
               @foreach (App\Store::All() as $store)
                 <li><a href={{route('order-show',['store'=>$store->id])}}><i class="fa fa-angle-right"></i> De {{$store->name}}</a></li>
@@ -538,9 +540,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="/bower_components/jquery//dist/jquery.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/bower_components/bootstrap//dist/js/bootstrap.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- DataTables -->
@@ -576,16 +578,36 @@
       'autoWidth'   : true,
       'stateSave': true
     })
-    $(document).ready(function() {
+
     $('.select2').select2({
       tags:true,
       multiple:true,
       tokenSeparators: [',']
     })
 
-      })
+
+
+
+
 
   })
+</script>
+
+<script type="text/javascript">
+  window.addEventListener('load',function() {
+  	$(".fancybox").fancybox({
+  		maxWidth	: 1600,
+  		maxHeight	: 600,
+  		fitToView	: false,
+  		width		: '80%',
+  		height		: '80%',
+  		autoSize	: true,
+  		closeClick	: false,
+  		openEffect	: 'none',
+  		closeEffect	: 'none',
+      type: 'ajax'
+  	});
+  });
 </script>
 </body>
 </html>

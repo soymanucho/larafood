@@ -1,15 +1,15 @@
 {{ csrf_field() }}
 
 
-<div>
+<div class="form-group">
   <label for="name">Nombre</label>
   <input type="text" name="name" id="name" value="{{ old('name',$product->name)}}"/>
 </div>
-<div>
+<div class="form-group">
   <label for="description">Descripción</label>
   <input type="text" name="description" id="description" value="{{ old('description',$product->name)}}"/>
 </div>
-<div class="">
+<div class="form-group">
   <label for="id_product_type">Categoría de Producto</label>
   <select class="form-control" id="id_product_type" name="id_product_type" >
     @foreach ($sellableTypes as $sellableType)
@@ -23,7 +23,7 @@
     @endforeach
   </select>
 </div>
-<div class="">
+<div class="form-group">
   <label for="ingredients">Ingredientes</label>
     <select class="form-control select2" multiple="multiple" data-placeholder="Seleccioná uno/s producto/s"
             style="width: 100%;" id="ingredients[]" name="ingredients[]">
@@ -40,5 +40,4 @@
         </option>
       @endforeach
     </select>
-
 </div>

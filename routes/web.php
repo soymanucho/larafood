@@ -14,6 +14,13 @@
 
 Route::get('/admin/modal/order/{order}', 'OrderController@modal')->name('modal-order');
 
+Route::get('/admin/modal/client/{client}', 'ClientController@modal')->name('modal-client');
+
+Route::get('/modal/carrito/', 'ShoppingCartController@modalStore')->name('modal-shopping-cart');
+
+Route::post('/carrito/', 'ShoppingCartController@modalProduct')->name('modal-shopping-cart-product');
+
+
 
 
 // SELLABLES
@@ -177,6 +184,8 @@ Route::post('/admin/tiendas/{store}/pedido/agregar', 'OrderController@save')->na
 
 Route::delete('/admin/tiendas/{store}/pedidos/{order}/eliminar', 'OrderController@delete')->name('order-delete');
 
+Route::put('/admin/pedidos/estado/pasar', 'OrderController@changeStatus')->name('change-status');
+
 // Route::get('/admin/tiendas/{store}/pedidos/agregar', 'OrderController@new')->name('order-new');
 
 
@@ -214,3 +223,10 @@ Route::get('/menu', 'indexController@menu')->name('menu-show');
 Route::get('/galeria', 'indexController@show')->name('gallery-show');
 
 Route::get('/contacto', 'indexController@show')->name('contact-show');
+
+Route::post('/pedido/guardar', 'ShoppingCartController@save')->name('front-order-save');
+
+Route::get('/pedido/guardar', 'ShoppingCartController@save')->name('front-order-save');
+
+Route::get('/pedidos','ShoppingCartController@showOrders')->name('show-my-orders');
+Route::get('/pedidos/api','ShoppingCartController@showOrdersApi')->name('show-my-orders-api');
