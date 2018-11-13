@@ -21,6 +21,15 @@ class ShoppingCartController extends Controller
 
   }
 
+  public function showOrdersApi()
+  {
+    $user = Auth::user();
+    $orders = Order::where('id_client',$user->client->id)->with('client')->with('status')->get();
+    // $orders = $user->client->orders->with('client')->get();
+
+    return $orders->toJson();
+  }
+
   public function showOrders()
   {
     $user = Auth::user();

@@ -229,3 +229,4 @@ Route::post('/pedido/guardar', 'ShoppingCartController@save')->name('front-order
 Route::get('/pedido/guardar', 'ShoppingCartController@save')->name('front-order-save');
 
 Route::get('/pedidos','ShoppingCartController@showOrders')->name('show-my-orders');
+Route::get('/pedidos/api','ShoppingCartController@showOrdersApi')->name('show-my-orders-api');

@@ -75,3 +75,46 @@
   </div>
 </div>
 @endsection
+<script type="text/javascript">
+
+
+
+  window.onload = function () {
+
+    var pedido = function (data) {
+      // var res = jQuery.parseJSON(data)
+      var res = JSON.parse(data)
+      console.log(res);
+      $('tbody').empty()
+      res.forEach(function (order) {
+        $('tbody').append('<tr>')
+        $('tbody').append('<td>'+order.id+'</td>')
+        $('tbody').append('<td>'+order.client.name+'</td>')
+        $('tbody').append('<td><span class="badge" style="color:white; background-color:'+order.status.color+'">'+order.status.name+'</span></td>')
+        $('tbody').append('<td>$'+order.total_price+'</td>')
+        $('tbody').append('</tr>')
+      })
+
+
+    }
+    function llamada() {
+      $.ajax({
+        url:'/pedidos/api',
+
+        success:function(data){
+          pedido(data)
+        }
+      })
+      setTimeout(llamada,2000)
+    }
+    llamada()
+
+
+  }
+
+
+
+
+
+
+</script>
