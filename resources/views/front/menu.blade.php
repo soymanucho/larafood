@@ -1,3 +1,28 @@
+
+<style media="screen">
+
+.ingredientImg{
+  transition:  0.5s;
+}
+
+.ingredientImg:hover{
+  transition:  0.5s;
+  transform: scale(3);
+}
+
+  .addItem{
+      transition:  3s;
+  }
+
+  .addItem:hover {
+    color: green;
+    font-size: 35px;
+    transform: rotate(180deg);
+    transition:  0.5s;
+    transition-timing-function: ease-in-out;
+}
+</style>
+
 @extends('layouts.frontapp')
 
 @section('title')
@@ -44,12 +69,12 @@
                           @foreach ($sellable->products as $key => $product)
                             @if ($sellable->type->name!='Promo')
                               @foreach ($product->ingredients as $key => $ingredient)
-                                <img src="/assets/images/ingredients/{{$ingredient->image}}" title="{{$ingredient->name}}" style='height: 30px; width:30px'>
+                                <img class="ingredientImg" src="/assets/images/ingredients/{{$ingredient->image}}" title="{{$ingredient->name}}" style='height: 30px; width:30px'>
                               @endforeach
                             @endif
                             <hr>
                           @endforeach
-                          <div data-price='{{$sellable->pivot->price}}' data-name="{{$sellable->name}}" data-id='{{$sellable->id}}' ${{$sellable->pivot->price}}" class="pull-right add-product" ><i class="fa fa-2x fa-plus-circle"></i></div>
+                          <div data-price='{{$sellable->pivot->price}}' data-name="{{$sellable->name}}" data-id='{{$sellable->id}}' ${{$sellable->pivot->price}}" class="pull-right add-product" ><i class="fa fa-2x fa-plus-circle addItem"></i></div>
                         </div>
                       </div>
                     @endforeach
@@ -97,34 +122,36 @@
   }
 
   function selectGenerate(e) {
+    if(price>0){
+        var products = document.querySelectorAll('.productCart');
+        for(product of products){
+            var idProducto = product.getAttribute('data-id');
+            // console.log(idProducto);
+            var counter= document.querySelector('.count_'+idProducto);
+          if (counter) {
+            counter.setAttribute('value',parseInt(counter.getAttribute('value'))+1) ;
+          }
+          else {
 
-    var products = document.querySelectorAll('.productCart');
-    for(product of products){
-        var idProducto = product.getAttribute('data-id');
-        // console.log(idProducto);
-        var counter= document.querySelector('.count_'+idProducto);
-      if (counter) {
-        counter.setAttribute('value',parseInt(counter.getAttribute('value'))+1) ;
-      }
-      else {
-
-        var inputProduct = document.createElement('option');
-        var inputNumber = document.createElement('input');
-        inputProduct.setAttribute('type','hidden');
-        inputNumber.setAttribute('type','hidden number');
-        inputNumber.setAttribute('name','count_'+idProducto);
-        inputNumber.setAttribute('class','count_'+idProducto);
-        inputNumber.setAttribute('value',1);
-        inputProduct.setAttribute('class','productInputSelected');
-        inputProduct.setAttribute('selected','true');
-        inputProduct.setAttribute('value',idProducto);
-        document.getElementsByClassName('selector')[0].appendChild(inputProduct)
-        document.getElementsByClassName('selector')[0].appendChild(inputNumber)
-      }
+            var inputProduct = document.createElement('option');
+            var inputNumber = document.createElement('input');
+            inputProduct.setAttribute('type','hidden');
+            inputNumber.setAttribute('type','hidden number');
+            inputNumber.setAttribute('name','count_'+idProducto);
+            inputNumber.setAttribute('class','count_'+idProducto);
+            inputNumber.setAttribute('value',1);
+            inputProduct.setAttribute('class','productInputSelected');
+            inputProduct.setAttribute('selected','true');
+            inputProduct.setAttribute('value',idProducto);
+            document.getElementsByClassName('selector')[0].appendChild(inputProduct)
+            document.getElementsByClassName('selector')[0].appendChild(inputNumber)
+          }
 
 
+        }
+    }else {
+      e.preventDefault();
     }
-
   }
 
 
