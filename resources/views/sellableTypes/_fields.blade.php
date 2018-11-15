@@ -1,7 +1,7 @@
 {{ csrf_field() }}
 
 
-<div>
+<div class="form-group">
   <label for="name">Nombre</label>
   <input type="text" name="name" id="name" value="{{ old('name',$sellableType->name)}}"/>
 </div>

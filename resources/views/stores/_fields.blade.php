@@ -13,7 +13,7 @@
 </script>
 
 
-<div class="selectCountry">
+<div class="selectCountry form-group">
   <label for="id_country">País</label>
   <select class="form-control" name="id_country">
     <option value="" selected disabled>
@@ -27,15 +27,14 @@
   </select>
 </div>
 
-<div name="selectProvincesDiv" style="display:none">
+<div class="form-group" name="selectProvincesDiv" style="display:none">
   <label for="id_province">Provincia</label>
   <select class="form-control" name="id_province">
-
 
   </select>
 </div>
 
-<div name="selectCitiesDiv" style="display:none">
+<div class="form-group" name="selectCitiesDiv" style="display:none">
   <label for="id_city">Ciudad</label>
   <select class="form-control" name="id_city">
 
@@ -43,13 +42,13 @@
 
 </div>
 
-<div>
+<div class="form-group">
   <label for="name">Nombre</label>
-  <br>
   <input type="text" name="name" id="name" value="{{ old('name',$store->name)}}"/>
-  <br>
+</div>
+
+<div class="form-group">
   <label for="address">Dirección</label>
-  <br>
   <input type="text" name="address" id="address" value="{{ old('address',$store->address)}}"/>
 </div>
 

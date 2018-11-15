@@ -1,20 +1,17 @@
 {{ csrf_field() }}
 
 
-<div>
+<div class="form-group">
   <label for="name">Nombre</label>
   <input type="text" name="name" id="name" value="{{ old('name',$sellable->name)}}"/>
 </div>
-<div>
+
+<div class="form-group">
   <label for="description">Description</label>
   <input type="text" name="description" id="description" value="{{ old('description',$sellable->description)}}"/>
 </div>
-{{-- <div>
-  <label for="price">Price</label>
-  <input type="text" name="price" id="price" value="{{ old('price',$sellable->price)}}"/>
-</div> --}}
 
-<div class="">
+<div class="form-group">
   <label for="id_sellable_type">Tipos de Producto</label>
   <select class="form-control" id="id_sellable_type" name="id_sellable_type" >
     @foreach ($sellableTypes as $sellableType)
@@ -29,7 +26,7 @@
   </select>
 </div>
 
-<div class="">
+<div class="form-group">
   <label for="products[]">Productos</label>
   <select multiple id="selectorProducts" class="form-control" id="products[]" name="products[]" >
     @foreach ($products as $product)
@@ -43,7 +40,7 @@
     @endforeach
   </select>
 </div>
-<div id="selectedProductContainer">
+<div class="form-group" id="selectedProductContainer">
 
 </div>
 
@@ -56,7 +53,7 @@
 
   var selectAProduct = function() {
     var selectedProduct = document.createElement("div");
-    selectedProduct.style.background="grey";
+    selectedProduct.style.background="#dce5e6";
     var node = document.createTextNode(selector.options[selector.selectedIndex].innerHTML);
     var counter = document.createElement("INPUT");
 
@@ -67,7 +64,9 @@
     check.setAttribute("value", selector.value);
 
 
+
     counter.setAttribute("type", "number");
+    counter.setAttribute("class","pull-right mt-4 pt-4 mb-4 pb-4")
     counter.setAttribute("value", "1");
     counter.setAttribute("name", "counter_"+selector.value);
 

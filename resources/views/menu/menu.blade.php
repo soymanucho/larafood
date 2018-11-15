@@ -23,27 +23,49 @@
                     <!-- column -->
                     <div class="col-lg-12">
                         <div class="row">
-                            <div class="col-4  m-t-15">
-                                <div class="bg-dark p-10 text-white text-center">
-                                   <i class="fa fa-user m-b-5 font-16"></i>
-                                   <h5 class="m-b-0 m-t-5">{{$store->sellables->count()}}</h5>
-                                   <small class="font-light">Total Items</small>
-                                </div>
+                            <div class="col-lg-4 col-xs-6">
+                                <div class="small-box bg-aqua">
+                                  <div class="inner">
+                                   <h3>{{$store->sellables->count()}}</h3>
+                                   <div class="icon">
+                                     <i class="ion ion-pizza"></i>
+                                   </div>
+                                   <p>Total Items</p>
+                                 </div>
+                                 <a href="#" class="small-box-footer">Más info <i class="fa fa-arrow-circle-right"></i></a>
+
+                              </div>
                             </div>
-                             <div class="col-4  m-t-15">
-                                <div class="bg-dark p-10 text-white text-center">
-                                   <i class="fa fa-plus m-b-5 font-16"></i>
-                                   <h5 class="m-b-0 m-t-5">${{$store->sellables->sum('pivot.price')}}</h5>
-                                   <small class="font-light">Precio Total del menu</small>
+                            <div class="col-lg-4 col-xs-6">
+                              <!-- small box -->
+                              <div class="small-box bg-red">
+                                <div class="inner">
+                                  <h3>${{$store->sellables->sum('pivot.price')}}</h3>
+
+                                  <p>Precio Total del menu</p>
                                 </div>
-                            </div>
-                            <div class="col-4 m-t-15">
-                                <div class="bg-dark p-10 text-white text-center">
-                                   <i class="fa fa-cart-plus m-b-5 font-16"></i>
-                                   <h5 class="m-b-0 m-t-5">${{$store->sellables->avg('pivot.price')}}</h5>
-                                   <small class="font-light">Precio Promedio por Item</small>
+                                <div class="icon">
+                                  <i class="ion ion-pie-graph"></i>
                                 </div>
+                                <a href="#" class="small-box-footer">Más info <i class="fa fa-arrow-circle-right"></i></a>
+                              </div>
                             </div>
+
+                            <div class="col-lg-4 col-xs-6">
+                              <!-- small box -->
+                              <div class="small-box bg-green">
+                                <div class="inner">
+                                  <h3><sup style="font-size: 20px">$</sup>{{$store->sellables->avg('pivot.price')}}</h3>
+
+                                  <p>Precio Promedio por Item</p>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-cart"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">Más info <i class="fa fa-arrow-circle-right"></i></a>
+                              </div>
+                            </div>
+
 
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  Nueva Ciudad
+  Editar Tienda
 @endsection
 
 @section('breadcrumb-items')
@@ -15,16 +15,21 @@
 @section('content')
     <div class="panel-body">
       @include('errors.errors')
-                      <form  method="POST" name='editStore'>
-                      	{{ method_field('put') }}
-                        @include('stores._fields')
-                          <input type="submit" value="Guardar cambios" name="submit"/>
-                      </form>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">Editando tienda <b>{{$store->name}}</b> </h3>
+        </div>
+        <form  method="POST" name='editStore'>
+          <div class="box-body">
+          	{{ method_field('put') }}
+            @include('stores._fields')
+            <div class="box-footer">
+              <a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
+              <input class="btn btn-primary"type="submit" value="Guardar cambios" name="submit"/>
             </div>
+          </div>
+        </form>
+      </div>
+    </div>
 
 @endsection

@@ -22,8 +22,14 @@ class ClientController extends Controller
 
   public function show()
   {
-    $clients = Client::orderby('name')->with('user')->get();
-    return view('clients.clients',compact('clients'));
+    $clients = Client::orderby('name')->with('user')->with('orders')->get();
+    $totalPrice = 0;
+
+    foreach ($clients as $client) {
+      $totalPrice += $client->totalprice();
+    }
+    $totalPrice = number_format($totalPrice, 2,',','.');
+    return view('clients.clients',compact('clients','totalPrice'));
   }
 
   public function delete(Client $client)

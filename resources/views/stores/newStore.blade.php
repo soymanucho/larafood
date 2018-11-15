@@ -15,12 +15,21 @@ Tiendas
 @section('content')
 
   <div class="panel-body">
-      @include('errors.errors')
-        <form  method="POST" name='editStore'>
-        	{{ method_field('post') }}
-
-          @include('stores._fields')
-            <input type="submit" value="Agregar tienda" name="submit"/>
-        </form>
+    @include('errors.errors')
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Nueva tienda</h3>
+      </div>
+      <form  method="POST" name='editStore'>
+        <div class="box-body">
+      	   {{ method_field('post') }}
+           @include('stores._fields')
+           <div class="box-footer">
+             <a class="btn btn-danger" href="{{ URL::previous()}}">Volver</a>
+             <input class="btn btn-primary"type="submit" value="Agregar tienda" name="submit"/>
+           </div>
+        </div>
+      </form>
+    </div>
   </div>
 @endsection

@@ -197,47 +197,8 @@
   </div>
   <div class="row">
     <!-- Left col -->
-    <div class="col-md-3">
-      <div class="box box-default">
-        <div class="box-header with-border">
-          <h3 class="box-title">Consumo promos</h3>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="chart-responsive">
-                <canvas id="pie-chart" height="150"></canvas>
-              </div>
-              <!-- ./chart-responsive -->
-            </div>
-            <!-- /.col -->
-            <div class="col-md-4">
-              <ul class="chart-legend clearfix">
-                <li><i class="fa fa-circle-o text-red"></i> Pizza mozzarella</li>
-                <li><i class="fa fa-circle-o text-green"></i> Coca-Cola</li>
-                <li><i class="fa fa-circle-o text-yellow"></i> Empanada carne</li>
-                <li><i class="fa fa-circle-o text-aqua"></i> Cerveza Patagonia</li>
-                <li><i class="fa fa-circle-o text-light-blue"></i> Pizza especial</li>
-                <li><i class="fa fa-circle-o text-gray"></i> Empanada JyQ</li>
-              </ul>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.box-body -->
-
-        <!-- /.footer -->
-      </div>
-    </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
 
         <div class="box box-primary">
           <div class="box-header with-border">
