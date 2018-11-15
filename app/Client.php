@@ -27,4 +27,8 @@ class Client extends Model
     return Carbon::parse($this->created_at)->format('d-m-Y');
   }
 
+  public function totalprice()
+  {
+    return $this->orders->sum('total_price');
+  }
 }
