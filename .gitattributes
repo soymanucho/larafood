@@ -2,10 +2,7 @@
 *.css linguist-vendored
 *.scss linguist-vendored
 *.js linguist-vendored
-*.html linguist-vendored=true
 
-public/assets/* linguist-vendored
-public/bower_components/* linguist-vendored
-
+linguist-language=PHP
 
 CHANGELOG.md export-ignore
