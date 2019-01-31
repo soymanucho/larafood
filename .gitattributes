@@ -3,12 +3,10 @@
 *.scss linguist-vendored
 *.js linguist-vendored
 *.html linguist-vendored
-/public/assets/* linguist-vendored
-/public/bower_components/* linguist-vendored
 
 public/assets/* linguist-vendored
 public/bower_components/* linguist-vendored
 
-/public/* linguist-vendored
+public/* linguist-vendored
 
 CHANGELOG.md export-ignore
