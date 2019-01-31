@@ -4,5 +4,5 @@
 *.js linguist-vendored
 *.html linguist-vendored
 public/assets/* linguist-vendored
-public/assets/libs/flot/examples/* linguist-vendored
+public/bower_components/* linguist-vendored
 CHANGELOG.md export-ignore
