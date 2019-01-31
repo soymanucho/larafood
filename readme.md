@@ -1,4 +1,4 @@
-<h1 align="center">LARAFOOD</h1>
+<a href="github.com/soymanucho/larafood"><h1 align="center">LARAFOOD</h1></a>
 
 
 ## Autores
