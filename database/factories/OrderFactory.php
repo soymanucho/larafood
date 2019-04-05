@@ -16,6 +16,5 @@ $factory->define(App\Order::class, function (Faker $faker) {
         'total_price'=>$faker->randomFloat(2,100,800),
         'id_status'=>$faker->randomElement($statuses),
         'id_store'=>$faker->randomElement($stores),
-        'created_at'=>$faker->randomDate();
     ];
 });
