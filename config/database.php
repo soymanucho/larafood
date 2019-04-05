@@ -48,7 +48,7 @@ return [
             'password' => env('DB_PASSWORD', 'sarasa123'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
-            'collation' => 'utf8mb4_unicode_ci',
+            'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
