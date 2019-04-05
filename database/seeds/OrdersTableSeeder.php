@@ -14,7 +14,7 @@ class OrdersTableSeeder extends Seeder
      public function run()
      {
          //Create 50 random products of all types
-         factory(Order::class, 100)->create();
+         factory(Order::class, 25)->create();
 
          $this->attachSellables();
          foreach (Order::all() as $order) {
