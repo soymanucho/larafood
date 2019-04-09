@@ -37,20 +37,20 @@ class Order extends Model
     return $this->belongsToMany(Sellable::class, 'order_details', 'id_order', 'id_sellable');
   }
 
-  protected static function boot()
-  {
-    parent::boot();
+ // protected static function boot()
+ // {
+   // parent::boot();
 
-    static::saving(function($order)
-    {
-      $order->calculateTotalPrice();
-    });
+   // static::saving(function($order)
+   // {
+    //  $order->calculateTotalPrice();
+    //});
 
     // Pivot::creating(function($pivot) {
     //   $pivot->amount = $this->calculateTotalPrice();
     // });
 
-  }
+//  }
 
   public function elapsedMinutes()
   {
@@ -59,14 +59,14 @@ class Order extends Model
   }
 
 
-  public function calculateTotalPrice()
-  {
-    $sellables = $this->sellables()->pluck('id_sellable')->toArray();
-    $total = DB::table('order_details')->where('id_order', $this->id)->sum(DB::raw('(amount * price)'));
-    //$total = $this->store->sellables()->whereIn('id',$sellables)->sum('menu.price');
-    // $total = $total*$this->pivot->amount;
-    $this->total_price=$total;
-  }
+//  public function calculateTotalPrice()
+//  {
+//    $sellables = $this->sellables()->pluck('id_sellable')->toArray();
+//    $total = DB::table('order_details')->where('id_order', $this->id)->sum(DB::raw('(amount * price)'));
+//    //$total = $this->store->sellables()->whereIn('id',$sellables)->sum('menu.price');
+//    // $total = $total*$this->pivot->amount;
+//    $this->total_price=$total;
+//  }
 
   public function fechaF()
   {
