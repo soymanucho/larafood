@@ -22,7 +22,7 @@ class DashboardController extends Controller
   }
   public function show()
   {
-    $store = Auth::user()->store;
+    $store = Auth::user()->store->with('orders')->get();
     $statuses = Status::all();
     $clients = Client::orderBy('id','desc')->take(8)->get();
     $todayClients = Client::whereDate('created_at', Carbon::today())->get();
