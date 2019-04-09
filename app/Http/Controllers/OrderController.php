@@ -96,7 +96,7 @@ class OrderController extends Controller
   $order->sellables()->attach($request->input('sellables'),['amount'=>1,'price'=>1]);
   $order->calculateTotalPrice();
   $order->save();
-  dd($order);
+  
 
 
 
