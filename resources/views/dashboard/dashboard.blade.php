@@ -35,7 +35,7 @@
                           <div class="info-box-content">
                            @if(isset($store))
                            <span class="info-box-text" style='color:white'>{{$status->name}} </span>
-                            {{dd($status)}}
+                            
                             <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
 
                             <div class="progress">
