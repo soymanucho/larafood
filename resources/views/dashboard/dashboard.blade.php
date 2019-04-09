@@ -33,8 +33,9 @@
                       <div class="box-header with-border no-padding">
                         <div class="info-box" style="background-color: {{$status->color}}">
                           <div class="info-box-content">
-                            <span class="info-box-text" style='color:white'>{{$status->name}} </span>
-
+                           @if(isset($store))
+                           <span class="info-box-text" style='color:white'>{{$status->name}} </span>
+                            
                             <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
 
                             <div class="progress">
@@ -43,6 +44,7 @@
                             <span class="progress-description" style='color:white'>
                                   {{$store->percentageOfOrdersInStatus($status)}}%
                                 </span>
+                            @endif
                           </div>
                           <!-- /.info-box-content -->
                         </div>
@@ -55,6 +57,7 @@
                       </div>
                       <!-- /.box-header -->
                       <div class="box-body">
+                      @if(isset($store))
                         <div class="table-responsive" style="background-color: white">
                           <table class="table no-margin">
                               <thead>
@@ -92,6 +95,7 @@
                               </tbody>
                           </table>
                         </div>
+                       @endif
                       </div>
                         <!-- /.box-body -->
                     </div>
@@ -114,7 +118,9 @@
           <h3 class="box-title">Clientes recientes</h3>
 
           <div class="box-tools pull-right">
+          @if(isset($todayClients))
             <span class="label label-danger">{{$todayClients->count()}} Nuevos Clientes Hoy</span>
+          @endif
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -124,6 +130,7 @@
         <!-- /.box-header -->
         <div class="box-body no-padding">
           <ul class="users-list clearfix">
+          @if(isset($clients))
             @foreach ($clients as $client)
               <li>
                 <img src="dist/img/user-128x128.jpg" alt="User Image">
@@ -133,6 +140,7 @@
                 @endif</span>
               </li>
             @endforeach
+           @endif
           </ul>
           <!-- /.users-list -->
         </div>
@@ -158,6 +166,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+        @if(isset($lastOrders))
           <div class="table-responsive">
             <table class="table no-margin">
               <thead>
@@ -181,6 +190,7 @@
               </tbody>
             </table>
           </div>
+         @endif
           <!-- /.table-responsive -->
         </div>
         <!-- /.box-body -->
@@ -213,6 +223,7 @@
           <!-- /.box-header -->
           <div class="box-body">
             <ul class="products-list product-list-in-box">
+            @if(isset($lastSellables))
               @foreach ($lastSellables as $sellable)
                 <li class="item">
                   <div class="product-img">
@@ -227,6 +238,7 @@
                   </div>
                 </li>
               @endforeach
+             @endif
             </ul>
           </div>
           <!-- /.box-body -->
