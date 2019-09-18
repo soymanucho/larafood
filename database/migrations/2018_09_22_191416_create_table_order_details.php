@@ -16,7 +16,7 @@ class CreateTableOrderDetails extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->integer('id_sellable')->unsigned();
             $table->integer('id_order')->unsigned();
-            $table->text('amount');
+            $table->integer('amount')->unsigned();
             $table->float('price',8,2);
             $table->timestamps();
 

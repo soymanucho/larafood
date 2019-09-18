@@ -37,20 +37,20 @@ class Order extends Model
     return $this->belongsToMany(Sellable::class, 'order_details', 'id_order', 'id_sellable');
   }
 
-  protected static function boot()
-  {
-    parent::boot();
+ // protected static function boot()
+ // {
+   // parent::boot();
 
-    static::saving(function($order)
-    {
-      $order->calculateTotalPrice();
-    });
+   // static::saving(function($order)
+   // {
+    //  $order->calculateTotalPrice();
+    //});
 
     // Pivot::creating(function($pivot) {
     //   $pivot->amount = $this->calculateTotalPrice();
     // });
 
-  }
+//  }
 
   public function elapsedMinutes()
   {

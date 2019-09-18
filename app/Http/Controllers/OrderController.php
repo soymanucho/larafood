@@ -93,10 +93,10 @@ class OrderController extends Controller
   $order->fill($request->all());
   $order->id_status = 1;
   $order->save();
-
   $order->sellables()->attach($request->input('sellables'),['amount'=>1,'price'=>1]);
+  $order->calculateTotalPrice();
   $order->save();
-
+  
 
 
 

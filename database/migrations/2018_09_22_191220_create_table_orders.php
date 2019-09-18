@@ -16,7 +16,7 @@ class CreateTableOrders extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_client')->unsigned();
-            $table->float('total_price',8,2);
+            $table->float('total_price',8,2)->nullable();
             $table->integer('id_status')->unsigned();
             $table->timestamps();
 

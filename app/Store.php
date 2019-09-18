@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\City;
 use App\Order;
+use App\Status;
 use App\Sellable;
 use Carbon\Carbon;
 
