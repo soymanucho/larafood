@@ -39,10 +39,10 @@
                             
 
                             <div class="progress">
-                              <div class="progress-bar" style="width: {{$store->percentageOfOrdersInStatus($status)}}%"></div>
+                              <div class="progress-bar" style=""></div>
                             </div>
                             <span class="progress-description" style='color:white'>
-                                  {{$store->percentageOfOrdersInStatus($status)}}%
+                                  
                                 </span>
                             @endif
                           </div>
