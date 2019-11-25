@@ -36,7 +36,7 @@
                            @if(isset($store))
                            <span class="info-box-text" style='color:white'>{{$status->name}} </span>
                             
-                            <span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span>
+                            <!--<span class="info-box-number" style='color:white'>{{$store->numberOfOrdersInStatus($status)}}  (${{$store->totalPriceOfOrdersInStatus($status)}})</span> --!>
 
                             <div class="progress">
                               <div class="progress-bar" style="width: {{$store->percentageOfOrdersInStatus($status)}}%"></div>
